@@ -80,6 +80,17 @@ class Publisher:
         self.git('push','--set-upstream','origin','main')
         return self.git('rev-parse','HEAD').stdout.strip()
 
+    def find_release(self):
+        # The releases/tags endpoint only finds published releases. Enumerating
+        # releases also exposes drafts to their owner, including pending tags.
+        pages = self.gh('api','--paginate','--slurp',
+            f'repos/{self.args.repository}/releases?per_page=100',json_result=True)
+        matches = [release for page in pages for release in page
+                   if release['tag_name']==self.args.tag]
+        if len(matches)>1:
+            raise RuntimeError('Multiple releases use this tag; refusing to create or select another draft')
+        return matches[0] if matches else None
+
     def prepare(self):
         login = self.gh('api','user','--jq','.login').stdout.strip()
         if login.lower() != self.args.repository.split('/')[0].lower():
@@ -95,15 +106,14 @@ class Publisher:
             if repository['private']:
                 raise RuntimeError('The selected installer is configured for public downloads; repository is private')
         commit = self.commit_sources('Prepare Perdition Sector beta snapshot distribution')
-        release = self.gh('api','repos/'+self.args.repository+'/releases/tags/'+self.args.tag,check=False)
-        if release.returncode:
-            if '404' not in release.stderr:
-                raise RuntimeError(release.stderr.strip())
+        data = self.find_release()
+        if data is None:
             self.gh('release','create',self.args.tag,'--repo',self.args.repository,
                 '--draft','--prerelease','--title','Perdition Sector '+self.args.version+' (Beta)',
                 '--target',commit,'--notes-file',str(REPO_ROOT/'RELEASE_NOTES.md'))
-            release = self.gh('api','repos/'+self.args.repository+'/releases/tags/'+self.args.tag)
-        data = json.loads(release.stdout)
+            data = self.find_release()
+            if data is None:
+                raise RuntimeError('Draft creation returned successfully but the draft is not visible yet. Rerun to resume.')
         if not data['draft']:
             raise RuntimeError('This release is already public. Published beta assets will not be changed.')
         self.release_id = data['id']

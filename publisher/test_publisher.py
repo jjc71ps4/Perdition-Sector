@@ -1,7 +1,9 @@
 import argparse
 import hashlib
+import json
 from pathlib import Path
 import tempfile
+from types import SimpleNamespace
 import unittest
 
 from publish_beta import Publisher
@@ -54,6 +56,64 @@ class UploadTests(unittest.TestCase):
     def test_missing_digest_is_not_accepted(self):
         self.assertFalse(Publisher.matches({'state':'uploaded','size':4},
             {'bytes':4,'sha256':hashlib.sha256(b'part').hexdigest()}))
+
+
+class DraftReleaseTests(unittest.TestCase):
+    def publisher(self,temp,pages):
+        args=argparse.Namespace(work=Path(temp)/'work',auth_dir=Path(temp)/'auth',
+            gh=Path(temp)/'gh.exe',repository='jjc71ps4/Perdition-Sector',
+            tag='fixture',version='fixture')
+        publisher=Publisher(args)
+        publisher.commit_sources=lambda message:'f'*40
+        calls=[]
+        def fake_gh(*arguments,**kwargs):
+            calls.append(arguments)
+            if arguments==('api','user','--jq','.login'):
+                return SimpleNamespace(stdout='jjc71ps4\n')
+            if arguments==('api','repos/jjc71ps4/Perdition-Sector'):
+                return SimpleNamespace(returncode=0,stdout=json.dumps({'private':False}))
+            if arguments==('api','--paginate','--slurp','repos/jjc71ps4/Perdition-Sector/releases?per_page=100'):
+                return pages
+            if arguments[:2]==('release','create'):
+                pages.append([self.release()])
+                return None
+            raise AssertionError('Unexpected GitHub call: '+str(arguments))
+        publisher.gh=fake_gh
+        return publisher,calls
+
+    @staticmethod
+    def release(draft=True):
+        return {'id':453403811,'tag_name':'fixture','draft':draft,
+                'html_url':'https://github.com/jjc71ps4/Perdition-Sector/releases/tag/untagged-fixture'}
+
+    def test_existing_draft_on_later_page_is_reused(self):
+        with tempfile.TemporaryDirectory() as temp:
+            publisher,calls=self.publisher(temp,[[{'id':1,'tag_name':'other'}],[self.release()]])
+            publisher.prepare()
+            self.assertEqual(publisher.release_id,453403811)
+            self.assertEqual(publisher.state['status'],'draft')
+            self.assertFalse(any(call[:2]==('release','create') for call in calls))
+
+    def test_new_draft_is_found_without_published_tag_endpoint(self):
+        with tempfile.TemporaryDirectory() as temp:
+            publisher,calls=self.publisher(temp,[[]])
+            publisher.prepare()
+            self.assertEqual(publisher.release_id,453403811)
+            self.assertEqual(sum(call[:2]==('release','create') for call in calls),1)
+
+    def test_published_release_is_not_modified(self):
+        with tempfile.TemporaryDirectory() as temp:
+            publisher,calls=self.publisher(temp,[[self.release(draft=False)]])
+            with self.assertRaisesRegex(RuntimeError,'already public'):
+                publisher.prepare()
+            self.assertFalse(any(call[:2]==('release','create') for call in calls))
+
+    def test_duplicate_drafts_are_not_selected_or_recreated(self):
+        with tempfile.TemporaryDirectory() as temp:
+            publisher,calls=self.publisher(temp,[[self.release(),self.release()]])
+            with self.assertRaisesRegex(RuntimeError,'Multiple releases'):
+                publisher.prepare()
+            self.assertFalse(any(call[:2]==('release','create') for call in calls))
 
 
 if __name__=='__main__':

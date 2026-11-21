@@ -1,6 +1,6 @@
 {
   "installer_fixture_checks": 121,
-  "streaming_and_uploader_tests": 8,
+  "streaming_and_uploader_tests": 12,
   "powershell_syntax": "passed",
   "setup_form_smoke_test": "passed",
   "zip64_dotnet_read_and_extract": "passed",
@@ -10,7 +10,8 @@
   "missing_active_plugin_providers": 0,
   "full_authenticated_installation": "not performed",
   "live_game_files_modified": false,
-  "github_publication": "waiting for CLI authorization",
+  "github_publication": "Repository and draft release exist; current-build payload upload pending",
   "subway_repairs_runtime": "All 17 confirmed working by Faust",
-  "setup_bootstrap_compile": "passed"
+  "setup_bootstrap_compile": "passed",
+  "draft_release_lookup_regression": "passed: reuse existing draft, create new draft, reject published and ambiguous releases"
 }

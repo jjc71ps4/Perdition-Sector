@@ -32,6 +32,11 @@ folder. Published assets are never overwritten. Failed runs retain the draft,
 verified uploads and any unfinished local part for diagnosis. Completed parts
 are reused when a deterministic rebuild produces the same hashes.
 
+The publisher locates drafts through the paginated releases collection. It
+reuses an existing draft for the requested tag when resuming, including a draft
+whose tag has not been published yet. The published-release tag endpoint is not
+used for draft lookup.
+
 `installer/Tools` (7-Zip) and `installer/RootOverlay.zip` are local build inputs,
 distributed inside the setup release ZIP rather than committed to Git. Keep
 the accepted local build inputs when rebuilding setup. `installer/Build-Payload.ps1`
