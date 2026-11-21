@@ -10,5 +10,7 @@
   "missing_active_plugin_providers": 0,
   "full_authenticated_installation": "not performed",
   "live_game_files_modified": false,
-  "github_publication": "waiting for CLI authorization"
+  "github_publication": "waiting for CLI authorization",
+  "subway_repairs_runtime": "All 17 confirmed working by Faust",
+  "setup_bootstrap_compile": "passed"
 }
