@@ -1,0 +1,119 @@
+{
+  "version": "0.2.0-beta.1",
+  "snapshot_tag": "beta-2026.11.20.1",
+  "archive_name": "Perdition_Payload_v0.2.0-beta.1.zip",
+  "archive_bytes": 33991745838,
+  "archive_sha256": "ef9287eab5514756536fb50fa280091b41c3b74adf5724dbb0e3a41d254dd509",
+  "installed_payload_bytes": 41634211995,
+  "world_plugin_sha256": "9822b8bba4952ba4db28311eef6bb7fac01b63013b2dc36bcba8b995a9355ee2",
+  "parts": [
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.001",
+      "bytes": 1900000000,
+      "sha256": "1ac8e5415ab714134438c5d8089a45cd6c1cee8cac56adbc6f46703c1c596d11",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.001"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.002",
+      "bytes": 1900000000,
+      "sha256": "2a0084c88e21c3117d4ac9657f6df1e2ece8199e886495e45a65a84b4c8569aa",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.002"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.003",
+      "bytes": 1900000000,
+      "sha256": "07d414cc0725cb40413a697041b7bef4450336a54078260b35224763d3063443",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.003"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.004",
+      "bytes": 1900000000,
+      "sha256": "43c892a84eac88db6d6318ad87b7405b171707692b6f8cce3e10eb3db5238b42",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.004"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.005",
+      "bytes": 1900000000,
+      "sha256": "a74cd1874793d8dcf6e2d64f52c287f547bbebcf2c6a03cc822af8aa1c4e0ef7",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.005"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.006",
+      "bytes": 1900000000,
+      "sha256": "75b70ccf970bffe68a069c302c52924189749baef4eb0f94129e02fc069843e8",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.006"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.007",
+      "bytes": 1900000000,
+      "sha256": "09108ffe9201999a15e8bb0c11cc2e74b8dffb5d149dbb7fc9382916aaca73da",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.007"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.008",
+      "bytes": 1900000000,
+      "sha256": "b3efe86ea6913cb5e45d2cf647c06942fe1c0e5810cc9b3c6b715e0fa7e6f9e5",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.008"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.009",
+      "bytes": 1900000000,
+      "sha256": "35b18dc3fed90ba6ca9610742e1aba79ebedf4117d3da133b08008a52efcc1d7",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.009"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.010",
+      "bytes": 1900000000,
+      "sha256": "fa0e2455ed3e0fa39bd45754ef9de68758aaaa1a343f63c09d8117ce30c6b64a",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.010"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.011",
+      "bytes": 1900000000,
+      "sha256": "8a702f91c5d07fc249fdc472c5c50cbedfccd96bbfd6778d69e8000d01bf4227",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.011"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.012",
+      "bytes": 1900000000,
+      "sha256": "5ee07d1f98f5f96be57c429380bfac5b5d88cd48e120c7437ba3b269495bdc6f",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.012"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.013",
+      "bytes": 1900000000,
+      "sha256": "7ca920ebc5d567ce2e114acb2dc72812bf579d71c526d38ab73d8ac98d0b9936",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.013"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.014",
+      "bytes": 1900000000,
+      "sha256": "8a02caede4cee96c4ac5958e1c4952286a92ea3cbbf4c520fd1c4b4c3821124a",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.014"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.015",
+      "bytes": 1900000000,
+      "sha256": "78b1e8cfbfe75195b3d356dd3d5b2e688b934567aa52de2bad1b697c78380479",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.015"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.016",
+      "bytes": 1900000000,
+      "sha256": "4bc522ef204b963911988ab61c55bbd905b45624ef9ebd0d86b91d3668a53964",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.016"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.017",
+      "bytes": 1900000000,
+      "sha256": "198426dddcdba04bd4f7e0709305ca8e06797eed021b3038db72faa165157ecc",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.017"
+    },
+    {
+      "filename": "Perdition_Payload_v0.2.0-beta.1.zip.018",
+      "bytes": 1691745838,
+      "sha256": "ef461fb7c7f471dc44b229fe2d7049bd7f6c511edc71209e9f3bbdbcfae5a448",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/beta-2026.11.20.1/Perdition_Payload_v0.2.0-beta.1.zip.018"
+    }
+  ]
+}
