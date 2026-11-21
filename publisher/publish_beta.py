@@ -14,6 +14,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 import urllib.request
 
@@ -43,11 +44,50 @@ class Publisher:
         self.last_progress = 0
 
     def run(self,arguments,cwd=None,check=True):
-        result = subprocess.run([str(x) for x in arguments],cwd=cwd,env=self.env,
-                                text=True,encoding='utf-8',capture_output=True)
+        command = [str(x) for x in arguments]
+        if command[1:3]==['release','upload']:
+            result = self.run_upload_command(command,cwd)
+        else:
+            result = subprocess.run(command,cwd=cwd,env=self.env,
+                                    text=True,encoding='utf-8',capture_output=True)
         if check and result.returncode:
             raise RuntimeError(result.stderr.strip() or result.stdout.strip() or 'Command failed')
         return result
+
+    def run_upload_command(self,command,cwd=None):
+        started = time.monotonic()
+        timeout = getattr(self.args,'upload_timeout',1800)
+        asset = Path(command[4]).name
+        with tempfile.TemporaryFile(mode='w+',encoding='utf-8') as output, tempfile.TemporaryFile(mode='w+',encoding='utf-8') as errors:
+            process = subprocess.Popen(command,cwd=cwd,env=self.env,stdout=output,stderr=errors)
+            timed_out = False
+            try:
+                while process.poll() is None:
+                    remaining = timeout-(time.monotonic()-started)
+                    if remaining<=0:
+                        timed_out = True
+                        process.kill()
+                        process.wait()
+                        break
+                    try:
+                        process.wait(timeout=min(10,remaining))
+                    except subprocess.TimeoutExpired:
+                        elapsed = int(time.monotonic()-started)
+                        verified = sum(item['bytes'] for item in self.state['uploaded_assets'])
+                        print(f'Uploading {asset}: {elapsed//60}m {elapsed%60:02d}s elapsed; '
+                              f'{verified/1e9:.2f} GB already verified. Waiting for GitHub.',flush=True)
+            except BaseException:
+                if process.poll() is None:
+                    process.kill()
+                process.wait()
+                raise
+            output.seek(0)
+            errors.seek(0)
+            stderr = errors.read()
+            if timed_out:
+                stderr += f'\nUpload command exceeded its {timeout}-second timeout; the local file is retained.'
+            return subprocess.CompletedProcess(command,124 if timed_out else process.returncode,
+                                               output.read(),stderr)
 
     def gh(self,*arguments,json_result=False,check=True):
         result = self.run([self.args.gh,*arguments],check=check)
@@ -130,34 +170,67 @@ class Publisher:
         return (asset.get('state')=='uploaded' and asset.get('size')==expected['bytes']
             and asset.get('digest')=='sha256:'+expected['sha256'])
 
+    @staticmethod
+    def incomplete(asset,expected):
+        # GitHub's starter size can be the declared Content-Length, even when
+        # the transfer never completed. A full-looking size is not verification.
+        return (asset.get('state')=='starter' and not asset.get('digest')
+                and asset.get('size') in (0,expected['bytes']))
+
+    def remove_incomplete(self,asset,expected):
+        if not self.incomplete(asset,expected):
+            raise RuntimeError('Refusing to remove an asset that is not an incomplete upload')
+        release = self.gh('api',f'repos/{self.args.repository}/releases/{self.release_id}',json_result=True)
+        if not release.get('draft'):
+            raise RuntimeError('Refusing to remove an asset from a published release')
+        print(json.dumps({'event':'retry_incomplete_upload','asset':expected['filename'],
+                          'asset_id':asset['id']}),flush=True)
+        self.gh('api','--method','DELETE',f'repos/{self.args.repository}/releases/assets/{asset["id"]}')
+
     def upload(self,path: Path,expected=None,retire=False):
         expected = expected or {'filename':path.name,'bytes':path.stat().st_size,'sha256':digest(path)}
         remote = self.assets().get(path.name)
-        if remote and not self.matches(remote,expected):
-            # Only incomplete zero-byte attempts in this still-private draft
-            # may be removed. Different complete assets are never overwritten.
-            if remote['state']=='starter' and remote['size']==0:
-                self.gh('api','--method','DELETE',f'repos/{self.args.repository}/releases/assets/{remote["id"]}')
-                remote = None
-            else:
-                raise RuntimeError('A different release asset already uses this name: '+path.name)
-        if not remote:
+        if not remote or not self.matches(remote,expected):
             for attempt in range(3):
+                if remote:
+                    if not self.incomplete(remote,expected):
+                        raise RuntimeError('A different release asset already uses this name: '+path.name)
+                    self.remove_incomplete(remote,expected)
+                self.record(status='uploading',pending_upload=dict(expected,attempt=attempt+1))
                 print(json.dumps({'event':'uploading','asset':path.name,'bytes':expected['bytes'],'attempt':attempt+1}),flush=True)
                 result = self.gh('release','upload',self.args.tag,str(path),'--repo',self.args.repository,check=False)
                 remote = self.assets().get(path.name)
                 if remote and self.matches(remote,expected):
                     break
-                if remote:
-                    raise RuntimeError('Uploaded asset verification failed: '+path.name)
+                # Successful HTTP completion can precede the final digest.
+                if result.returncode==0 and remote and not remote.get('digest'):
+                    for _ in range(3):
+                        time.sleep(2)
+                        remote = self.assets().get(path.name)
+                        if remote and self.matches(remote,expected):
+                            break
+                    if remote and self.matches(remote,expected):
+                        break
+                detail = result.stderr.strip() or result.stdout.strip() or 'GitHub did not finish the upload'
+                failure = {'event':'upload_attempt_failed','asset':path.name,'attempt':attempt+1,
+                           'exit_code':result.returncode,'error':detail,
+                           'remote_state':remote.get('state') if remote else None,
+                           'remote_bytes':remote.get('size') if remote else None,
+                           'remote_digest':remote.get('digest') if remote else None,
+                           'utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+                with (self.work/'upload_errors.log').open('a',encoding='utf-8') as log:
+                    log.write(json.dumps(failure)+'\n')
+                print(json.dumps(failure),flush=True)
+                if remote and not self.incomplete(remote,expected):
+                    raise RuntimeError('Uploaded asset verification failed: '+path.name+'; '+detail)
                 if attempt == 2:
-                    raise RuntimeError(result.stderr.strip() or 'GitHub upload did not complete')
+                    raise RuntimeError('Upload did not complete after three attempts: '+path.name+'; '+detail)
                 time.sleep(2)
         if not self.matches(remote,expected):
             raise RuntimeError('GitHub did not confirm the asset SHA-256 and size: '+path.name)
         self.state['uploaded_assets'] = [x for x in self.state['uploaded_assets'] if x['filename']!=path.name]
         self.state['uploaded_assets'].append(dict(expected,asset_id=remote['id'],url=remote['browser_download_url']))
-        self.record(status='uploading')
+        self.record(status='uploading',pending_upload=None,last_error=None)
         print(json.dumps({'event':'asset_verified','asset':path.name,'sha256':expected['sha256']}),flush=True)
         if retire:
             allowed = (self.work/'parts').resolve()
@@ -257,7 +330,11 @@ def main():
     parser.add_argument('--gh',type=Path,default=private/'PublisherTools/bin/gh.exe')
     parser.add_argument('--auth-dir',type=Path,default=private/'GitHubAuth')
     parser.add_argument('--work',type=Path,default=private/'Beta-2026.11.20.1')
+    parser.add_argument('--upload-timeout',type=int,default=1800,
+                        help='Maximum seconds per upload attempt before retrying (default: 1800)')
     args = parser.parse_args()
+    if args.upload_timeout<=0:
+        parser.error('--upload-timeout must be positive')
     publisher = Publisher(args)
     try:
         publisher.publish()

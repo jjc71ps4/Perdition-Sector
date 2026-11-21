@@ -1,6 +1,6 @@
 {
   "installer_fixture_checks": 121,
-  "streaming_and_uploader_tests": 12,
+  "streaming_and_uploader_tests": 21,
   "powershell_syntax": "passed",
   "setup_form_smoke_test": "passed",
   "zip64_dotnet_read_and_extract": "passed",
@@ -13,5 +13,6 @@
   "github_publication": "Repository and draft release exist; current-build payload upload pending",
   "subway_repairs_runtime": "All 17 confirmed working by Faust",
   "setup_bootstrap_compile": "passed",
-  "draft_release_lookup_regression": "passed: reuse existing draft, create new draft, reject published and ambiguous releases"
+  "draft_release_lookup_regression": "passed: reuse existing draft, create new draft, reject published and ambiguous releases",
+  "incomplete_upload_recovery_regression": "passed: declared-size starter recovery, verified-part reuse, bounded retries, real error logging, elapsed status and timeout"
 }

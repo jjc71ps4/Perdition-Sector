@@ -37,6 +37,18 @@ reuses an existing draft for the requested tag when resuming, including a draft
 whose tag has not been published yet. The published-release tag endpoint is not
 used for draft lookup.
 
+Each upload prints elapsed time every ten seconds, including the amount already
+verified. These are activity messages, not a byte-level transfer percentage.
+An attempt has a configurable 30-minute limit (`--upload-timeout` in seconds).
+Actual uploader errors are shown and retained privately in upload_errors.log.
+
+Interrupted GitHub assets can report the full declared size while still having
+state `starter` and no digest. Those incomplete attempts are removed only from
+the matching draft before retrying; completed or mismatched assets are protected.
+Uploads retry up to three times and keep the local part if they still fail.
+On rerun, already verified parts are reused after deterministic rebuilding and
+checksum comparison; those parts are not uploaded again.
+
 `installer/Tools` (7-Zip) and `installer/RootOverlay.zip` are local build inputs,
 distributed inside the setup release ZIP rather than committed to Git. Keep
 the accepted local build inputs when rebuilding setup. `installer/Build-Payload.ps1`
