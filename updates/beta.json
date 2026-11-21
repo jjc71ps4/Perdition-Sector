@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "base_snapshot_tag": "beta-2026.11.20.1",
+  "base_archive_sha256": "ef9287eab5514756536fb50fa280091b41c3b74adf5724dbb0e3a41d254dd509",
+  "updates": [
+    {
+      "id": "radio-recovery-0.1.1",
+      "name": "Radio recovery 0.1.1",
+      "url": "https://raw.githubusercontent.com/jjc71ps4/Perdition-Sector/main/updates/Perdition_Radio_Recovery_0.1.1.zip",
+      "sha256": "a763fd2d513708260ff1bae6e59f6a23e11565dbaf2531e63af34c859da56b1d",
+      "bytes": 3202,
+      "files": [
+        {
+          "path": "overwrite/Scripts/PSRadioQuestScript.pex",
+          "bytes": 7197,
+          "previous_sha256": "0e098a887c334cd9fc29ba6e3caf84714210cc93017d923280bde5883cd24793",
+          "sha256": "e00affca5529fc6e1d38060b780a1de400219bff17f671952962a290e9df59cd"
+        }
+      ]
+    }
+  ]
+}
