@@ -1,0 +1,313 @@
+{
+  "product": "Perdition Sector Setup",
+  "version": "0.2.0-beta.1",
+  "status": "beta_snapshot",
+  "runtime": "1.10.163",
+  "f4se": "0.6.23",
+  "language": "english",
+  "default_enb_enabled": false,
+  "game_exe_sha256": "55f57947db9e05575122fae1088f0b0247442f11e566b56036caa0ac93329c36",
+  "world_plugin_sha256": "9822b8bba4952ba4db28311eef6bb7fac01b63013b2dc36bcba8b995a9355ee2",
+  "root_overlay_sha256": "a5359fd105a05e7e10ecca006a09320f875526ee50d21752caf60cedc0a2a959",
+  "dependencies": {
+    "depot_downloader": {
+      "filename": "DepotDownloader-windows-x64.zip",
+      "url": "https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_3.4.0/DepotDownloader-windows-x64.zip",
+      "sha256": "41c9e9f0df54b3ad02e67a11726756e5c73283bd7c2e1b04acfa5ae4c2ed3767",
+      "bytes": 33474005
+    },
+    "f4se": {
+      "filename": "f4se_0_06_23.7z",
+      "url": "https://f4se.silverlock.org/beta/f4se_0_06_23.7z",
+      "sha256": "39575bbb688fc40598496e28afafb5270a6e44c00656a160a30f467efbade21c",
+      "bytes": 650275
+    }
+  },
+  "depots": [
+    {
+      "depot": "377161",
+      "manifest": "7497069378349273908",
+      "name": "Fallout content A"
+    },
+    {
+      "depot": "377163",
+      "manifest": "5819088023757897745",
+      "name": "Fallout content B"
+    },
+    {
+      "depot": "377162",
+      "manifest": "5847529232406005096",
+      "name": "Fallout executable"
+    },
+    {
+      "depot": "377164",
+      "manifest": "2178106366609958945",
+      "name": "Fallout English"
+    },
+    {
+      "depot": "435870",
+      "manifest": "1691678129192680960",
+      "name": "Automatron"
+    },
+    {
+      "depot": "435871",
+      "manifest": "5106118861901111234",
+      "name": "Automatron English"
+    },
+    {
+      "depot": "435880",
+      "manifest": "1255562923187931216",
+      "name": "Wasteland Workshop"
+    },
+    {
+      "depot": "435881",
+      "manifest": "1207717296920736193",
+      "name": "Far Harbor"
+    },
+    {
+      "depot": "435882",
+      "manifest": "8482181819175811242",
+      "name": "Far Harbor English"
+    },
+    {
+      "depot": "480630",
+      "manifest": "5527412439359349504",
+      "name": "Contraptions Workshop"
+    },
+    {
+      "depot": "480631",
+      "manifest": "6588493486198824788",
+      "name": "Vault-Tec Workshop"
+    },
+    {
+      "depot": "393885",
+      "manifest": "5000262035721758737",
+      "name": "Vault-Tec Workshop English"
+    },
+    {
+      "depot": "490650",
+      "manifest": "4873048792354485093",
+      "name": "Nuka World"
+    },
+    {
+      "depot": "393895",
+      "manifest": "7677765994120765493",
+      "name": "Nuka World English"
+    }
+  ],
+  "depot_recipe_source": "Faust Discord installation instructions supplied 2026-11-20",
+  "root_overlay_files": [
+    {
+      "source": "C:\\_Fallout 4\\CustomControlMap.txt",
+      "archive_path": "Shared/CustomControlMap.txt",
+      "sha256": "580e1478262d02902d7939fc42528bf8e37e9db071c794d3cae8a134645b6708"
+    },
+    {
+      "source": "C:\\_Fallout 4\\d3d11.dll",
+      "archive_path": "ENB/d3d11.dll",
+      "sha256": "525a6dfac678d97ea5d49c1210d1258b258ac1b76044656f3ea7b1d2485f2b67"
+    },
+    {
+      "source": "C:\\_Fallout 4\\d3dcompiler_46.dll",
+      "archive_path": "ENB/d3dcompiler_46.dll",
+      "sha256": "7a9bae7907abd79d15d9d4114674d3fc01f0438d76bc5afdf827bbfa7fc3b020"
+    },
+    {
+      "source": "C:\\_Fallout 4\\d3dcompiler_46e.dll",
+      "archive_path": "ENB/d3dcompiler_46e.dll",
+      "sha256": "ff2fffaf99916720914753d10e1db6e364011bb23da143178250cbea7dbfb945"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enblocal.ini",
+      "archive_path": "ENB/enblocal.ini",
+      "sha256": "27c7cc54ded797c6ac544564d16f7da6500fd29d855d14c8b3142fcee56b682b"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries.ini",
+      "archive_path": "ENB/enbseries.ini",
+      "sha256": "38e4b5c7a89f3bbfa6b6ab7b833614064d864a699c46a64455077e85a5250832"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\enbadaptation.fx",
+      "archive_path": "ENB/enbseries/enbadaptation.fx",
+      "sha256": "acdac64b0e66515132e26b838d38f6066beadfde8d5004df359b7678b6986119"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\enbadaptation.fx.ini",
+      "archive_path": "ENB/enbseries/enbadaptation.fx.ini",
+      "sha256": "aa94c4c5951f31b5c189e92f8c1c5bf1065d34b208b1315fab5c22541d13bbf5"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\enbbloom.fx",
+      "archive_path": "ENB/enbseries/enbbloom.fx",
+      "sha256": "4d204f95722b191ffc9e38c31932c59d4da454d686b929d7865672c0fbf00cee"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\enbbloom.fx.ini",
+      "archive_path": "ENB/enbseries/enbbloom.fx.ini",
+      "sha256": "9ec365294ddbac30233b1b9c33b272b437d9f3d876f74709882ebd7c8a9e79fe"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\enbdepthoffield.fx",
+      "archive_path": "ENB/enbseries/enbdepthoffield.fx",
+      "sha256": "459fd2ffffc90a1b61683fcfdef6753e1fa282f40ebf2c8c29a7c5d3789a813b"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\enbdepthoffield.fx.ini",
+      "archive_path": "ENB/enbseries/enbdepthoffield.fx.ini",
+      "sha256": "af14bb49e93f7b1b8e9606cf9af4acc3d4f094a0e8c9f8d52ea34adc64fecc43"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\enbeffect.fx",
+      "archive_path": "ENB/enbseries/enbeffect.fx",
+      "sha256": "82149167b64c53b2392a1b2dae976b8ce57033b0182cb2f149f72d80c045b5a4"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\enbeffect.fx.ini",
+      "archive_path": "ENB/enbseries/enbeffect.fx.ini",
+      "sha256": "a565467040d7dc6654e7e8ffdb607fec03fe63ff495a46e8a3635e5d8afd8c66"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\enbeffectpostpass.fx",
+      "archive_path": "ENB/enbseries/enbeffectpostpass.fx",
+      "sha256": "f9bcd681e8b4656268bd7c7ea72e109c9c4bf2df048aeb1dcbfc55f577c73f86"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\enbeffectpostpass.fx.ini",
+      "archive_path": "ENB/enbseries/enbeffectpostpass.fx.ini",
+      "sha256": "423cbc5f7baef3d35a35af4ab9c002a30255f7712aa2e0e51cbf9a0a4344bf54"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\enblens.fx",
+      "archive_path": "ENB/enbseries/enblens.fx",
+      "sha256": "03471cec09b0a3f2a25837a3f7fef8314bfb6a0606bbfef1d576e5e749d741f0"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\enblens.fx.ini",
+      "archive_path": "ENB/enbseries/enblens.fx.ini",
+      "sha256": "fc4831fef5c3a06d1bfee44a2feb08e4f793c1302c187494bf1d28c118c96f6f"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\enbsmaa.fx",
+      "archive_path": "ENB/enbseries/enbsmaa.fx",
+      "sha256": "3c422e6e323dd424017b93900407537437364deaaf6cfb30e2bbb13cd4d087e0"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\LUT_default.png",
+      "archive_path": "ENB/enbseries/LUT_default.png",
+      "sha256": "9b7825a9b333769de86da95e08f799363950c3d5cc08bd754560272187de8a4d"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\LUT_Preset1.png",
+      "archive_path": "ENB/enbseries/LUT_Preset1.png",
+      "sha256": "1bda566f9a0327234f794999841f96cee4eb4a1d06faa88944b537f92db018fa"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\LUT_Preset10.png",
+      "archive_path": "ENB/enbseries/LUT_Preset10.png",
+      "sha256": "a4776e903ccc8a4c705240bb578f546af63817abf4fe81b31d75cb55446be414"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\LUT_Preset2.png",
+      "archive_path": "ENB/enbseries/LUT_Preset2.png",
+      "sha256": "d7396c3eee0169c8c213087acb66e269af51be52cbe84f3281259e7eea20f60b"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\LUT_Preset3.png",
+      "archive_path": "ENB/enbseries/LUT_Preset3.png",
+      "sha256": "3901b0cd5afb109e1aad1557dafb696572c7607933f0f7a5fbedc7285f46ea2f"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\LUT_Preset4.png",
+      "archive_path": "ENB/enbseries/LUT_Preset4.png",
+      "sha256": "4985b17dc391c542998dc9a1a25cc742c7efb3268f507bd8e3e12b2f20bca5fe"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\LUT_Preset5.png",
+      "archive_path": "ENB/enbseries/LUT_Preset5.png",
+      "sha256": "0ec1044f80600b5049692503ac82344fae735427ee15a5bde033666c5a1a0450"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\LUT_Preset6.png",
+      "archive_path": "ENB/enbseries/LUT_Preset6.png",
+      "sha256": "8d9b7aa27351108e4c0e07262d1f40c9aa107f1990eb6b2066e72bd5150515ff"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\LUT_Preset7.png",
+      "archive_path": "ENB/enbseries/LUT_Preset7.png",
+      "sha256": "5b3b136be9463249b70f8a03eebea283ba994541fb7dc058a28ae78214268e16"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\LUT_Preset8.png",
+      "archive_path": "ENB/enbseries/LUT_Preset8.png",
+      "sha256": "8a29404d3a280ed4693d7ca596c43a88452911f21a3e87b6b57ab7316c834bc5"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\LUT_Preset9.png",
+      "archive_path": "ENB/enbseries/LUT_Preset9.png",
+      "sha256": "a05d4f8e930abb2c1d87b868f7b85e04b008b1c7ff82daba1951c7a8a7be6492"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\SMAA.h",
+      "archive_path": "ENB/enbseries/SMAA.h",
+      "sha256": "a6e396730c1ddc7074d657168641cc6729ff3706b4a1f8fb3ba97e8f0d683eea"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\SMAA_AreaTex.dds",
+      "archive_path": "ENB/enbseries/SMAA_AreaTex.dds",
+      "sha256": "dc55cbf1c76126ea82c1d975bf7cc2990679845ce5dacb990a53f342e1745a61"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\SMAA_SearchTex.dds",
+      "archive_path": "ENB/enbseries/SMAA_SearchTex.dds",
+      "sha256": "21270248fcd044e2862b71b2be501be57896d6a09cd342aa640bb3523e994a90"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\_locationweather.ini",
+      "archive_path": "ENB/enbseries/_locationweather.ini",
+      "sha256": "f882d26507d9e1f64ce76ac6ccd00d951fde5f4f623c58e3044d6542e03138cb"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\_weatherlist.ini",
+      "archive_path": "ENB/enbseries/_weatherlist.ini",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\Modular Shaders\\enbeffect_AdaptTool.fxh",
+      "archive_path": "ENB/enbseries/Modular Shaders/enbeffect_AdaptTool.fxh",
+      "sha256": "7dbbbfb556eac224085f73932425287fdac363042d583327b70c537597421c89"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\Modular Shaders\\fakeHDR.fxh",
+      "archive_path": "ENB/enbseries/Modular Shaders/fakeHDR.fxh",
+      "sha256": "1092da64692b5161e969e2417ceb4dd4a4342b0b28927bae3038c278d11d7f1c"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\Modular Shaders\\msHelpers.fxh",
+      "archive_path": "ENB/enbseries/Modular Shaders/msHelpers.fxh",
+      "sha256": "bdc0b53a74ea1f9196f45f21e605703f16bae9d516274eb4958fc26ed39c7a40"
+    },
+    {
+      "source": "C:\\_Fallout 4\\enbseries\\Modular Shaders\\Vibrance.fxh",
+      "archive_path": "ENB/enbseries/Modular Shaders/Vibrance.fxh",
+      "sha256": "3f2207fd1bb7e10410acd686c7694a636d2b401dddae7dc6fb452949f248850c"
+    }
+  ],
+  "changes": [
+    "Current November 20 beta snapshot, including all installed project fixes",
+    "Pinned GitHub Release downloads with SHA-256 verification",
+    "Name/gender new game flow; automatic Jug defaults and Side Aim initialization",
+    "Approved cyan-blue panoramic NVG mask; no experimental grain or ReShade",
+    "Seventeen subway poster frames repaired; current build confirmed working by Faust",
+    "Approved compact splash launcher included; ENB remains optional",
+    "Grass, NVG precipitation and museum precombines remain unresolved"
+  ],
+  "full_package_verification": false,
+  "grass_prefs": {
+    "fGrassStartFadeDistance": "7000",
+    "fGrassMaxStartFadeDistance": "7000.0000",
+    "fGrassMinStartFadeDistance": "7000.0000"
+  },
+  "snapshot_tag": "beta-2026.11.20.1",
+  "repository": "jjc71ps4/Perdition-Sector"
+}

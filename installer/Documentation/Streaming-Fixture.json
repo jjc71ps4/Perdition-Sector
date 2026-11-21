@@ -1,0 +1,8 @@
+{
+  "dotnet_zip64_read": "passed",
+  "dotnet_zip64_extract": "passed",
+  "fixture_files": 10,
+  "python_full_crc": "passed",
+  "part_and_archive_sha256": "passed",
+  "no_steam_or_game_launch": true
+}

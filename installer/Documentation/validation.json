@@ -1,0 +1,14 @@
+{
+  "installer_fixture_checks": 121,
+  "streaming_and_uploader_tests": 8,
+  "powershell_syntax": "passed",
+  "setup_form_smoke_test": "passed",
+  "zip64_dotnet_read_and_extract": "passed",
+  "player_files": 15519,
+  "active_mods": 250,
+  "active_plugins": 223,
+  "missing_active_plugin_providers": 0,
+  "full_authenticated_installation": "not performed",
+  "live_game_files_modified": false,
+  "github_publication": "waiting for CLI authorization"
+}

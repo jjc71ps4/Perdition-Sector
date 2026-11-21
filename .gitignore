@@ -1,0 +1,19 @@
+# Generated distributions, tools, credentials and player data never enter Git.
+installer/Tools/
+installer/RootOverlay.zip
+installer/PerditionSetup.exe
+installer/*.zip
+installer/*.receipt.json
+installer/Tests/test_results.json
+installer/Tests/*.log
+__pycache__/
+*.pyc
+*.partial
+*.download
+Private/
+*.fos
+*.f4se
+ModOrganizer.ini
+hosts.yml
+credentials*
+
