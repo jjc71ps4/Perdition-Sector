@@ -11,15 +11,16 @@ def digest(path):
     with path.open('rb')as f:return hashlib.file_digest(f,'sha256').hexdigest()
 def run(*args):return subprocess.check_output(args,text=True).strip()
 def api(path):
-    req=urllib.request.Request('https://api.github.com/repos/'+os.environ['GITHUB_REPOSITORY']+'/'+path,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','User-Agent':'PerditionBetaPublisher'})
+    req=urllib.request.Request('https://api.github.com/repos/'+os.environ['GITHUB_REPOSITORY']+'/'+path,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','User-Agent':'PerditionBetaPublisher','Cache-Control':'no-cache'})
     with urllib.request.urlopen(req,timeout=120)as response:return json.load(response)
 def main():
     definition=Path(sys.argv[1]);manifest=json.loads(definition.read_text());folder=Path('published-artifacts');folder.mkdir(exist_ok=True)
     tag=manifest['tag'];repo=os.environ['GITHUB_REPOSITORY'];release=None
-    release=next((r for r in api('releases?per_page=100')if r['tag_name']==tag),None)
+    release=api('releases/'+str(manifest['release_id']))if manifest.get('release_id')else next((r for r in api('releases?per_page=100')if r['tag_name']==tag),None)
     if release is None:
-        run('gh','api','--method','POST','repos/'+repo+'/releases','-f','tag_name='+tag,'-f','target_commitish='+os.environ['GITHUB_SHA'],'-f','name='+manifest['title'],'-F','draft=true','-F','prerelease=true','-F','body=@'+manifest['notes_file'])
-        release=next(r for r in api('releases?per_page=100')if r['tag_name']==tag)
+        release=json.loads(run('gh','api','--method','POST','repos/'+repo+'/releases','-f','tag_name='+tag,'-f','target_commitish='+os.environ['GITHUB_SHA'],'-f','name='+manifest['title'],'-F','draft=true','-F','prerelease=true','-F','body=@'+manifest['notes_file']))
+    assert release['tag_name']==tag, 'Release tag mismatch'
+    print('Using release '+str(release['id'])+' for '+tag,flush=True)
     def chunk(item):
         result=api('git/blobs/'+item['git_sha']);data=base64.b64decode(result['content'])
         assert len(data)==item['bytes']and hashlib.sha256(data).hexdigest()==item['sha256'],'Transport chunk failed verification'
