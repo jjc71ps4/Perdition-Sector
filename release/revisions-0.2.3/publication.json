@@ -5,18 +5,19 @@
       "name": "Perdition_Confirmed_Revisions_0.2.3-beta.1.zip",
       "bytes": 67622529,
       "sha256": "cf0bcfce203acc59b3e2bc6642ad40cacdc7918be12b6beac0c03b88a410eda0",
-      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/untagged-2683f7ed5d5f2c967cb3/Perdition_Confirmed_Revisions_0.2.3-beta.1.zip"
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/updates-2026.11.21.1/Perdition_Confirmed_Revisions_0.2.3-beta.1.zip"
     },
     {
       "name": "Perdition_Sector_Installer_v0.2.3-beta.1_Beta.zip",
       "bytes": 6298824,
       "sha256": "a82d85c9886702e188cbbb944d9c516e6cef3c399b02ffd1ee13a23a1623d9f4",
-      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/untagged-2683f7ed5d5f2c967cb3/Perdition_Sector_Installer_v0.2.3-beta.1_Beta.zip"
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/updates-2026.11.21.1/Perdition_Sector_Installer_v0.2.3-beta.1_Beta.zip"
     }
   ],
   "base_archive_reuploaded": false,
   "channel": "updates/beta-v2.json",
   "workflow_run": "44982907968",
   "source_commit": "0b7a5240555f4c84095610308a1a48b333a9f0ed",
-  "complete": true
+  "complete": true,
+  "download_urls_from_published_release": true
 }

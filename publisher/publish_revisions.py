@@ -53,7 +53,10 @@ def main():
             assert digest(check/filename)==item['sha256']
         verified.append({'name':filename,'bytes':item['bytes'],'sha256':item['sha256'],'url':asset['browser_download_url']})
         print('Verified release asset '+filename,flush=True)
-    run('gh','api','--method','PATCH','repos/'+repo+'/releases/'+str(release['id']),'-F','draft=false','-F','prerelease=true')
+    published=json.loads(run('gh','api','--method','PATCH','repos/'+repo+'/releases/'+str(release['id']),'-F','draft=false','-F','prerelease=true'))
+    assert published['tag_name']==tag and not published['draft']
+    for artifact in verified:
+        artifact['url']='https://github.com/'+repo+'/releases/download/'+tag+'/'+artifact['name']
     # Publish the channel only after every referenced release asset is verified.
     run('git','pull','--ff-only','origin','main')
     candidate=Path(manifest['channel_candidate']);channel=Path('updates/beta-v2.json');channel.write_bytes(candidate.read_bytes())
@@ -69,3 +72,4 @@ def main():
         run('git','commit','-m','Publish verified 0.2.3 beta assets and update channel');run('git','push','origin','HEAD:main')
     print(json.dumps(receipt),flush=True)
 if __name__=='__main__':main()
+
