@@ -1,31 +1,29 @@
 # Perdition incremental updates
 
-The beta channel applies small, ordered updates to the existing
-`beta-2026.11.20.1` snapshot. The 34 GB base archive is unchanged.
+Setup/updater 0.2.3-beta.1 uses **beta-v2.json**. It installs the confirmed radio
+recovery followed by the 67.6 MB asset/performance revision package over the
+unchanged beta-2026.11.20.1 base snapshot. Legacy beta.json remains available
+for the older radio-only updater. Upgrade once to the new setup bundle for
+the current channel and its targeted profile migrations.
 
-Radio recovery 0.1.1 replaces only `overwrite/Scripts/PSRadioQuestScript.pex`.
-The player confirmed broadcast playback returned in an existing save without
-a new game or console restart. The log records automatic recovery of a stopped
-scene on load. The complete stalled-scene watchdog path is not independently
-confirmed by that log.
+Run Update existing Perdition.cmd from the extracted current setup bundle,
+selecting the installed folder containing ModOrganizer.exe. New installations
+receive all applicable updates automatically. A successful existing-install
+update also refreshes its persistent updater and channel configuration.
 
-Setup 0.2.2-beta.1 or later checks this index after installing the base package.
-Existing players use the matching updater, selecting their installed Perdition
-folder; it downloads only missing patches. Older installers need that one-time
-updater upgrade. The installer itself is distributed separately.
+Each archive and changed file is verified by size and SHA-256. Replacements
+require the expected predecessor or already-current contents. Profile actions
+enable the named patches, disable four redundant mod entries and set only the
+six approved distance values. Personal resolution, unrelated settings and saves
+are retained. Assets and profile settings are backed up and share a rollback
+transaction; unrecognized custom file contents or distances stop that update.
 
-Each archive and file has a SHA-256, and each replacement has an expected old
-hash. Already-current or later released content is preserved, custom changes
-are rejected, and changed files are backed up before replacement. Updates do
-not run Steam downloads, re-extract the base package or touch player saves.
-Close Fallout 4 and MO2 before updating, then restart the game normally.
+Current NT4 finishes are default RUTex with the confirmed brown-tone correction,
+black for Black/BLK, and original FDE for the other paints. The visibility and
+distance changes are player-confirmed. The new black finish and a complete
+fresh-PC installation remain user tests. The base includes all 17 confirmed
+subway repairs. No full base re-upload was needed for these revisions.
 
-Keep versioned archives immutable. Append later updates in order, with the
-expected predecessor hash for each file. Larger updates can use release-asset
-URLs. The current updater accepts patches up to 500 MB and limits file writes
-to mods/overwrite within the chosen Perdition installation. Content requiring
-profile migration needs a dedicated migration rather than replacing personal
-settings wholesale.
-
-The unconfirmed rendering-distance experiment and visibility repair work are
-not part of this update.
+Player assets and setup binaries are immutable release downloads. This Git tree
+contains source, manifests and publication receipts. Transport objects used by
+the publisher are not files in the repository tree or part of ordinary clones.
