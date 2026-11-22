@@ -1,0 +1,150 @@
+{
+  "tag": "updates-2026.11.21.1",
+  "title": "Perdition Sector 0.2.3-beta.1 - confirmed revisions",
+  "notes_file": "release/revisions-0.2.3/RELEASE_NOTES.md",
+  "channel_candidate": "release/revisions-0.2.3/beta-v2.candidate.json",
+  "publication_receipt": "release/revisions-0.2.3/publication.json",
+  "readme_candidate": "release/revisions-0.2.3/README.next.md",
+  "channel_readme_candidate": "release/revisions-0.2.3/CHANNEL_README.next.md",
+  "artifacts": [
+    {
+      "filename": "Perdition_Confirmed_Revisions_0.2.3-beta.1.zip",
+      "bytes": 67622529,
+      "sha256": "cf0bcfce203acc59b3e2bc6642ad40cacdc7918be12b6beac0c03b88a410eda0",
+      "chunks": [
+        {
+          "bytes": 3145728,
+          "sha256": "e791cb28d1575648623d0efac59a1a3c0c97ebc6283cae00428745c588d63bb1",
+          "git_sha": "b0c84394707299e510bb71912076e98d8444d0cd"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "6ef1b965b344fba21c8a6393c53639dfae5f42242e96ff92e1b21194ddd47a32",
+          "git_sha": "96ecf04283cd545ae40f09125a8a14d463aee959"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "26e297fd1e431753b5e8bf6ab7e5d1cf6234c0d7e66c6f36f457de7328e2508f",
+          "git_sha": "74d7e8aebfcc4db4a0adb306d963783286eb6566"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "424b512db455ff758ca7c3c74faf6fbc824bee473eea54ea844c6699d2042999",
+          "git_sha": "143298187a82f7ef1f7fc9314e97b02bb04e440b"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "0b31548e1d32140faad12aa69999282e6236cae253b7b07dbb3591302f8fa5bb",
+          "git_sha": "fb9e4fe08662b0a1b9bab59a69839a297cbfd062"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "1fc9cb0d85c632289a15be6b68a66a55bed8aee718dcf068e59e6b47b40548fd",
+          "git_sha": "27297b9ea6967e5d3a1471275e2fe6382cccd0ab"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "979db5bb2e5056aca5d89bec2c5d831e8828308efa06e449d851b490a80445a0",
+          "git_sha": "0bb296e3491f228674ee82509e40e98dac83da48"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "6e07dbc8f4d2d63fe570fff7f0e65a8c1ac61874acf2193adb6f0a221252c152",
+          "git_sha": "1630a472269e472fa7e0489e0d97d5146a6b9714"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "ee30f4802985d4e862d2c604217f44af61e1de8132a709b3baf73b935630f3e9",
+          "git_sha": "4e61c016d27522aa460c2d91544dcb23751f7fd4"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "927372a1343fe62c12e7c8c074087feb923212fa185b58f97d47e64f0198e58c",
+          "git_sha": "9bb7ce25a9528cb20cc2e43f7cee775d53fb69e3"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "feec8ba3edacce1f71223fdc53590a7ffbb370da4daf1bde986de24e5e988145",
+          "git_sha": "cdcf864c3aa9c686d18a09d8e18a63f4f1b878ef"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "f2e7895b529b808cd76837e4b8d03ee2c771442fe21f3f04b0e8bb4c3ddf2250",
+          "git_sha": "e8206388955ba3181975abf1513674414cd92bfa"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "d722f9194f0755a23831076557caadc931e0522ee75bdff9b5f7cd00cac68b28",
+          "git_sha": "559f5ca53a216ea59cf2f58115aff235b4164ce5"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "641d388fc7c40c5aed1ab0b9983d8603c54474435ee46eacccb5975a912c4bc8",
+          "git_sha": "aea89365792ce29d78b56323dd71f88e42d59f18"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "c9292f899a20168f23fd18f7d2b8bd621eb7653496ee0030a045f84191ccba1c",
+          "git_sha": "29a36351431e283baa3318cb1c24e3e70d101421"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "1cff167452f1e7dd93861f96fbb14b55ffd5cf477a3d133151d0c2dd50ff88aa",
+          "git_sha": "7ba5253c9ebcfff9c7dd2f4c70b1ed8700292afd"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "7296677f0bc8f0a3f95b1d7a5dd9ca6ceef1ce084a8e8d98627c3892d2f1db05",
+          "git_sha": "31b933c09fca0ffd64d64ac1efe4cd5502bc6545"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "cf5658e35ab7a28e4db978f6ba8bc4583d9549b9be6a28d18e93f70418cfb47e",
+          "git_sha": "010254583e8b86f8d65367d8e9dffbb658bb4e94"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "fb8c9c192924979eaf090d85e96eb175f1c3a1481e5621a4017b05c33a59ce42",
+          "git_sha": "de317997ab6a71c3c59501cba1bd58f321598b8a"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "36021d915541457a1f79e5e5bc31fbe95d308c3f7bfb841d21ecc0cc96852de3",
+          "git_sha": "b1cd0c87d6e4661e9ac838075f9555eb7da97fa4"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "f47098a4340282a36dc5f2f851819648343c7ede15083cb4d348643030e7758f",
+          "git_sha": "431f24301747ec122eeeddf8f8d002916e83a224"
+        },
+        {
+          "bytes": 1562241,
+          "sha256": "697d4fe5c6e73a94bf462dc5c932ec66ce86d7204d5f5661ac938011749a9ee7",
+          "git_sha": "984d4a6fc08a7744ffda837e670056fcad625206"
+        }
+      ]
+    },
+    {
+      "filename": "Perdition_Sector_Installer_v0.2.3-beta.1_Beta.zip",
+      "bytes": 6298824,
+      "sha256": "a82d85c9886702e188cbbb944d9c516e6cef3c399b02ffd1ee13a23a1623d9f4",
+      "chunks": [
+        {
+          "bytes": 3145728,
+          "sha256": "8cb62acefc3b054957296bd187e631a0036df26125694aa4da0daacc2680d509",
+          "git_sha": "a3db9992106713badef8bcd95e090292ca3f230c"
+        },
+        {
+          "bytes": 3145728,
+          "sha256": "ba6730de142feb1c4e195f400bc2016f4a99d99ea46362348c8cf2a896f2c3e5",
+          "git_sha": "cf0b698b9df2ecb15ca576bccdd19cf8f34d76ca"
+        },
+        {
+          "bytes": 7368,
+          "sha256": "c3f9c4a69516a9b21595c2a029908c2a75201c0496397e341cfbb9720295f562",
+          "git_sha": "a7c860b429b7985c6e812a64b38cf6012e0bb6df"
+        }
+      ]
+    }
+  ]
+}
