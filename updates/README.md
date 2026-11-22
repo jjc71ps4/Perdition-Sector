@@ -27,3 +27,11 @@ subway repairs. No full base re-upload was needed for these revisions.
 Player assets and setup binaries are immutable release downloads. This Git tree
 contains source, manifests and publication receipts. Transport objects used by
 the publisher are not files in the repository tree or part of ordinary clones.
+
+
+The nt4-geometry-0.1.3 entry contains only the two NT4 NIF meshes from the
+November 22 in-game-approved size/alignment adjustment. It uses a 905 KB ZIP
+hosted in updates/, following the existing radio patch's raw-GitHub download
+route. Materials, textures and paint mappings are unchanged. Updater/setup
+0.2.3 and newer already support it; no new installer is required. New installs
+apply it after prior patches. Existing players run Update Perdition Sector.cmd.

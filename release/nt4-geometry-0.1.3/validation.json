@@ -1,0 +1,32 @@
+{
+  "updater_version_tested": "0.2.3-beta.1",
+  "live_game_modified": false,
+  "fresh_install_chain": true,
+  "personal_settings_and_saves_preserved": true,
+  "passed": 32,
+  "existing_player_small_patch_only": true,
+  "network_mocked": true,
+  "repeat_no_downgrade": true,
+  "tested_utc": "2026-11-22T16:47:27.3747052Z",
+  "failed": 0,
+  "public_updater_source_verified": true,
+  "user_approved_in_game": true,
+  "mesh_files": [
+    {
+      "path": "mods/MK18 Deluxe (Faust Edit)/Meshes/Weapons/MK18/Attachments/MK18_Muzzle_Suppressor_KAC.nif",
+      "bytes": 772565,
+      "sha256": "5c353f2944b67dd5428ed4caaf65b04490879144c5fd7d779f432a98536dc4e9",
+      "previous_sha256": "b7f7deeb492b1e3ac95cf7015e64f7cb77065cb86a1e7ff8463d8ddab06e8fd9"
+    },
+    {
+      "path": "mods/MK18 Deluxe (Faust Edit)/Meshes/Weapons/MK18/Attachments/MK18_Muzzle_Suppressor_KAC_Black.nif",
+      "bytes": 772636,
+      "sha256": "2a8b1369eb00712aa315f2cf990857af38c3072e3caa8f95c2769c233a977e81",
+      "previous_sha256": "f8b2b9318250c2f9e034eef48e35e91d098971bea27773cbcdce7c567c830142"
+    }
+  ],
+  "installer_changed": false,
+  "publisher_changed": false,
+  "workflows_changed": false,
+  "archive_sha256": "3c8a1df9105c637b6dd9f87613948dcf8c2a55eef6edf3af750e0eae8b6cf981"
+}

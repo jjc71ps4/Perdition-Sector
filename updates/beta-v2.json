@@ -201,6 +201,28 @@
           }
         ]
       }
+    },
+    {
+      "id": "nt4-geometry-0.1.3",
+      "name": "Approved NT4 mesh size and alignment adjustment",
+      "minimum_updater_version": "0.2.3-beta.1",
+      "url": "https://raw.githubusercontent.com/jjc71ps4/Perdition-Sector/main/updates/Perdition_NT4_Mesh_Adjustment_v0.1.3.zip",
+      "bytes": 926502,
+      "sha256": "3c8a1df9105c637b6dd9f87613948dcf8c2a55eef6edf3af750e0eae8b6cf981",
+      "files": [
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Meshes/Weapons/MK18/Attachments/MK18_Muzzle_Suppressor_KAC.nif",
+          "bytes": 772565,
+          "sha256": "5c353f2944b67dd5428ed4caaf65b04490879144c5fd7d779f432a98536dc4e9",
+          "previous_sha256": "b7f7deeb492b1e3ac95cf7015e64f7cb77065cb86a1e7ff8463d8ddab06e8fd9"
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Meshes/Weapons/MK18/Attachments/MK18_Muzzle_Suppressor_KAC_Black.nif",
+          "bytes": 772636,
+          "sha256": "2a8b1369eb00712aa315f2cf990857af38c3072e3caa8f95c2769c233a977e81",
+          "previous_sha256": "f8b2b9318250c2f9e034eef48e35e91d098971bea27773cbcdce7c567c830142"
+        }
+      ]
     }
   ]
 }
