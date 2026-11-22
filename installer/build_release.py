@@ -34,7 +34,8 @@ def main():
                     str(HERE/'SetupBootstrap.cs')],check=True)
     files=[]
     for name in ['PerditionSetup.exe','Setup.ps1','SetupBootstrap.cs','Build-Payload.ps1',
-                 'build_release.py','README.md','release.json','RootOverlay.zip']:
+                 'build_release.py','README.md','release.json','RootOverlay.zip',
+                 'update_source.json','Update existing Perdition.cmd']:
         files.append(HERE/name)
     for folder in ['Core','Tools','Documentation']:
         files.extend(path for path in (HERE/folder).rglob('*') if path.is_file())
@@ -45,7 +46,7 @@ def main():
         source=HERE/'package_source.json'
         if not source.is_file():raise RuntimeError('The beta installer must include its completed snapshot download manifest')
         package=json.loads(source.read_text(encoding='utf-8-sig'))
-        if package['version']!=manifest['version'] or not package['parts']:
+        if package['version']!=manifest.get('payload_version',manifest['version']) or not package['parts']:
             raise RuntimeError('The beta download manifest does not match the installer version')
         files.append(source)
     output=args.output or HERE/('Perdition_Sector_Installer_v'+manifest['version']+'_Beta.zip')

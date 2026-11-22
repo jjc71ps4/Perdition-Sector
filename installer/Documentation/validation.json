@@ -1,18 +1,23 @@
 {
-  "installer_fixture_checks": 121,
-  "streaming_and_uploader_tests": 21,
+  "version": "0.2.3-beta.1",
+  "installer_checks": 121,
+  "existing_game_and_post_update_verification_checks": 32,
+  "incremental_update_checks": 39,
+  "profile_migration_and_rollback_checks": 17,
+  "complete_revision_zip_fixture": {
+    "repeat_noop": true,
+    "resolution_and_saves_preserved": true,
+    "final_files_verified": 18,
+    "network_mocked": true,
+    "complete_archives_verified": true,
+    "live_game_modified": false,
+    "profile_migration": true,
+    "baseline_predecessors_verified": 7
+  },
+  "base_release_parts_verified": 18,
+  "base_archive_sha256": "ef9287eab5514756536fb50fa280091b41c3b74adf5724dbb0e3a41d254dd509",
   "powershell_syntax": "passed",
-  "setup_form_smoke_test": "passed",
-  "zip64_dotnet_read_and_extract": "passed",
-  "player_files": 15519,
-  "active_mods": 250,
-  "active_plugins": 223,
-  "missing_active_plugin_providers": 0,
-  "full_authenticated_installation": "not performed",
-  "live_game_files_modified": false,
-  "github_publication": "Repository and draft release exist; current-build payload upload pending",
-  "subway_repairs_runtime": "All 17 confirmed working by Faust",
-  "setup_bootstrap_compile": "passed",
-  "draft_release_lookup_regression": "passed: reuse existing draft, create new draft, reject published and ambiguous releases",
-  "incomplete_upload_recovery_regression": "passed: declared-size starter recovery, verified-part reuse, bounded retries, real error logging, elapsed status and timeout"
+  "fresh_pc_installation": "pending user test",
+  "black_finish_runtime": "pending user test",
+  "rutex_and_brown_correction": "confirmed by user"
 }

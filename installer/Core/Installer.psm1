@@ -4,6 +4,108 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 Add-Type -AssemblyName System.IO.Compression
 $script:Utf8 = New-Object System.Text.UTF8Encoding($false)
 $script:LogPath = $null
+$script:GameRequirement = 'Perdition Sector requires downgraded Fallout 4 version 1.10.163 with all six DLCs. Select the folder containing Fallout4.exe.'
+$script:RequiredGameFiles = @('Fallout4Launcher.exe','Data\Fallout4.esm')
+foreach ($name in @('Animations','Interface','Materials','Meshes','MeshesExtra','Misc','Shaders','Sounds','Startup','Voices') + @(1..9 | ForEach-Object { 'Textures'+$_ })) {
+    $script:RequiredGameFiles += 'Data\Fallout4 - '+$name+'.ba2'
+}
+foreach ($dlc in @('DLCRobot','DLCCoast','DLCNukaWorld','DLCworkshop01','DLCworkshop02','DLCworkshop03')) {
+    $script:RequiredGameFiles += @(('Data\'+$dlc+'.esm'),('Data\'+$dlc+' - Main.ba2'),('Data\'+$dlc+' - Textures.ba2'))
+}
+
+function Assert-CompatibleGameFolder {
+    param([string]$GameRoot)
+    if ([string]::IsNullOrWhiteSpace($GameRoot) -or -not [IO.Path]::IsPathRooted($GameRoot)) { throw $script:GameRequirement }
+    $game=[IO.Path]::GetFullPath($GameRoot).TrimEnd('\')
+    $exe=Join-Path $game 'Fallout4.exe'
+    if (-not [IO.File]::Exists($exe)) { throw $script:GameRequirement }
+    $version=[Diagnostics.FileVersionInfo]::GetVersionInfo($exe)
+    if ($version.FileMajorPart -ne 1 -or $version.FileMinorPart -ne 10 -or $version.FileBuildPart -ne 163) {
+        throw ($script:GameRequirement+' Found version: '+$version.FileVersion)
+    }
+    $missing=@($script:RequiredGameFiles | Where-Object { -not [IO.File]::Exists((Join-Path $game $_)) -or (Get-Item -LiteralPath (Join-Path $game $_)).Length -eq 0 })
+    if ($missing.Count) { throw ($script:GameRequirement+"`r`nMissing game/DLC files: "+($missing -join ', ')) }
+    return [pscustomobject]@{GameRoot=$game;Version=$version.FileVersion;ExeSha256=(Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash.ToLowerInvariant()}
+}
+
+function Get-DetectedGameFolder {
+    param([string]$InstallerRoot,[string[]]$CandidatePaths)
+    $candidates=New-Object 'Collections.Generic.List[string]'
+    if ($PSBoundParameters.ContainsKey('CandidatePaths')) {
+        foreach ($path in $CandidatePaths) { if ($path) { $candidates.Add($path) } }
+    } else {
+        if ($InstallerRoot) { $candidates.Add((Join-Path $InstallerRoot '_Fallout4')) }
+        foreach ($key in @('HKLM:\SOFTWARE\Bethesda Softworks\Fallout4','HKLM:\SOFTWARE\WOW6432Node\Bethesda Softworks\Fallout4')) {
+            try { $path=(Get-ItemProperty -LiteralPath $key -Name 'Installed Path' -ErrorAction Stop).'Installed Path';if ($path) { $candidates.Add($path) } } catch {}
+        }
+        $steamRoots=New-Object 'Collections.Generic.List[string]'
+        foreach ($entry in @(@('HKCU:\Software\Valve\Steam','SteamPath'),@('HKLM:\SOFTWARE\WOW6432Node\Valve\Steam','InstallPath'))) {
+            try { $path=(Get-ItemProperty -LiteralPath $entry[0] -Name $entry[1] -ErrorAction Stop).($entry[1]);if ($path) { $steamRoots.Add($path) } } catch {}
+        }
+        if (${env:ProgramFiles(x86)}) { $steamRoots.Add((Join-Path ${env:ProgramFiles(x86)} 'Steam')) }
+        foreach ($steam in @($steamRoots)) {
+            $candidates.Add((Join-Path $steam 'steamapps\common\Fallout 4'))
+            $libraries=Join-Path $steam 'steamapps\libraryfolders.vdf'
+            if ([IO.File]::Exists($libraries)) {
+                foreach ($match in [regex]::Matches([IO.File]::ReadAllText($libraries),'"(?:path|[0-9]+)"\s+"([^"]+)"')) {
+                    $library=$match.Groups[1].Value.Replace('\\','\')
+                    if ([IO.Path]::IsPathRooted($library)) { $candidates.Add((Join-Path $library 'steamapps\common\Fallout 4')) }
+                }
+            }
+        }
+        foreach ($drive in [IO.DriveInfo]::GetDrives()) {
+            if ($drive.IsReady -and $drive.DriveType -eq [IO.DriveType]::Fixed) {
+                foreach ($name in @('_Fallout4','_Fallout 4')) { $candidates.Add((Join-Path $drive.RootDirectory.FullName $name)) }
+            }
+        }
+    }
+    foreach ($candidate in ($candidates | Select-Object -Unique)) {
+        try { return (Assert-CompatibleGameFolder $candidate).GameRoot } catch {}
+    }
+    return ''
+}
+
+function Resolve-GameInstallPlan {
+    param([string]$InstallRoot,[switch]$UseExistingGame,[string]$ExistingGameRoot,[string]$SteamUser)
+    if ($UseExistingGame) {
+        $existing=Assert-CompatibleGameFolder $ExistingGameRoot
+        Assert-NoLinkedAncestors $existing.GameRoot
+        return [pscustomobject]@{GameRoot=$existing.GameRoot;DownloadSteam=$false;ExistingExeSha256=$existing.ExeSha256}
+    }
+    if ([string]::IsNullOrWhiteSpace($SteamUser)) { throw 'Enter your Steam login name, or choose an existing downgraded Fallout 4 folder.' }
+    return [pscustomobject]@{GameRoot=(Join-Path $InstallRoot '_Fallout4');DownloadSteam=$true;ExistingExeSha256=''}
+}
+
+function Backup-ExistingGameFile {
+    param([string]$GameRoot,[string]$Relative,[string]$BackupRoot)
+    $target=Get-SafeChildPath $GameRoot $Relative
+    Assert-NoLinkedAncestors $target
+    if ($BackupRoot -and [IO.File]::Exists($target)) {
+        $backup=Get-SafeChildPath $BackupRoot $Relative
+        Assert-NoLinkedAncestors $backup
+        if (-not [IO.File]::Exists($backup)) {
+            [void][IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($backup))
+            [IO.File]::Copy($target,$backup,$false)
+        }
+    }
+}
+
+function Install-F4SEFiles {
+    param([string]$FilesRoot,[string]$GameRoot,[string]$BackupRoot='')
+    foreach ($name in @('f4se_loader.exe','f4se_1_10_163.dll','f4se_steam_loader.dll','f4se_readme.txt','f4se_whatsnew.txt')) {
+        Backup-ExistingGameFile $GameRoot $name $BackupRoot
+        [IO.File]::Copy((Join-Path $FilesRoot $name),(Join-Path $GameRoot $name),$true)
+    }
+    if ([IO.Directory]::Exists((Join-Path $FilesRoot 'Data'))) {
+        foreach ($file in Get-ChildItem -LiteralPath (Join-Path $FilesRoot 'Data') -Recurse -File) {
+            $relative=$file.FullName.Substring($FilesRoot.Length+1)
+            Backup-ExistingGameFile $GameRoot $relative $BackupRoot
+            $target=Get-SafeChildPath $GameRoot $relative
+            [void][IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($target))
+            [IO.File]::Copy($file.FullName,$target,$true)
+        }
+    }
+}
 $script:RuntimeFolders = @('dlls','explorer++','licenses','loot','NCC','platforms','plugins','pythoncore','QtQml','QtQuick.2','resources','styles','stylesheets','translations','tutorials')
 $script:RootFiles = @('ModOrganizer.exe','helper.exe','nxmhandler.exe','QtWebEngineProcess.exe','boost_python38-vc142-mt-x64-1_75.dll','libcrypto-1_1-x64.dll','libffi-7.dll','libssl-1_1-x64.dll','python38.dll','pythoncore.zip','uibase.dll','usvfs_proxy_x64.exe','usvfs_proxy_x86.exe','usvfs_x64.dll','usvfs_x86.dll','splash.png','portable.txt')
 $script:ProfileFiles = @('archives.txt','fallout4.ini','fallout4custom.ini','fallout4prefs.ini','initweaks.ini','loadorder.txt','lockedorder.txt','modlist.txt','plugins.txt','settings.ini')
@@ -231,7 +333,8 @@ function Expand-CheckedZip {
 }
 
 function Install-GameRootOverlay {
-    param([string]$ArchivePath,[string]$GameRoot,[bool]$EnableEnb)
+    param([string]$ArchivePath,[string]$GameRoot,[bool]$EnableEnb,[string]$OptionalRoot='',[string]$BackupRoot='')
+    if (-not $OptionalRoot) { $OptionalRoot=Join-Path (Split-Path -Parent $GameRoot) 'Optional\ENB' }
     $zip=[IO.Compression.ZipFile]::OpenRead($ArchivePath)
     try {
         foreach ($entry in $zip.Entries) {
@@ -248,7 +351,9 @@ function Install-GameRootOverlay {
                     try { $expected=([BitConverter]::ToString($algorithm.ComputeHash($stream))).Replace('-','') }
                     finally { $stream.Dispose();$algorithm.Dispose() }
                     if ((Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash -ne $expected) { throw 'An unrecognized d3d11.dll exists in this installer-owned game folder. It will not be removed.' }
-                    $disabled=Join-Path (Split-Path -Parent $GameRoot) 'Optional\ENB\d3d11.dll'
+                    Backup-ExistingGameFile $GameRoot $relative $BackupRoot
+                    $disabled=Join-Path $OptionalRoot 'd3d11.dll'
+                    Assert-NoLinkedAncestors $disabled
                     [void][IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($disabled))
                     [IO.File]::Copy($target,$disabled,$true)
                     [IO.File]::Delete($target)
@@ -257,6 +362,7 @@ function Install-GameRootOverlay {
             }
             [void][IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($target))
             Assert-NoLinkedAncestors ([IO.Path]::GetDirectoryName($target))
+            Backup-ExistingGameFile $GameRoot $relative $BackupRoot
             [IO.Compression.ZipFileExtensions]::ExtractToFile($entry,$target,$true)
         }
     } finally { $zip.Dispose() }
@@ -291,11 +397,11 @@ function ConvertTo-WindowsArgument {
 }
 
 function New-MO2Configuration {
-    param([string]$InstallRoot,[int]$Width,[int]$Height)
+    param([string]$InstallRoot,[int]$Width,[int]$Height,[string]$GameRoot='')
     foreach ($name in @('Launch Perdition Sector.cmd','Start-Perdition.ps1')) {
         if (-not [IO.File]::Exists((Join-Path $PSScriptRoot $name))) { throw "The setup bundle is missing its launcher template: $name" }
     }
-    $game = Join-Path $InstallRoot '_Fallout4'
+    $game = if ($GameRoot) { [IO.Path]::GetFullPath($GameRoot).TrimEnd('\') } else { Join-Path $InstallRoot '_Fallout4' }
     $qtGame = -join ([Text.Encoding]::UTF8.GetBytes($game) | ForEach-Object { '\x'+$_.ToString('x2') })
     $base = $InstallRoot.Replace('\','/')
     $g = $game.Replace('\','/')
@@ -335,21 +441,26 @@ function New-MO2Configuration {
 }
 
 function Assert-InstalledBuild {
-    param([string]$InstallRoot,$Information,$Manifest)
+    param([string]$InstallRoot,$Information,$Manifest,[string]$GameRoot='',[string]$ExpectedExistingExeHash='')
     foreach ($name in @('Launch Perdition Sector.cmd','Launcher\Start-Perdition.ps1','splash.png')) {
         if (-not [IO.File]::Exists((Join-Path $InstallRoot $name))) { throw "Required launcher file is missing: $name" }
     }
-    $game = Join-Path $InstallRoot '_Fallout4'
+    $game = if ($GameRoot) { $GameRoot } else { Join-Path $InstallRoot '_Fallout4' }
     $exe = Join-Path $game 'Fallout4.exe'
     if (-not [IO.File]::Exists($exe)) { throw 'The game executable is missing after Steam downloads.' }
     $version = [Diagnostics.FileVersionInfo]::GetVersionInfo($exe).FileVersion
     if (-not $version.StartsWith('1.10.163')) { throw "Unsupported game runtime after installation: $version" }
-    if ((Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash -ne $Manifest.game_exe_sha256) { throw 'Fallout4.exe does not match the pinned runtime.' }
+    $expectedHash=if ($ExpectedExistingExeHash) { $ExpectedExistingExeHash } else { $Manifest.game_exe_sha256 }
+    if ((Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash -ne $expectedHash) { throw 'Fallout4.exe changed or does not match the selected runtime.' }
     foreach ($name in @('f4se_loader.exe','f4se_1_10_163.dll','f4se_steam_loader.dll','Fallout4Launcher.exe','Data\Fallout4.esm','Data\DLCCoast.esm','Data\DLCNukaWorld.esm','Data\DLCRobot.esm','Data\DLCworkshop01.esm','Data\DLCworkshop02.esm','Data\DLCworkshop03.esm')) {
         if (-not [IO.File]::Exists((Join-Path $game $name))) { throw "Required runtime file is missing: $name" }
     }
     $providers = New-Object 'Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)
-    foreach ($directory in @((Join-Path $game 'Data'),(Join-Path $InstallRoot 'overwrite')) + @($Information.Mods | ForEach-Object { Join-Path $InstallRoot ('mods\'+$_) })) {
+    # Updates may enable a new mod after the immutable base inventory was read.
+    $enabledMods=@($Information.Mods)
+    $modlist=Join-Path $InstallRoot 'profiles\FO4ME\modlist.txt'
+    if ([IO.File]::Exists($modlist)) { $enabledMods=@([IO.File]::ReadAllLines($modlist) | Where-Object { $_.StartsWith('+') } | ForEach-Object { $_.Substring(1) }) }
+    foreach ($directory in @((Join-Path $game 'Data'),(Join-Path $InstallRoot 'overwrite')) + @($enabledMods | ForEach-Object { Join-Path $InstallRoot ('mods\'+$_) })) {
         if (Test-Path -LiteralPath $directory) { foreach ($path in [IO.Directory]::EnumerateFiles($directory)) { [void]$providers.Add([IO.Path]::GetFileName($path)) } }
     }
     $missing = @()
@@ -397,7 +508,7 @@ function Assert-InstallDestination {
                 if (-not [IO.File]::Exists((Join-Path $root $required))) { $setupHere=$false }
             }
             if (-not $setupHere) { throw "The destination '$root' already contains files. Choose a new folder, or the folder containing only this Perdition setup bundle. Existing games and mod builds are preserved." }
-            $setupFiles=@('PerditionSetup.exe','Setup.ps1','SetupBootstrap.cs','Build-Payload.ps1','build_release.py','README.md','release.json','RootOverlay.zip','package_source.json','package_source.pending.json')
+            $setupFiles=@('PerditionSetup.exe','Setup.ps1','SetupBootstrap.cs','Build-Payload.ps1','build_release.py','README.md','release.json','RootOverlay.zip','package_source.json','package_source.pending.json','update_source.json','Update existing Perdition.cmd')
             $setupFolders=@('Core','Tools','Documentation','Tests')
             $packageFull='';if ($PackagePath) {$packageFull=[IO.Path]::GetFullPath($PackagePath)}
             foreach ($child in $children) {
@@ -494,20 +605,33 @@ function Invoke-SteamDepotDownloads {
 }
 
 function Get-RequiredInstallBytes {
-    param([long]$PayloadBytes,[long]$ExistingBytes=0)
+    param([long]$PayloadBytes,[long]$ExistingBytes=0,[switch]$UseExistingGame)
     if ($PayloadBytes -lt 0 -or $ExistingBytes -lt 0) { throw 'Installation byte counts cannot be negative.' }
-    [long]$planned=$PayloadBytes+[long](44GB)+[long](1GB)
+    [long]$gameBytes=if ($UseExistingGame) { 0 } else { 44GB }
+    [long]$planned=$PayloadBytes+$gameBytes+[long](1GB)
     [long]$remaining=$planned-$ExistingBytes
     # Both arguments must be Int64. An untyped zero selects Math.Max(Int32,
     # Int32) in Windows PowerShell 5.1 and overflows for this ~90 GB build.
     return [Math]::Max([long]0,$remaining)
 }
 
+function Install-PerditionUpdater {
+    param([string]$InstallRoot,[string]$DistributionRoot)
+    $target=Join-Path $InstallRoot 'Updater'
+    Assert-NoLinkedAncestors $target
+    [void][IO.Directory]::CreateDirectory($target)
+    foreach ($name in @('Updates.psm1','Update-Perdition.ps1','ProfileUpdates.ps1')) {
+        Copy-Item -LiteralPath (Join-Path $DistributionRoot ('Core\'+$name)) -Destination (Join-Path $target $name) -Force
+    }
+    Copy-Item -LiteralPath (Join-Path $DistributionRoot 'update_source.json') -Destination (Join-Path $target 'update_source.json') -Force
+    Copy-Item -LiteralPath (Join-Path $DistributionRoot 'Core\Update-Installed.cmd') -Destination (Join-Path $InstallRoot 'Update Perdition Sector.cmd') -Force
+}
+
 function Invoke-PerditionInstallation {
-    param([string]$InstallRoot,[string]$PackagePath,[string]$SteamUser,[int]$Width=1920,[int]$Height=1080,[switch]$UseQr,[string]$DistributionRoot,[switch]$DesktopShortcut,[switch]$EnableEnb)
+    param([string]$InstallRoot,[string]$PackagePath,[string]$SteamUser,[int]$Width=1920,[int]$Height=1080,[switch]$UseQr,[string]$DistributionRoot,[switch]$DesktopShortcut,[switch]$EnableEnb,[switch]$UseExistingGame,[string]$ExistingGameRoot='')
+    $gamePlan=Resolve-GameInstallPlan -InstallRoot $InstallRoot -UseExistingGame:$UseExistingGame -ExistingGameRoot $ExistingGameRoot -SteamUser $SteamUser
     $destination=Assert-InstallDestination $InstallRoot $DistributionRoot $PackagePath
     $root=$destination.Root;$owned=$destination.Owned;$marker=$destination.Marker
-    if ([string]::IsNullOrWhiteSpace($SteamUser)) { throw 'Enter your Steam login name so setup can reuse the signed-in account for all packages.' }
     if ($Width -lt 800 -or $Height -lt 600 -or $Width -gt 16384 -or $Height -gt 16384) { throw 'Choose a valid display resolution.' }
     Write-InstallerLog 'Reading the Perdition package...'
     $information=Get-PackageInformation $PackagePath
@@ -516,13 +640,13 @@ function Invoke-PerditionInstallation {
     $drive=New-Object IO.DriveInfo([IO.Path]::GetPathRoot($root))
     $existing=[long]0
     if ($owned) { foreach ($item in Get-ChildItem -LiteralPath $root -Recurse -File -Force) { $existing += $item.Length } }
-    $required=Get-RequiredInstallBytes -PayloadBytes $information.Bytes -ExistingBytes $existing
+    $required=Get-RequiredInstallBytes -PayloadBytes $information.Bytes -ExistingBytes $existing -UseExistingGame:$UseExistingGame
     if ($drive.AvailableFreeSpace -lt $required) { throw ('Not enough free space. Setup needs about '+[Math]::Ceiling($required/1GB)+' GB more on this drive.') }
     $stateRoot=Join-Path $root '_Installer'
     [void][IO.Directory]::CreateDirectory($stateRoot)
     $script:LogPath=Join-Path $stateRoot 'install.log'
     if (-not $owned) { Save-JsonFile $marker @{product='PerditionSectorInstaller';root=$root;created_utc=[DateTime]::UtcNow.ToString('o')} }
-    $state=@{status='running';stage='Preparing downloads';version=$manifest.version;root=$root;package=[IO.Path]::GetFullPath($PackagePath);completed_depots=@();enb_enabled=[bool]$EnableEnb}
+    $state=@{status='running';stage='Preparing downloads';version=$manifest.version;root=$root;package=[IO.Path]::GetFullPath($PackagePath);completed_depots=@();enb_enabled=[bool]$EnableEnb;game_root=$gamePlan.GameRoot;use_existing_game=[bool]$UseExistingGame}
     $statePath=Join-Path $stateRoot 'state.json'
     Save-JsonFile $statePath $state
     try {
@@ -532,14 +656,21 @@ function Invoke-PerditionInstallation {
         Save-JsonFile $statePath $state
         Invoke-PackageArchiveCheck -PackagePath $PackagePath -DistributionRoot $DistributionRoot -Manifest $manifest
         Install-VisualCppRuntimeIfNeeded $cache
-        $depotZip=Get-VerifiedDownload $manifest.dependencies.depot_downloader $cache
-        $depotRoot=Join-Path $stateRoot 'DepotDownloader'
-        Expand-CheckedZip $depotZip $depotRoot
-        $downloader=Join-Path $depotRoot 'DepotDownloader.exe'
-        if (-not [IO.File]::Exists($downloader)) { throw 'DepotDownloader executable was not found in its official archive.' }
-        $game=Join-Path $root '_Fallout4'
-        $session=Join-Path $stateRoot 'SteamSession'
-        Invoke-SteamDepotDownloads -Downloader $downloader -Manifest $manifest -GameRoot $game -SessionRoot $session -SteamUser $SteamUser -UseQr:$UseQr -State $state -StatePath $statePath
+        $game=$gamePlan.GameRoot
+        $backupRoot=''
+        if ($gamePlan.DownloadSteam) {
+            $depotZip=Get-VerifiedDownload $manifest.dependencies.depot_downloader $cache
+            $depotRoot=Join-Path $stateRoot 'DepotDownloader'
+            Expand-CheckedZip $depotZip $depotRoot
+            $downloader=Join-Path $depotRoot 'DepotDownloader.exe'
+            if (-not [IO.File]::Exists($downloader)) { throw 'DepotDownloader executable was not found in its official archive.' }
+            $session=Join-Path $stateRoot 'SteamSession'
+            Invoke-SteamDepotDownloads -Downloader $downloader -Manifest $manifest -GameRoot $game -SessionRoot $session -SteamUser $SteamUser -UseQr:$UseQr -State $state -StatePath $statePath
+        } else {
+            [void](Assert-CompatibleGameFolder $game)
+            $backupRoot=Join-Path $stateRoot 'ExistingGameBackup'
+            Write-InstallerLog ('Using existing Fallout 4 1.10.163: '+$game+'. Steam depot downloads are skipped.')
+        }
         $state.stage='Installing F4SE 0.6.23';Save-JsonFile $statePath $state
         $f4seArchive=Get-VerifiedDownload $manifest.dependencies.f4se $cache
         $f4seRoot=Join-Path $cache 'F4SE'
@@ -547,23 +678,23 @@ function Invoke-PerditionInstallation {
         & (Join-Path $DistributionRoot 'Tools\7z.exe') x $f4seArchive ('-o'+$f4seRoot) -y -bsp0 -bb0
         if ($LASTEXITCODE -ne 0) { throw 'F4SE extraction failed.' }
         $filesRoot=Join-Path $f4seRoot 'f4se_0_06_23'
-        foreach ($name in @('f4se_loader.exe','f4se_1_10_163.dll','f4se_steam_loader.dll','f4se_readme.txt','f4se_whatsnew.txt')) { [IO.File]::Copy((Join-Path $filesRoot $name),(Join-Path $game $name),$true) }
-        if (Test-Path -LiteralPath (Join-Path $filesRoot 'Data')) {
-            foreach ($file in Get-ChildItem -LiteralPath (Join-Path $filesRoot 'Data') -Recurse -File) {
-                $relative=$file.FullName.Substring($filesRoot.Length+1)
-                $target=Get-SafeChildPath $game $relative
-                [void][IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($target));[IO.File]::Copy($file.FullName,$target,$true)
-            }
-        }
+        Install-F4SEFiles -FilesRoot $filesRoot -GameRoot $game -BackupRoot $backupRoot
         $state.stage='Installing Perdition Sector';Save-JsonFile $statePath $state
         Expand-PerditionPackage $PackagePath $root $information
         $overlay=Join-Path $DistributionRoot 'RootOverlay.zip'
         if ((Get-FileHash -LiteralPath $overlay -Algorithm SHA256).Hash -ne $manifest.root_overlay_sha256) { throw 'Gameplay root overlay failed verification.' }
-        Install-GameRootOverlay $overlay $game ([bool]$EnableEnb)
+        Install-GameRootOverlay $overlay $game ([bool]$EnableEnb) -OptionalRoot (Join-Path $root 'Optional\ENB') -BackupRoot $backupRoot
         $state.stage='Configuring paths and display';Save-JsonFile $statePath $state
-        New-MO2Configuration $root $Width $Height
+        New-MO2Configuration $root $Width $Height -GameRoot $game
+        $updateSource=Join-Path $DistributionRoot 'update_source.json'
+        if (Test-Path -LiteralPath $updateSource) {
+            $state.stage='Applying Perdition updates';Save-JsonFile $statePath $state
+            Install-PerditionUpdater -InstallRoot $root -DistributionRoot $DistributionRoot
+            Import-Module (Join-Path $DistributionRoot 'Core\Updates.psm1') -Force -Scope Local
+            [void](Invoke-PerditionUpdates -InstallRoot $root -SourceManifest $updateSource)
+        }
         $state.stage='Verifying the installation';Save-JsonFile $statePath $state
-        Assert-InstalledBuild $root $information $manifest
+        Assert-InstalledBuild $root $information $manifest -GameRoot $game -ExpectedExistingExeHash $gamePlan.ExistingExeSha256
         if ($DesktopShortcut) {
             $shell=New-Object -ComObject WScript.Shell
             $shortcut=$shell.CreateShortcut((Join-Path ([Environment]::GetFolderPath('Desktop')) 'Perdition Sector.lnk'))
@@ -572,7 +703,7 @@ function Invoke-PerditionInstallation {
         }
         $state.status='complete';$state.stage='Ready to play';$state.completed_utc=[DateTime]::UtcNow.ToString('o')
         Save-JsonFile $statePath $state
-        Save-JsonFile (Join-Path $stateRoot 'result.json') @{success=$true;root=$root;launcher=(Join-Path $root 'Launch Perdition Sector.cmd');runtime='1.10.163';f4se='0.6.23';enb_enabled=[bool]$EnableEnb}
+        Save-JsonFile (Join-Path $stateRoot 'result.json') @{success=$true;root=$root;launcher=(Join-Path $root 'Launch Perdition Sector.cmd');runtime='1.10.163';f4se='0.6.23';enb_enabled=[bool]$EnableEnb;game_root=$game;use_existing_game=[bool]$UseExistingGame}
         Write-InstallerLog 'Installation completed. Launch Perdition Sector.cmd starts the game through MO2 and F4SE.'
         Write-Host 'Start a New Game and choose your name and gender. Jug''s preset and Side Aim initialize automatically.'
     } catch {
@@ -583,4 +714,4 @@ function Invoke-PerditionInstallation {
     } finally { $script:LogPath=$null }
 }
 
-Export-ModuleMember -Function Get-SafeChildPath,Assert-NoLinkedAncestors,Get-PackageInformation,Test-PayloadEntry,Expand-PerditionPackage,Expand-CheckedZip,Install-GameRootOverlay,Set-IniValue,ConvertTo-WindowsArgument,New-MO2Configuration,Get-VerifiedDownload,Resolve-OnlinePackage,Assert-InstallPathPolicy,Assert-InstallDestination,Test-FullPackageVerificationEnabled,Invoke-PackageArchiveCheck,New-SteamDepotArguments,Invoke-SteamDepotDownloads,Get-RequiredInstallBytes,Invoke-PerditionInstallation
+Export-ModuleMember -Function Assert-CompatibleGameFolder,Get-DetectedGameFolder,Resolve-GameInstallPlan,Install-F4SEFiles,Get-SafeChildPath,Assert-NoLinkedAncestors,Get-PackageInformation,Test-PayloadEntry,Expand-PerditionPackage,Expand-CheckedZip,Install-GameRootOverlay,Set-IniValue,ConvertTo-WindowsArgument,New-MO2Configuration,Get-VerifiedDownload,Resolve-OnlinePackage,Assert-InstallPathPolicy,Assert-InstallDestination,Test-FullPackageVerificationEnabled,Invoke-PackageArchiveCheck,New-SteamDepotArguments,Invoke-SteamDepotDownloads,Get-RequiredInstallBytes,Invoke-PerditionInstallation

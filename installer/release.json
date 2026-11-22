@@ -1,6 +1,6 @@
 {
   "product": "Perdition Sector Setup",
-  "version": "0.2.0-beta.1",
+  "version": "0.2.3-beta.1",
   "status": "beta_snapshot",
   "runtime": "1.10.163",
   "f4se": "0.6.23",
@@ -294,13 +294,11 @@
     }
   ],
   "changes": [
-    "Current November 20 beta snapshot, including all installed project fixes",
-    "Pinned GitHub Release downloads with SHA-256 verification",
-    "Name/gender new game flow; automatic Jug defaults and Side Aim initialization",
-    "Approved cyan-blue panoramic NVG mask; no experimental grain or ReShade",
-    "Seventeen subway poster frames repaired; current build confirmed working by Faust",
-    "Approved compact splash launcher included; ENB remains optional",
-    "Grass, NVG precipitation and museum precombines remain unresolved"
+    "Reuse compatible existing Fallout 4 without Steam downloads",
+    "Apply confirmed radio recovery and subway-compatible beta base",
+    "Apply confirmed urban visibility and draw-distance settings",
+    "Install repaired NT4: default RUTex, Black paint black, all other paints FDE",
+    "Repair Perst-3 and LS321G attachment mesh paths"
   ],
   "full_package_verification": false,
   "grass_prefs": {
@@ -309,5 +307,15 @@
     "fGrassMinStartFadeDistance": "7000.0000"
   },
   "snapshot_tag": "beta-2026.11.20.1",
-  "repository": "jjc71ps4/Perdition-Sector"
+  "repository": "jjc71ps4/Perdition-Sector",
+  "payload_version": "0.2.0-beta.1",
+  "local_test_candidate": false,
+  "existing_game_option": {
+    "default": true,
+    "required_runtime": "1.10.163",
+    "required_dlc": 6,
+    "direct_reuse": true,
+    "skip_steam_downloads": true,
+    "missing_game_blocks_install": true
+  }
 }

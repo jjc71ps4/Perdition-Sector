@@ -1,0 +1,20 @@
+name: Publish verified Perdition revisions
+on:
+  push:
+    branches: [main]
+    paths: [release/revisions-0.2.3/transport.json]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify and publish the small update and installer
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 publisher/publish_revisions.py release/revisions-0.2.3/transport.json

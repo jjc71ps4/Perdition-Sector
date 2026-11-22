@@ -7,17 +7,21 @@ param(
     [switch]$UseQr,
     [switch]$DesktopShortcut,
     [switch]$EnableEnb,
-    [switch]$DownloadPackage
+    [switch]$DownloadPackage,
+    [switch]$UseExistingGame,
+    [string]$ExistingGameRoot=''
 )
 $ErrorActionPreference='Stop'
 $distribution=Split-Path -Parent $PSScriptRoot
 Import-Module (Join-Path $PSScriptRoot 'Installer.psm1') -Force
 try {
+    # Validate the required game selection before starting the large PS download.
+    [void](Resolve-GameInstallPlan -InstallRoot $InstallRoot -UseExistingGame:$UseExistingGame -ExistingGameRoot $ExistingGameRoot -SteamUser $SteamUser)
     if ($DownloadPackage) {
         $destination=Assert-InstallDestination $InstallRoot $distribution
         $PackagePath=Resolve-OnlinePackage -SourceManifest (Join-Path $distribution 'package_source.json') -CacheRoot ($destination.Root+'.DownloadCache')
     }
-    Invoke-PerditionInstallation -InstallRoot $InstallRoot -PackagePath $PackagePath -SteamUser $SteamUser -Width $Width -Height $Height -UseQr:$UseQr -DesktopShortcut:$DesktopShortcut -EnableEnb:$EnableEnb -DistributionRoot $distribution
+    Invoke-PerditionInstallation -InstallRoot $InstallRoot -PackagePath $PackagePath -SteamUser $SteamUser -Width $Width -Height $Height -UseQr:$UseQr -DesktopShortcut:$DesktopShortcut -EnableEnb:$EnableEnb -DistributionRoot $distribution -UseExistingGame:$UseExistingGame -ExistingGameRoot $ExistingGameRoot
     Write-Host "`nPress Enter to close this window."
     [void](Read-Host)
     exit 0

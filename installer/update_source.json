@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "base_snapshot_tag": "beta-2026.11.20.1",
+  "base_archive_sha256": "ef9287eab5514756536fb50fa280091b41c3b74adf5724dbb0e3a41d254dd509",
+  "world_plugin_sha256": "9822b8bba4952ba4db28311eef6bb7fac01b63013b2dc36bcba8b995a9355ee2",
+  "index_url": "https://raw.githubusercontent.com/jjc71ps4/Perdition-Sector/main/updates/beta-v2.json"
+}

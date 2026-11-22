@@ -1,42 +1,65 @@
-# Perdition Sector Setup 0.2.0-beta.1
+# Perdition Sector Setup 0.2.3-beta.1 - incremental updates
 
-This setup installs the November 20 beta snapshot from its GitHub Release.
-A Steam account owning Fallout 4 and all six gameplay DLCs is required.
-Compatible Fallout 4 1.10.163 depots are downloaded directly from Steam using
-your account. Your existing Steam installation is preserved.
+This installer downloads the existing 0.2.0-beta.1 Perdition build package from
+GitHub, then applies the small verified updates listed in its public beta channel.
+The base game package and its checksums are unchanged. The installer itself is
+distributed separately; the updated installer and revision archive are separate release assets.
 
-1. Extract this entire ZIP, then run `PerditionSetup.exe`.
-2. Leave **Download the package automatically** selected.
-3. Choose a new installation folder outside Windows/Program Files, your
-   resolution and Steam login name. Setup may share its otherwise-empty folder
-   with the installation.
-4. ENB is optional, off by default, and brightens the image when enabled.
-5. Select **Install / Resume** and complete Steam authentication when prompted.
-   The remembered account is reused for subsequent depot downloads.
-6. Keep Steam open and run `Launch Perdition Sector.cmd` after setup completes.
-   MO2's F4SE entry is also supported.
+Already installed Perdition? Run `Update existing Perdition.cmd` and select the
+Perdition folder containing ModOrganizer.exe. This checks only the small update
+channel: it does not download the 34 GB base package, run Steam downloads, or
+replace personal resolution settings or saves. Close Fallout 4 and MO2 first.
+New installations receive `Update Perdition Sector.cmd` in their game-pack root
+for later checks. Existing players using this setup ZIP can keep using its
+`Update existing Perdition.cmd` without reinstalling.
 
-Allow roughly 90 GB for the installed game/mods plus the downloaded archive.
-Downloading and joining archive parts temporarily requires room for both
-copies. The exact archive size is recorded in `package_source.json`.
+The first update is the player-confirmed Radio Recovery 0.1.1, a 3.2 KB ZIP
+containing only the changed compiled radio script, followed by the 67.6 MB
+confirmed-revisions archive. Each archive and file has a
+size/SHA-256 check. Replaced files are backed up, already-current or later released
+versions are retained, and unexpected custom changes stop the update without
+overwriting that file. Do not manually edit the update index to bypass a mismatch.
+The confirmed performance settings and visibility patch, NT4 replacement and finishes,
+and attachment-path fixes are applied by the revision update. Profile migration
+enables the new plugins and updates only the approved distance keys; resolution,
+unrelated preferences and saves are preserved. Black/BLK selects black, Standard
+selects RUTex, and the other paint options select original FDE.
 
-New Game asks for your name and gender. Stats are locked, leveling remains
-disabled, Jug's preset loads automatically and Side Aim initializes without the
-old manual restart step. Mouse5 is the momentary flashlight; Mouse4 is Side Aim.
+Existing-game mode remains available for a Fallout 4 installation you already
+downgraded. Older installers require this one-time updater/installer upgrade;
+they cannot discover a patch channel they were never programmed to read.
 
-This is a beta. Grass rendering, precipitation while using NVGs and museum
-floor/precombine damage remain unresolved. All 17 subway poster repairs are
-included and confirmed working by Faust. The approved cyan
-panoramic NVG mask is included without experimental grain or ReShade.
+1. Extract the entire setup ZIP and run `PerditionSetup.exe`.
+2. Leave **Download the package from GitHub** selected.
+3. Choose the new Perdition installation folder for MO2, mods and the profile.
+4. **Use existing downgraded Fallout 4** is selected by default. Setup searches
+   common Steam libraries and compatible game folders. If needed, browse to
+   the folder containing `Fallout4.exe`.
+5. Setup requires Fallout 4 **1.10.163**, the base-game assets and all six DLCs.
+   A missing or incompatible game shows the requirement prompt and blocks
+   installation until a valid folder is selected.
+6. Existing-game mode skips Steam account entry, DepotDownloader and all Steam
+   game/DLC downloads. The selected game folder is used directly; it is not
+   duplicated into another `_Fallout4` folder.
+7. Alternatively select **Download compatible game from Steam**, enter the
+   owning Steam account and use the original separate-game installation path.
+8. Choose resolution, optional ENB and shortcut settings, then Install / Resume.
 
-The source is pinned to this beta tag and checksum. Completed downloads are
-retained when setup stops so you can retry. Do not substitute another beta's
-package. Your existing saves and original account settings are not bundled.
+Existing-game mode still installs the matching F4SE 0.6.23 and required PS root
+files into the selected game folder. Original files that it replaces are kept
+under `_Installer/ExistingGameBackup` in the Perdition installation. The game
+executable and base/DLC archives are preserved. MO2, all executable entries and
+the launcher are configured to use the selected game directory.
 
-The extra full-archive scan remains disabled for beta diagnosis at the author's
-request. Download part hashes, assembled ZIP SHA-256, World plugin hash, pinned
-dependencies and installed runtime checks remain enabled.
+The Perdition payload is about 34 GB compressed and 41.6 GB installed. Package
+download/assembly also needs temporary space for the parts and complete ZIP.
+Existing-game mode does not reserve another 44 GB for a second game copy.
+Steam must still be available when playing a Steam copy of Fallout 4.
 
-The repository's Source code ZIP is authoring material, not the player payload.
-Python and GitHub CLI are not needed on a player's PC. Use the Windows setup.
-No full installation is run on the authoring PC while building this package.
+The unchanged payload includes the confirmed 17 subway repairs, approved New
+Game/audio flow, automatic Jug settings and Side Aim, the cyan panoramic NVGs
+without grain, flashlight/radio fixes and compact splash launcher. Existing
+grass, NVG precipitation and museum floor issues remain outside this change.
+
+This is a test candidate: fixture and UI checks do not replace a fresh-PC
+installation/gameplay test. No full installation was run on the development PC.

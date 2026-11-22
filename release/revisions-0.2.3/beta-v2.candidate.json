@@ -1,0 +1,206 @@
+{
+  "schema_version": 2,
+  "base_snapshot_tag": "beta-2026.11.20.1",
+  "base_archive_sha256": "ef9287eab5514756536fb50fa280091b41c3b74adf5724dbb0e3a41d254dd509",
+  "updates": [
+    {
+      "id": "radio-recovery-0.1.1",
+      "name": "Radio recovery 0.1.1",
+      "url": "https://raw.githubusercontent.com/jjc71ps4/Perdition-Sector/main/updates/Perdition_Radio_Recovery_0.1.1.zip",
+      "sha256": "a763fd2d513708260ff1bae6e59f6a23e11565dbaf2531e63af34c859da56b1d",
+      "bytes": 3202,
+      "files": [
+        {
+          "path": "overwrite/Scripts/PSRadioQuestScript.pex",
+          "bytes": 7197,
+          "previous_sha256": "0e098a887c334cd9fc29ba6e3caf84714210cc93017d923280bde5883cd24793",
+          "sha256": "e00affca5529fc6e1d38060b780a1de400219bff17f671952962a290e9df59cd"
+        }
+      ]
+    },
+    {
+      "id": "confirmed-build-0.2.3",
+      "name": "Confirmed performance, attachment and NT4 revisions",
+      "minimum_updater_version": "0.2.3-beta.1",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/updates-2026.11.21.1/Perdition_Confirmed_Revisions_0.2.3-beta.1.zip",
+      "bytes": 67622529,
+      "sha256": "cf0bcfce203acc59b3e2bc6642ad40cacdc7918be12b6beac0c03b88a410eda0",
+      "files": [
+        {
+          "path": "mods/MK18 Armory Project Part Dos - Update/MK18 Armory Project 2.esp",
+          "bytes": 103485,
+          "sha256": "1da3adcd2ee53f2f9d3027c3b8397bd32885f7016a76b055622fffd6da4fb03d",
+          "previous_sha256": "a427fcdbe64a83aee794915c0b25eff5bcec8d64ae5e3104a4593eb08b200e46"
+        },
+        {
+          "path": "mods/MK18 Armory Project Part Tres - 1K/MK18 Armory Project 3.esp",
+          "bytes": 200234,
+          "sha256": "20fad8bcc276dc20e8f03698423b6055572fec2f45ee04f6a13b1bd76d26797b",
+          "previous_sha256": "71124592a4c663490bc820beecee525c2cbbc66a918f7381695e80b2743580f7"
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Documentation/NT4_Repaired_LICENSE.txt",
+          "bytes": 598,
+          "sha256": "78f828ffc4e10c3f2105b98867cb3f85d3bfe62cd413ab68f5a0b3cd74ed5e28",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Materials/Weapons/MK18/Attachments/Muzzle_Suppressor_KAC.BGSM",
+          "bytes": 415,
+          "sha256": "570d7cff2fb8ddc177162a568496e045b2179dfdfdd6b54a1f5a3b5ebba02a48",
+          "previous_sha256": "60df2a8cae8b70aed74953e474267d2cac9be4b55274342ee42fb7d17653e700"
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Materials/Weapons/MK18/Attachments/Muzzle_Suppressor_KAC_Black.BGSM",
+          "bytes": 415,
+          "sha256": "570d7cff2fb8ddc177162a568496e045b2179dfdfdd6b54a1f5a3b5ebba02a48",
+          "previous_sha256": "b66d474d9aab15522441ce4167fa9c804c0871fc974d5b81aa3f21fcf00ab8ac"
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Materials/Weapons/MK18/NT4_Repaired/NT4_Black.bgsm",
+          "bytes": 415,
+          "sha256": "f4193b615aaefa3031053fb7d11779a47e908276cc007d1c5858f7203827b9b5",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Materials/Weapons/MK18/NT4_Repaired/NT4_FDE.bgsm",
+          "bytes": 413,
+          "sha256": "73b700a40ed20cf69d7a6f2db1824be1648a5b95edad3078408dd4d691665c2c",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Meshes/Weapons/MK18/Attachments/MK18_Muzzle_Suppressor_KAC.nif",
+          "bytes": 772565,
+          "sha256": "b7f7deeb492b1e3ac95cf7015e64f7cb77065cb86a1e7ff8463d8ddab06e8fd9",
+          "previous_sha256": "81928dd4bb6e94a25199c911a6b1fdeaeaa3bce017dd3830d28e90f6b11535a6"
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Meshes/Weapons/MK18/Attachments/MK18_Muzzle_Suppressor_KAC_Black.nif",
+          "bytes": 772636,
+          "sha256": "f8b2b9318250c2f9e034eef48e35e91d098971bea27773cbcdce7c567c830142",
+          "previous_sha256": "cdf1df7e003b0053672c0b45d34c2b26deb9a7345ead97dbbbe7a994444662df"
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Perdition_NT4_Repaired.esp",
+          "bytes": 31608,
+          "sha256": "aec7d2a7b5644843a2d2de04cdabebedf899eccc1931e0100b25645adcda962a",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Textures/Weapons/MK18/NT4_Repaired/nt4_black_d.DDS",
+          "bytes": 22369796,
+          "sha256": "756f3079f41f210cd43b3b4abe8be7ca74a65fb563fb51c3bd0673e1b646195f",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Textures/Weapons/MK18/NT4_Repaired/nt4_fde_d.DDS",
+          "bytes": 22369796,
+          "sha256": "29d840512fb1409a0e5cfe0d1e6f5b8d732db9f7e4f4aab30e266231560c4f93",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Textures/Weapons/MK18/NT4_Repaired/nt4_n.DDS",
+          "bytes": 22369776,
+          "sha256": "1695230d56762f5480bac3beed80f0b6d3524ed2e2f304a27ec33ac4a687f255",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Textures/Weapons/MK18/NT4_Repaired/nt4_rutex_d.DDS",
+          "bytes": 22369796,
+          "sha256": "e1b18bb79f4108ab68d9cca1dd52ca6fbb6bf34cfe76b67ba21831f9bb95908e",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Textures/Weapons/MK18/NT4_Repaired/nt4_s.DDS",
+          "bytes": 22369776,
+          "sha256": "33808221390eb856fd4ca392d3fbb6ebad6b2cd71d71106c7d6848b86f393b23",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/Perdition North End Visibility - Test/Perdition North End Visibility - Test.esp",
+          "bytes": 64599,
+          "sha256": "3cabd6e029460505f6df667263932da52ab0f74743043b404daefda84f5fa9a4",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/Perdition North End Visibility - Test/meta.ini",
+          "bytes": 124,
+          "sha256": "5c5a1d52d2bf6c2f797dd8fed29f4847b49936986f59acc1e88a9d2892440188",
+          "previous_sha256": ""
+        }
+      ],
+      "profile_changes": {
+        "schema_version": 1,
+        "enable_mods": [
+          "Perdition North End Visibility - Test"
+        ],
+        "disable_mods": [
+          "Optimization Patches Collection",
+          "Improved Map with Visible Roads",
+          "1st to 3rd Person Forced Reload Fix",
+          "Faust Actor Replacer - Children of Atom"
+        ],
+        "enable_plugins": [
+          "Perdition North End Visibility - Test.esp",
+          "Perdition_NT4_Repaired.esp"
+        ],
+        "settings": [
+          {
+            "section": "Display",
+            "key": "fMeshLODLevel1FadeDist",
+            "value": "3500",
+            "previous_values": [
+              "999999.0000",
+              "3500"
+            ]
+          },
+          {
+            "section": "Display",
+            "key": "fMeshLODLevel2FadeDist",
+            "value": "2000",
+            "previous_values": [
+              "999999.0000",
+              "2000"
+            ]
+          },
+          {
+            "section": "Display",
+            "key": "fInteriorMeshLODLevel1FadeDist",
+            "value": "2600",
+            "previous_values": [
+              "2600.0000",
+              "2600"
+            ]
+          },
+          {
+            "section": "Display",
+            "key": "fInteriorMeshLODLevel2FadeDist",
+            "value": "1950",
+            "previous_values": [
+              "1950.0000",
+              "1950"
+            ]
+          },
+          {
+            "section": "Display",
+            "key": "fMeshLODFadeScalar",
+            "value": "1",
+            "previous_values": [
+              "3.0000",
+              "1"
+            ]
+          },
+          {
+            "section": "LOD",
+            "key": "fLODFadeOutMultObjects",
+            "value": "15",
+            "previous_values": [
+              "30.0000",
+              "15"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
