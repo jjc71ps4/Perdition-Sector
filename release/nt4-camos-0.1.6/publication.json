@@ -1,0 +1,16 @@
+{
+  "tag": "updates-2026.11.23.2",
+  "assets": [
+    {
+      "name": "Perdition_NT4_Camos_v0.1.6.zip",
+      "bytes": 52197885,
+      "sha256": "5ad284e2ee2c660f178775169d21bb6f65e8ec4cc2f3e8721427471f40ad3e7d",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/updates-2026.11.23.2/Perdition_NT4_Camos_v0.1.6.zip"
+    }
+  ],
+  "base_archive_reuploaded": false,
+  "channel": "updates/beta-v2.json",
+  "workflow_run": "45227602804",
+  "source_commit": "bd882676b0971fa0f9a7548e9ae7982172a4eee3",
+  "complete": true
+}

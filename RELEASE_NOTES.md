@@ -1,13 +1,17 @@
-# Perdition Sector: Lexington, Concord, intro viewport and setup repairs
+# Approved NT4 camo finishes 0.1.6
 
-- Lexington: rebuilt precombines and visibility for 18 exterior cells. Player confirmed the repair in game.
-- Concord: rebuilt 18 exterior cells plus the Museum of Freedom and Civic Access interiors. Player confirmed the repairs in game.
-- Cosmetic scenery deletions remain in place; the generated geometry and visibility now reflect them. Corrected combined-material handling and alpha exclusions are included.
-- Intro name/gender menu: place and fit controls within Scaleform's actual visible viewport, including its origin. The compiled menu passes 27 layout-bound checks, including 5120 x 1440. Native ultrawide confirmation is pending.
-- Setup 0.2.5-beta.1: automatic Perdition download; one Steam downloader session for the pinned game/DLC packages; bounded token/QR recovery without password prompts when QR mode is selected. Mocked Steam recovery tests pass; this is still a beta installer.
+- Propagate Urban, Desert Hex, Brush, Splinter, and Desert Hex Black 2 Electric Boogaloo onto the repaired NT4 suppressor.
+- Match each source rifle pattern's physical scale and proportions. Measured main-body aspect error is below 0.25%; flat end caps use planar mapping.
+- Desert Hex Black uses the existing plain black NT4 finish. Electric Boogaloo remains the separate Black Hex pattern.
+- Retain the approved mesh alignment, original surface detail, default RUTex, FDE and BLK finishes.
 
-Existing players: close Fallout 4 and MO2 and run `Update Perdition Sector.cmd`. Players without that command can extract the setup ZIP and use `Update existing Perdition.cmd`.
+These changes were tested and approved in game by the player on November 23, 2026.
 
-The unchanged public updater 0.2.3 applies all three new content updates, enables both area patches in dependency order, and verifies 2,061 resulting files in an offline fixture. Repeating the update downloads nothing. The fixture preserved 5120 x 1440 preferences and a save sentinel. Network downloads were mocked in this fixture; release assets are separately verified by the publisher.
+Existing players: close Fallout 4 and MO2, then run **Update Perdition Sector.cmd**.
+New installations receive this update automatically through the current channel.
+The existing setup/updater already supports it; no new installer is required.
 
-No new installer is required for these content updates. Setup 0.2.5 is provided for the earlier Steam authentication failure. No base snapshot re-upload, save migration, gameplay rebalance, or graphics-distance change is included in this release. Grass and NVG precipitation issues remain open.
+The update contains five diffuse maps, five materials, and the existing ESL-flagged
+NT4 paint patch. No NIF, profile, save, gameplay balance, or base snapshot changes.
+Files are size/SHA-256 verified and backed up by the updater. Ordinary clones hold
+the source, manifests and receipts; the playable assets are a release download.

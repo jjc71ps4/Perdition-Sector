@@ -12533,6 +12533,82 @@
           "previous_sha256": "95fec9e0119674b0c3f52458d9f55beeebfe1f232c2507abb4342d16b80bc955"
         }
       ]
+    },
+    {
+      "id": "nt4-camos-0.1.6",
+      "name": "Approved NT4 matching camos and preserved pattern proportions",
+      "minimum_updater_version": "0.2.3-beta.1",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/updates-2026.11.23.2/Perdition_NT4_Camos_v0.1.6.zip",
+      "bytes": 52197885,
+      "sha256": "5ad284e2ee2c660f178775169d21bb6f65e8ec4cc2f3e8721427471f40ad3e7d",
+      "files": [
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Materials/Weapons/MK18/NT4_Repaired/NT4_Black_Hex.bgsm",
+          "bytes": 419,
+          "sha256": "efbf2df845b42f890566e793b6370c7a5ab9a5990d19fe98f45284e8475d44e3",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Materials/Weapons/MK18/NT4_Repaired/NT4_Brush.bgsm",
+          "bytes": 415,
+          "sha256": "9fe86d445a713f9518c86d866f1b97edad6667ac1e860a1e271a10a8d457131a",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Materials/Weapons/MK18/NT4_Repaired/NT4_Desert_Hex.bgsm",
+          "bytes": 420,
+          "sha256": "4678b61caa2980519ea9d0c35e82376bf46460364cb0f258c4f984d99605d52b",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Materials/Weapons/MK18/NT4_Repaired/NT4_Splinter.bgsm",
+          "bytes": 418,
+          "sha256": "aa170f16050093f41c0083ad057906350f8242b85e9db74a48c9850974eeed2d",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Materials/Weapons/MK18/NT4_Repaired/NT4_Urban.bgsm",
+          "bytes": 415,
+          "sha256": "2627d09c3d77d9e0998583f1e72f76436037ab345757e81ef26201c89b531965",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Perdition_NT4_Repaired.esp",
+          "bytes": 31685,
+          "sha256": "78b7cd09ad32e8d04513ea85e38d23d6f19b2de23db30bbb2ecbc1f80e76b5b7",
+          "previous_sha256": "aec7d2a7b5644843a2d2de04cdabebedf899eccc1931e0100b25645adcda962a"
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Textures/Weapons/MK18/NT4_Repaired/nt4_black_hex_d.DDS",
+          "bytes": 22369796,
+          "sha256": "2dde36c929c0fddb2182f99f17a4d034f04f3f571a4389a7eb7964f2a6073342",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Textures/Weapons/MK18/NT4_Repaired/nt4_brush_d.DDS",
+          "bytes": 22369796,
+          "sha256": "19e3960976b8b01672b78bdd969e343aadead2a997730e145a1a99bfce0c21b6",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Textures/Weapons/MK18/NT4_Repaired/nt4_desert_hex_d.DDS",
+          "bytes": 22369796,
+          "sha256": "ef74460b7960108bc9132415c43fc8ef852739c681c1665587b748ddca35ad58",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Textures/Weapons/MK18/NT4_Repaired/nt4_splinter_d.DDS",
+          "bytes": 22369796,
+          "sha256": "215ddf3a03be4cda9d1448b08092357bbac48812a7bb882296af32e4b2b6e903",
+          "previous_sha256": ""
+        },
+        {
+          "path": "mods/MK18 Deluxe (Faust Edit)/Textures/Weapons/MK18/NT4_Repaired/nt4_urban_d.DDS",
+          "bytes": 22369796,
+          "sha256": "02716cdb22f0fa59c7b1d2db5d74bf8839a2b83f7fce8b51ce03ff3d1e94197a",
+          "previous_sha256": ""
+        }
+      ]
     }
   ]
 }

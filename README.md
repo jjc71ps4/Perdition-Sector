@@ -26,6 +26,8 @@ updater for future use. Personal resolution, unrelated settings and saves remain
 
 ## Latest revisions
 
+- Player-approved NT4 camo propagation, pattern proportions and Desert Hex Black finish.
+
 - Player-confirmed Lexington and Concord/Museum precombine and visibility repairs.
 - Intro menu viewport layout correction; 5120 x 1440 native test pending.
 - Setup 0.2.5 with automatic Steam QR/session recovery.
@@ -33,8 +35,9 @@ updater for future use. Personal resolution, unrelated settings and saves remain
 ## Included revisions
 
 - Player-aligned, repaired NT4 suppressor with its original surface maps.
-- Default RUTex camo with the confirmed brown-tone correction; Black/BLK uses
-  black, and the other paint options use original FDE.
+- Approved rifle-matched NT4 Urban, Desert Hex, Brush, Splinter and Black Hex
+  camos with preserved pattern proportions and scale. Desert Hex Black and
+  Black/BLK use plain black; default RUTex and remaining FDE options are retained.
 - Confirmed urban visibility and rendering-distance improvements.
 - Perst-3 and Holosun LS321G attachment-path repairs.
 - Confirmed radio recovery, and all 17 subway repairs in the base snapshot.
@@ -56,4 +59,5 @@ Third-party components retain their respective authorship and licensing.
 
 See [release notes](RELEASE_NOTES.md), [update-channel details](updates/README.md),
 and [publishing instructions](publisher/README.md).
+
 
