@@ -1,0 +1,36 @@
+{
+  "steam_recovery_results.json": {
+    "passed": 46,
+    "failed": 0,
+    "reported_failure_reproduced_and_recovered": true,
+    "live_steam_download": "not performed",
+    "tested_utc": "2026-11-22T13:46:51.4155896Z"
+  },
+  "steam_session_results.json": {
+    "passed": 27,
+    "failed": 0,
+    "tested_utc": "2026-11-22T13:44:19.1860883Z",
+    "live_steam_installation": "not performed"
+  },
+  "test_results.json": {
+    "passed": 98,
+    "failed": 0,
+    "tested_utc": "2026-11-22T13:45:16.5064549Z",
+    "live_steam_installation": "not performed"
+  },
+  "existing_game_test_results.json": {
+    "passed": 32,
+    "failed": 0,
+    "live_game_modified": false,
+    "live_steam_or_github_download": false,
+    "tested_utc": "2026-11-22T13:45:16.6144543Z"
+  },
+  "update_test_results.json": {
+    "passed": 39,
+    "junction_creation_test": "Environment denied creation; existing junction used read-only when available",
+    "live_download_tested": false,
+    "existing_native_junction_checked": true,
+    "fixture_root": "C:\\Users\\jcard\\AppData\\Local\\Packages\\openai.codex_2p2nqsd0c76g0\\AC\\#!sandbox.{5934a3b6-1c66-4ec6-aa61-710eecd2739f}\\Temp\\Perdition Update Tests 44be4f0c2fdb427a831ed717c3f72c65",
+    "full_game_install_run": false
+  }
+}

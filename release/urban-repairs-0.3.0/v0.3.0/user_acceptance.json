@@ -1,0 +1,8 @@
+{
+  "version": "0.3.0",
+  "user_confirmed": true,
+  "confirmation": "fixes confirmed, can we push these to the git",
+  "recorded_utc": "2026-11-23T16:07:51.081912+00:00",
+  "plugin_sha256": "3165d7f691c39c8a989baa9f9099225a03f5e7e13fd0a44086738c11a188fb73",
+  "numeric_fps_benchmark_supplied": false
+}

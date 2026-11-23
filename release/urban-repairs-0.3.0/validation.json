@@ -1,0 +1,16 @@
+{
+  "only_missing_archives_requested": true,
+  "live_game_modified": false,
+  "new_updates": 3,
+  "display_5120x1440_and_saves_unchanged": true,
+  "public_updater_and_profile_source_verified": true,
+  "profile_enable_and_master_order_verified": true,
+  "passed": true,
+  "repeat_no_download": true,
+  "updater_version_tested": "0.2.3-beta.1",
+  "payload_files_verified": 2061,
+  "network_mocked": true,
+  "channel_entries": 6,
+  "tested_utc": "2026-11-23T16:18:17.1009097Z",
+  "ultrawide_native_test": "pending"
+}

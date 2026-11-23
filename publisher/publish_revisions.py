@@ -16,6 +16,12 @@ def api(path):
 def main():
     definition=Path(sys.argv[1]);manifest=json.loads(definition.read_text());folder=Path('published-artifacts');folder.mkdir(exist_ok=True)
     tag=manifest['tag'];repo=os.environ['GITHUB_REPOSITORY'];release=None
+    previous=Path(manifest['publication_receipt'])
+    if previous.exists():
+        completed=json.loads(previous.read_text())
+        if completed.get('complete') and completed.get('tag')==tag:
+            print('Publication is already complete; preserving the current channel.',flush=True)
+            return
     release=api('releases/'+str(manifest['release_id']))if manifest.get('release_id')else next((r for r in api('releases?per_page=100')if r['tag_name']==tag),None)
     if release is None:
         release=json.loads(run('gh','api','--method','POST','repos/'+repo+'/releases','-f','tag_name='+tag,'-f','target_commitish='+os.environ['GITHUB_SHA'],'-f','name='+manifest['title'],'-F','draft=true','-F','prerelease=true','-F','body=@'+manifest['notes_file']))
@@ -59,17 +65,21 @@ def main():
         artifact['url']='https://github.com/'+repo+'/releases/download/'+tag+'/'+artifact['name']
     # Publish the channel only after every referenced release asset is verified.
     run('git','pull','--ff-only','origin','main')
-    candidate=Path(manifest['channel_candidate']);channel=Path('updates/beta-v2.json');channel.write_bytes(candidate.read_bytes())
+    candidate=Path(manifest['channel_candidate']);channel=Path('updates/beta-v2.json')
+    if manifest.get('expected_channel_sha256'):
+        assert digest(channel)==manifest['expected_channel_sha256'], 'Update channel changed during publishing; preserve it and rebuild the candidate'
+    channel.write_bytes(candidate.read_bytes())
     receipt={'tag':tag,'assets':verified,'base_archive_reuploaded':False,'channel':'updates/beta-v2.json','workflow_run':os.environ['GITHUB_RUN_ID'],'source_commit':os.environ['GITHUB_SHA'],'complete':True}
     receipt_path=Path(manifest['publication_receipt']);receipt_path.write_text(json.dumps(receipt,indent=2)+'\n')
     for key,destination in [('readme_candidate','README.md'),('channel_readme_candidate','updates/README.md')]:
         Path(destination).write_bytes(Path(manifest[key]).read_bytes())
     Path('RELEASE_NOTES.md').write_bytes(Path(manifest['notes_file']).read_bytes())
-    definition.unlink()
+    if not manifest.get('retain_transport',False):definition.unlink()
     run('git','config','user.name','github-actions[bot]');run('git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com')
     run('git','add',str(channel),str(receipt_path),str(definition),'README.md','RELEASE_NOTES.md','updates/README.md')
     if run('git','diff','--cached','--name-only'):
-        run('git','commit','-m','Publish verified 0.2.3 beta assets and update channel');run('git','push','origin','HEAD:main')
+        run('git','commit','-m',manifest.get('commit_message','Publish verified beta assets and update channel'));run('git','push','origin','HEAD:main')
     print(json.dumps(receipt),flush=True)
 if __name__=='__main__':main()
+
 

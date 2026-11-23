@@ -1,4 +1,4 @@
-# Perdition Sector Setup 0.2.3-beta.1 - incremental updates
+# Perdition Sector Setup 0.2.5-beta.1 - automatic Steam session recovery
 
 This installer downloads the existing 0.2.0-beta.1 Perdition build package from
 GitHub, then applies the small verified updates listed in its public beta channel.
@@ -30,7 +30,7 @@ downgraded. Older installers require this one-time updater/installer upgrade;
 they cannot discover a patch channel they were never programmed to read.
 
 1. Extract the entire setup ZIP and run `PerditionSetup.exe`.
-2. Leave **Download the package from GitHub** selected.
+2. Perdition Sector downloads automatically from GitHub. No package selection is needed.
 3. Choose the new Perdition installation folder for MO2, mods and the profile.
 4. **Use existing downgraded Fallout 4** is selected by default. Setup searches
    common Steam libraries and compatible game folders. If needed, browse to
@@ -41,8 +41,15 @@ they cannot discover a patch channel they were never programmed to read.
 6. Existing-game mode skips Steam account entry, DepotDownloader and all Steam
    game/DLC downloads. The selected game folder is used directly; it is not
    duplicated into another `_Fallout4` folder.
-7. Alternatively select **Download compatible game from Steam**, enter the
-   owning Steam account and use the original separate-game installation path.
+7. Alternatively select **Download compatible game from Steam** and leave
+   **Use Steam mobile QR login** checked. Scan once with the owning Steam account;
+   all 14 pinned game/DLC packages download and validate in that same session.
+   No login name or password is needed in QR mode. If QR polling fails after
+   sign-in, setup automatically resumes with the authenticated account token.
+   A missing/rejected token receives fresh QR authentication; password prompts
+   are disabled throughout this QR flow. Authentication retries are bounded.
+   Existing downloads are retained and revalidated. Password login remains
+   optional when QR login is unchecked.
 8. Choose resolution, optional ENB and shortcut settings, then Install / Resume.
 
 Existing-game mode still installs the matching F4SE 0.6.23 and required PS root
@@ -59,7 +66,7 @@ Steam must still be available when playing a Steam copy of Fallout 4.
 The unchanged payload includes the confirmed 17 subway repairs, approved New
 Game/audio flow, automatic Jug settings and Side Aim, the cyan panoramic NVGs
 without grain, flashlight/radio fixes and compact splash launcher. Existing
-grass, NVG precipitation and museum floor issues remain outside this change.
+grass and NVG precipitation issues remain. Lexington and Concord/Museum repairs are delivered through the update channel.
 
 This is a test candidate: fixture and UI checks do not replace a fresh-PC
 installation/gameplay test. No full installation was run on the development PC.

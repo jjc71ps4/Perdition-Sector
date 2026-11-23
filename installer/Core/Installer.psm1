@@ -66,13 +66,13 @@ function Get-DetectedGameFolder {
 }
 
 function Resolve-GameInstallPlan {
-    param([string]$InstallRoot,[switch]$UseExistingGame,[string]$ExistingGameRoot,[string]$SteamUser)
+    param([string]$InstallRoot,[switch]$UseExistingGame,[string]$ExistingGameRoot,[string]$SteamUser,[switch]$UseQr)
     if ($UseExistingGame) {
         $existing=Assert-CompatibleGameFolder $ExistingGameRoot
         Assert-NoLinkedAncestors $existing.GameRoot
         return [pscustomobject]@{GameRoot=$existing.GameRoot;DownloadSteam=$false;ExistingExeSha256=$existing.ExeSha256}
     }
-    if ([string]::IsNullOrWhiteSpace($SteamUser)) { throw 'Enter your Steam login name, or choose an existing downgraded Fallout 4 folder.' }
+    if (-not $UseQr -and [string]::IsNullOrWhiteSpace($SteamUser)) { throw 'Choose Steam mobile QR login, enter your Steam login name for password login, or choose an existing downgraded Fallout 4 folder.' }
     return [pscustomobject]@{GameRoot=(Join-Path $InstallRoot '_Fallout4');DownloadSteam=$true;ExistingExeSha256=''}
 }
 
@@ -545,8 +545,13 @@ function Invoke-PackageArchiveCheck {
 }
 
 function New-SteamDepotArguments {
-    param([string]$DepotId,[string]$ManifestId,[string]$GameRoot,[int]$LoginId,[string]$SteamUser='',[switch]$UseQr)
-    $arguments=@('-app','377160','-depot',$DepotId,'-manifest',$ManifestId,'-dir',$GameRoot,'-remember-password','-loginid',$LoginId.ToString(),'-validate')
+    param([string[]]$DepotId,[string[]]$ManifestId,[string]$GameRoot,[int]$LoginId,[string]$SteamUser='',[switch]$UseQr)
+    if (-not $DepotId -or $DepotId.Count -ne $ManifestId.Count) { throw 'Steam requires one pinned manifest for each depot.' }
+    if (@($DepotId | Where-Object { $_ -notmatch '^[0-9]+$' }).Count -or @($ManifestId | Where-Object { $_ -notmatch '^[0-9]+$' }).Count) { throw 'Steam depot and manifest IDs must contain only digits.' }
+    if (@($DepotId | Select-Object -Unique).Count -ne $DepotId.Count) { throw 'Duplicate Steam depots are not allowed.' }
+    # Official DepotDownloader 3.4.0 accepts parallel lists after these flags.
+    # One process initializes Steam once, then validates/downloads all pairs.
+    $arguments=@('-app','377160','-depot') + $DepotId + @('-manifest') + $ManifestId + @('-dir',$GameRoot,'-remember-password','-loginid',$LoginId.ToString(),'-validate')
     if ($UseQr) {
         # DepotDownloader 3.4.0 rejects -qr together with -username.
         $arguments += '-qr'
@@ -564,44 +569,96 @@ function Get-SteamSessionContext {
     finally { $hash.Dispose() }
 }
 
+function Invoke-SteamDownloadProcess {
+    param([string]$Downloader,[string[]]$Arguments,[string]$SessionRoot)
+    if (-not ('PerditionSteam025.DownloadProcess' -as [type])) {
+        Add-Type -Path (Join-Path $PSScriptRoot 'SteamDownloadProcess.cs') -ErrorAction Stop
+    }
+    $commandLine=($Arguments | ForEach-Object { ConvertTo-WindowsArgument $_ }) -join ' '
+    return [PerditionSteam025.DownloadProcess]::Run($Downloader,$commandLine,$SessionRoot)
+}
+
 function Invoke-SteamDepotDownloads {
     param([string]$Downloader,$Manifest,[string]$GameRoot,[string]$SessionRoot,[string]$SteamUser,[switch]$UseQr,$State,[string]$StatePath)
-    if ([string]::IsNullOrWhiteSpace($SteamUser)) { throw 'Enter your Steam login name so setup can reuse the authenticated account after the first sign-in.' }
+    $depots=@($Manifest.depots)
+    # Validate every pair before creating folders or starting authentication.
+    $loginId=Get-Random -Minimum 10000 -Maximum 2147483000
+    $depotIds=@($depots | ForEach-Object { [string]$_.depot })
+    $manifestIds=@($depots | ForEach-Object { [string]$_.manifest })
+    $arguments=@(New-SteamDepotArguments -DepotId $depotIds -ManifestId $manifestIds -GameRoot $GameRoot -LoginId $loginId -SteamUser $SteamUser -UseQr:$UseQr)
     [void][IO.Directory]::CreateDirectory($GameRoot)
     [void][IO.Directory]::CreateDirectory($SessionRoot)
-    $accountPath=Join-Path $SessionRoot 'remembered_account.json'
-    $context=Get-SteamSessionContext
-    $remembered=$false
-    if (Test-Path -LiteralPath $accountPath) {
-        try {
-            $account=Get-Content -LiteralPath $accountPath -Raw | ConvertFrom-Json
-            $remembered=$account.product -eq 'PerditionSteamSession' -and $account.account_name -eq $SteamUser -and $account.user_context -eq $context
-        } catch { $remembered=$false }
-    }
-    $requestQr=[bool]$UseQr -and -not $remembered
-    if ($remembered) { Write-InstallerLog 'Reusing the saved Steam sign-in for this installation.' }
-    $loginId=Get-Random -Minimum 10000 -Maximum 2147483000
-    foreach ($depot in $Manifest.depots) {
-        $State.stage='Steam download: '+$depot.name
-        Save-JsonFile $StatePath $State
-        Write-InstallerLog ('Downloading and verifying '+$depot.name)
-        if ($requestQr) { Write-Host 'Scan once using the Steam account matching the login name entered in setup. Later packages will reuse that sign-in.' }
-        else { Write-Host 'Using the remembered account session. Steam may request authentication if the session is unavailable or expired.' }
-        $arguments=@(New-SteamDepotArguments -DepotId ([string]$depot.depot) -ManifestId ([string]$depot.manifest) -GameRoot $GameRoot -LoginId $loginId -SteamUser $SteamUser -UseQr:$requestQr)
+    $State.stage='Steam: downloading and verifying all '+$depots.Count+' packages'
+    $State.completed_depots=@()
+    Save-JsonFile $StatePath $State
+    Write-InstallerLog ('Downloading and verifying '+$depots.Count+' Steam depots in one authenticated session.')
+    if (-not $UseQr) {
+        Write-Host 'Sign in to the Steam account owning Fallout 4 and all six DLCs. All packages use this same session.'
         Push-Location $SessionRoot
         try { & $Downloader @arguments; $exitCode=$LASTEXITCODE } finally { Pop-Location }
-        if ($exitCode -ne 0) {
-            # Do not trust our account-name hint after a failed authentication or
-            # download. The downloader's own account token store is not altered.
-            if ([IO.File]::Exists($accountPath)) { [IO.File]::Delete($accountPath) }
-            throw "Steam download stopped for $($depot.name) (exit code $exitCode). The downloader's error is shown above. Retry setup to resume; completed game data is retained."
+    } else {
+        $hintPath=Join-Path $SessionRoot 'remembered_account.json'
+        $context=Get-SteamSessionContext
+        $account=''
+        if ([IO.File]::Exists($hintPath)) {
+            try {
+                $hint=Get-Content -LiteralPath $hintPath -Raw | ConvertFrom-Json
+                if ($hint.product -eq 'PerditionSteamSession' -and $hint.user_context -eq $context -and
+                    -not [string]::IsNullOrWhiteSpace($hint.account_name) -and
+                    -not ($hint.account_name -match '[\x00-\x1f]')) { $account=[string]$hint.account_name }
+            } catch { $account='' }
         }
-        if ($requestQr) { Write-InstallerLog 'Steam sign-in completed. Remaining packages will reuse the saved session.' }
-        $requestQr=$false
-        Save-JsonFile $accountPath @{product='PerditionSteamSession';account_name=$SteamUser;user_context=$context;updated_utc=[DateTime]::UtcNow.ToString('o')}
-        $State.completed_depots += [string]$depot.depot
-        Save-JsonFile $StatePath $State
+        # The hint identifies an account to TRY. Only the official downloader's
+        # actual token store establishes whether it can sign in. Closed stdin
+        # and prompt suppression guarantee that QR mode cannot request a password.
+        $mode=if ($account) { 'token' } else { 'qr' }
+        $qrRequests=0;$tokenAttempts=0;$exitCode=1
+        for ($attempt=0;$attempt -lt 4;$attempt++) {
+            if ($mode -eq 'token') {
+                if ($tokenAttempts -ge 2) { break }
+                $tokenAttempts++
+                Write-InstallerLog 'Trying the saved Steam session without a password prompt.'
+                $arguments=@(New-SteamDepotArguments -DepotId $depotIds -ManifestId $manifestIds -GameRoot $GameRoot -LoginId $loginId -SteamUser $account)
+            } else {
+                if ($qrRequests -ge 2) { break }
+                $qrRequests++
+                Write-Host 'Scan the Steam mobile QR code. All game and DLC packages use this session; no password is needed.'
+                $arguments=@(New-SteamDepotArguments -DepotId $depotIds -ManifestId $manifestIds -GameRoot $GameRoot -LoginId $loginId -UseQr)
+            }
+            $result=Invoke-SteamDownloadProcess -Downloader $Downloader -Arguments $arguments -SessionRoot $SessionRoot
+            $exitCode=$result.ExitCode
+            if ($result.Authenticated -and -not [string]::IsNullOrWhiteSpace($result.AccountName) -and
+                -not ($result.AccountName -match '[\x00-\x1f]')) {
+                $account=$result.AccountName
+                Save-JsonFile $hintPath @{product='PerditionSteamSession';account_name=$account;user_context=$context;updated_utc=[DateTime]::UtcNow.ToString('o')}
+            }
+            if ($exitCode -eq 0 -and -not $result.PasswordRequired) { break }
+            if ($result.PasswordRequired -and $exitCode -eq 0) { $exitCode=1 }
+            $authFailure=$result.PasswordRequired -or $result.TokenRejected -or $result.AuthenticationFailed -or $result.AuthPollMissing
+            if (-not $authFailure) { break }
+            if ($mode -eq 'qr' -and $result.Authenticated -and $account -and $tokenAttempts -lt 2) {
+                # Handles the reported sequence: successful QR login/licensing,
+                # followed by a stale QR poll returning FileNotFound and aborting.
+                # The token was saved before Steam login; resume without QR polling.
+                Write-InstallerLog 'QR sign-in succeeded but authentication polling stopped. Resuming with the saved Steam session; another scan is not required if that session is valid.'
+                $mode='token'
+            } elseif ($qrRequests -lt 2) {
+                if ([IO.File]::Exists($hintPath)) { [IO.File]::Delete($hintPath) }
+                $account='';$mode='qr'
+                Write-InstallerLog 'Steam needs fresh authentication. Showing a new QR code instead of asking for a password.'
+            } else { break }
+        }
     }
+    if ($exitCode -ne 0) {
+        $recovery=if ($UseQr) { 'Keep QR login selected and click Install / Resume for a fresh QR code. No Steam password is needed.' } else { 'Retry setup to resume, or select QR login to sign in using Steam Mobile.' }
+        throw "Steam download or verification stopped (exit code $exitCode). $recovery Downloaded game data and the Perdition package are retained. The downloader's error is shown above."
+    }
+    # Some upstream access failures can skip a depot. Do not mark the batch
+    # complete merely because the native process returned success.
+    [void](Assert-CompatibleGameFolder $GameRoot)
+    $State.completed_depots=@($depots | ForEach-Object { [string]$_.depot })
+    $State.stage='Steam game and DLC downloads verified'
+    Save-JsonFile $StatePath $State
 }
 
 function Get-RequiredInstallBytes {
@@ -629,7 +686,7 @@ function Install-PerditionUpdater {
 
 function Invoke-PerditionInstallation {
     param([string]$InstallRoot,[string]$PackagePath,[string]$SteamUser,[int]$Width=1920,[int]$Height=1080,[switch]$UseQr,[string]$DistributionRoot,[switch]$DesktopShortcut,[switch]$EnableEnb,[switch]$UseExistingGame,[string]$ExistingGameRoot='')
-    $gamePlan=Resolve-GameInstallPlan -InstallRoot $InstallRoot -UseExistingGame:$UseExistingGame -ExistingGameRoot $ExistingGameRoot -SteamUser $SteamUser
+    $gamePlan=Resolve-GameInstallPlan -InstallRoot $InstallRoot -UseExistingGame:$UseExistingGame -ExistingGameRoot $ExistingGameRoot -SteamUser $SteamUser -UseQr:$UseQr
     $destination=Assert-InstallDestination $InstallRoot $DistributionRoot $PackagePath
     $root=$destination.Root;$owned=$destination.Owned;$marker=$destination.Marker
     if ($Width -lt 800 -or $Height -lt 600 -or $Width -gt 16384 -or $Height -gt 16384) { throw 'Choose a valid display resolution.' }

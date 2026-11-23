@@ -17,7 +17,7 @@ $script:SelectedGameValid=$false
 $requirement='Perdition Sector requires downgraded Fallout 4 version 1.10.163 with all six DLCs. Select the folder containing Fallout4.exe.'
 $screen=[Windows.Forms.Screen]::PrimaryScreen
 $form=New-Object Windows.Forms.Form
-$form.Text='Perdition Sector Setup 0.2.3-beta.1'
+$form.Text='Perdition Sector Setup 0.2.5-beta.1'
 $form.ClientSize=New-Object Drawing.Size(760,([Math]::Min(745,[Math]::Max(500,$screen.WorkingArea.Height-80))))
 $form.AutoScroll=$true
 $form.AutoScrollMinSize=New-Object Drawing.Size(740,735)
@@ -52,15 +52,7 @@ $title=Add-Label 'PERDITION SECTOR' 28 20 690 40
 $title.Font=New-Object Drawing.Font('Segoe UI',21,[Drawing.FontStyle]::Bold)
 $title.ForeColor=[Drawing.Color]::FromArgb(216,166,96)
 [void](Add-Label 'Requires Fallout 4 1.10.163 and all six DLCs.' 30 69 695 30)
-[void](Add-Label 'Perdition package ZIP' 30 116 650 24)
-$package=Add-TextBox '' 30 143 590
-$browsePackage=Add-Button 'Browse...' 631 142 100
-$online=New-Object Windows.Forms.CheckBox
-$online.Text='Download the package from GitHub';$online.SetBounds(397,110,335,28)
-$onlineAvailable=[IO.File]::Exists((Join-Path $PSScriptRoot 'package_source.json'))
-$online.Visible=$onlineAvailable;$online.Checked=$onlineAvailable
-$form.Controls.Add($online)
-$online.Add_CheckedChanged({$package.Enabled=-not $online.Checked;$browsePackage.Enabled=-not $online.Checked})
+[void](Add-Label 'Perdition Sector downloads automatically from GitHub. Completed downloads are reused when you resume.' 30 116 700 50)
 [void](Add-Label 'Perdition install folder (separate from the Fallout 4 folder)' 30 186 690 25)
 $target=Add-TextBox ([IO.Path]::Combine([IO.Path]::GetPathRoot($PSScriptRoot),'Games\Perdition Sector')) 30 214 590
 $browseTarget=Add-Button 'Browse...' 631 213 100
@@ -74,10 +66,11 @@ $form.Controls.AddRange(@($existing,$downloadGame))
 $existingPath=Add-TextBox '' 30 328 590
 $browseGame=Add-Button 'Browse...' 631 327 100
 $gameStatus=Add-Label '' 30 367 700 45
-[void](Add-Label 'Steam login name (Steam download option only)' 30 423 690 24)
+[void](Add-Label 'Steam login name (only needed if QR login is unchecked)' 30 423 690 24)
 $username=Add-TextBox '' 30 451 340
 $qr=New-Object Windows.Forms.CheckBox
 $qr.Text='Use Steam mobile QR login';$qr.SetBounds(397,450,330,28)
+$qr.Checked=$true
 $form.Controls.Add($qr)
 [void](Add-Label 'Resolution' 30 494 150 24)
 $width=New-Object Windows.Forms.NumericUpDown
@@ -104,8 +97,8 @@ function Update-GameSelection {
     $busy=$script:Worker -and -not $script:Worker.HasExited
     $existingPath.Enabled=$existing.Checked -and -not $busy
     $browseGame.Enabled=$existingPath.Enabled
-    $username.Enabled=$downloadGame.Checked -and -not $busy
-    $qr.Enabled=$username.Enabled
+    $qr.Enabled=$downloadGame.Checked -and -not $busy
+    $username.Enabled=$qr.Enabled -and -not $qr.Checked
     $script:SelectedGameValid=$false
     if ($existing.Checked) {
         try {
@@ -121,19 +114,14 @@ function Update-GameSelection {
     } else {
         $gameStatus.Text='Setup will download Fallout 4 1.10.163 and all six DLCs into its own _Fallout4 folder using your Steam account.'
         $gameStatus.ForeColor=[Drawing.Color]::Gainsboro
-        $note.Text='A Steam account owning Fallout 4 and all six DLCs is required. Your existing Steam installation is preserved.'
+        $note.Text='QR login needs no password or login name. Setup reuses a valid Steam session and automatically shows a fresh QR if needed; completed downloads are retained.'
     }
     $install.Enabled=(-not $busy) -and ($downloadGame.Checked -or $script:SelectedGameValid)
 }
 $existing.Add_CheckedChanged({Update-GameSelection})
 $downloadGame.Add_CheckedChanged({Update-GameSelection})
 $existingPath.Add_TextChanged({Update-GameSelection})
-$browsePackage.Add_Click({
-    $dialog=New-Object Windows.Forms.OpenFileDialog
-    $dialog.Title='Select Perdition Sector ZIP';$dialog.Filter='Perdition ZIP package (*.zip)|*.zip'
-    if ($dialog.ShowDialog($form) -eq [Windows.Forms.DialogResult]::OK) { $package.Text=$dialog.FileName }
-    $dialog.Dispose()
-})
+$qr.Add_CheckedChanged({Update-GameSelection})
 $browseTarget.Add_Click({
     $dialog=New-Object Windows.Forms.FolderBrowserDialog
     $dialog.Description='Choose a new folder, or the folder containing only this Perdition setup bundle.'
@@ -155,18 +143,18 @@ $browseGame.Add_Click({
 })
 $install.Add_Click({
     try {
-        [void](Resolve-GameInstallPlan -InstallRoot $target.Text -UseExistingGame:$existing.Checked -ExistingGameRoot $existingPath.Text -SteamUser $username.Text)
-        if (-not $online.Checked -and -not [IO.File]::Exists($package.Text)) { throw 'Select an existing Perdition Sector ZIP.' }
+        [void](Resolve-GameInstallPlan -InstallRoot $target.Text -UseExistingGame:$existing.Checked -ExistingGameRoot $existingPath.Text -SteamUser $username.Text -UseQr:$qr.Checked)
+        if (-not [IO.File]::Exists((Join-Path $PSScriptRoot 'package_source.json'))) { throw 'The GitHub download manifest is missing. Extract the complete installer ZIP and retry.' }
         if ([string]::IsNullOrWhiteSpace($target.Text)) { throw 'Choose an installation folder.' }
         $script:WorkerRoot=[IO.Path]::GetFullPath($target.Text)
-        [void](Assert-InstallDestination $script:WorkerRoot $PSScriptRoot $package.Text)
+        [void](Assert-InstallDestination $script:WorkerRoot $PSScriptRoot)
         $arguments=@('-NoProfile','-ExecutionPolicy','Bypass','-File',(Join-Path $PSScriptRoot 'Core\Run-Install.ps1'),'-InstallRoot',$script:WorkerRoot,'-Width',[string]$width.Value,'-Height',[string]$height.Value)
         if ($existing.Checked) { $arguments+=@('-UseExistingGame','-ExistingGameRoot',$existingPath.Text) }
         else {
-            $arguments+=@('-SteamUser',$username.Text)
             if ($qr.Checked) { $arguments+='-UseQr' }
+            else { $arguments+=@('-SteamUser',$username.Text) }
         }
-        if ($online.Checked) { $arguments+='-DownloadPackage' } else { $arguments+=@('-PackagePath',$package.Text) }
+        $arguments+='-DownloadPackage'
         if ($desktop.Checked) { $arguments+='-DesktopShortcut' }
         if ($enb.Checked) { $arguments+='-EnableEnb' }
         $start=New-Object Diagnostics.ProcessStartInfo
@@ -174,7 +162,7 @@ $install.Add_Click({
         $start.Arguments=($arguments | ForEach-Object { ConvertTo-WindowsArgument $_ }) -join ' '
         $start.UseShellExecute=$true;$start.WindowStyle=[Diagnostics.ProcessWindowStyle]::Normal
         $script:Worker=[Diagnostics.Process]::Start($start)
-        foreach ($control in @($install,$package,$target,$browsePackage,$browseTarget,$online,$existing,$downloadGame,$width,$height,$desktop,$enb)) { $control.Enabled=$false }
+        foreach ($control in @($install,$target,$browseTarget,$existing,$downloadGame,$width,$height,$desktop,$enb)) { $control.Enabled=$false }
         $launch.Enabled=$false
         Update-GameSelection
         $status.Text='Setup started. Use the setup window for download progress.'
@@ -202,8 +190,7 @@ $timer.Add_Tick({
     }
     if ($script:Worker.HasExited) {
         $timer.Stop()
-        foreach ($control in @($target,$browseTarget,$online,$existing,$downloadGame,$width,$height,$desktop,$enb)) { $control.Enabled=$true }
-        $package.Enabled=-not $online.Checked;$browsePackage.Enabled=$package.Enabled
+        foreach ($control in @($target,$browseTarget,$existing,$downloadGame,$width,$height,$desktop,$enb)) { $control.Enabled=$true }
         Update-GameSelection
         $result=Join-Path $script:WorkerRoot '_Installer\result.json'
         if ($script:Worker.ExitCode -eq 0 -and [IO.File]::Exists($result) -and (Get-Content -LiteralPath $result -Raw | ConvertFrom-Json).success) {
@@ -215,7 +202,6 @@ $detected=if ($PSBoundParameters.ContainsKey('DetectionPaths')) { Get-DetectedGa
 $existing.Checked=$true
 $existingPath.Text=$detected
 Update-GameSelection
-$package.Enabled=-not $online.Checked;$browsePackage.Enabled=$package.Enabled
 $form.Add_Shown({
     if ($existing.Checked -and -not $script:SelectedGameValid) {
         [void][Windows.Forms.MessageBox]::Show($form,$requirement,'Fallout 4 required',[Windows.Forms.MessageBoxButtons]::OK,[Windows.Forms.MessageBoxIcon]::Information)
@@ -223,12 +209,15 @@ $form.Add_Shown({
     }
 })
 if ($SmokeTest) {
-    $result=[ordered]@{title=$form.Text;controls=$form.Controls.Count;width=$form.ClientSize.Width;height=$form.ClientSize.Height;scrolling=$form.AutoScroll;defaultMode='existing';detectedGame=$detected;installEnabled=$install.Enabled;steamLoginEnabled=$username.Enabled;gameRequirement=$gameStatus.Text;githubPackageSelected=$online.Checked}
+    $result=[ordered]@{title=$form.Text;controls=$form.Controls.Count;width=$form.ClientSize.Width;height=$form.ClientSize.Height;scrolling=$form.AutoScroll;defaultMode='existing';detectedGame=$detected;installEnabled=$install.Enabled;steamLoginEnabled=$username.Enabled;gameRequirement=$gameStatus.Text;githubPackageSelected=$true;packagePickerPresent=(@($form.Controls | Where-Object { $_ -is [Windows.Forms.TextBox] }).Count -ne 3);qrSelected=$qr.Checked}
     if (-not $detected) {
         $missingBlocked=-not $install.Enabled
         $downloadGame.Checked=$true;Update-GameSelection
         $result['missingGameBlocked']=$missingBlocked
-        $result['steamModeAvailable']=$install.Enabled -and $username.Enabled -and -not $existingPath.Enabled
+        $result['steamModeAvailable']=$install.Enabled -and $qr.Enabled -and -not $username.Enabled -and -not $existingPath.Enabled
+        $qr.Checked=$false;Update-GameSelection
+        $result['passwordModeAvailable']=$username.Enabled -and $qr.Enabled
+        $qr.Checked=$true;Update-GameSelection
         $existing.Checked=$true;Update-GameSelection
         $result['backToMissingBlocked']=-not $install.Enabled
     }

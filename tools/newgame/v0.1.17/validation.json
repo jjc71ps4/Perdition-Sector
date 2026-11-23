@@ -1,0 +1,376 @@
+{
+  "compiled_swf10": true,
+  "layout_cases": 27,
+  "all_layout_bounds_passed": true,
+  "offset_origin_regression_covered": true,
+  "protected_input_functions_unchanged": [
+    "FocusNameInput",
+    "ReleaseInput",
+    "onSubmit",
+    "choose",
+    "button",
+    "text",
+    "onKey",
+    "onKeyUp",
+    "submit",
+    "Notify",
+    "NativeRefresh",
+    "onF4SEObjCreated",
+    "onAdded",
+    "onRemoved"
+  ],
+  "in_game_ultrawide_verified": false,
+  "cases": [
+    {
+      "resolution": [
+        1280,
+        720
+      ],
+      "parent_transform": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        1280,
+        720
+      ],
+      "parent_transform": [
+        2,
+        2,
+        137,
+        -821
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        1280,
+        720
+      ],
+      "parent_transform": [
+        0.6666666666666666,
+        0.6666666666666666,
+        0,
+        -360.0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        1920,
+        1080
+      ],
+      "parent_transform": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        1920,
+        1080
+      ],
+      "parent_transform": [
+        2,
+        2,
+        137,
+        -821
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        1920,
+        1080
+      ],
+      "parent_transform": [
+        1.0,
+        1.0,
+        0,
+        -540.0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        2560,
+        1600
+      ],
+      "parent_transform": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        2560,
+        1600
+      ],
+      "parent_transform": [
+        2,
+        2,
+        137,
+        -821
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        2560,
+        1600
+      ],
+      "parent_transform": [
+        1.3333333333333333,
+        1.3333333333333333,
+        0,
+        -800.0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        3440,
+        1440
+      ],
+      "parent_transform": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        3440,
+        1440
+      ],
+      "parent_transform": [
+        2,
+        2,
+        137,
+        -821
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        3440,
+        1440
+      ],
+      "parent_transform": [
+        1.7916666666666667,
+        1.7916666666666667,
+        0,
+        -720.0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        3840,
+        2160
+      ],
+      "parent_transform": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        3840,
+        2160
+      ],
+      "parent_transform": [
+        2,
+        2,
+        137,
+        -821
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        3840,
+        2160
+      ],
+      "parent_transform": [
+        2.0,
+        2.0,
+        0,
+        -1080.0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        5120,
+        1440
+      ],
+      "parent_transform": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        5120,
+        1440
+      ],
+      "parent_transform": [
+        2,
+        2,
+        137,
+        -821
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        5120,
+        1440
+      ],
+      "parent_transform": [
+        2.6666666666666665,
+        2.6666666666666665,
+        0,
+        -720.0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        5120,
+        2160
+      ],
+      "parent_transform": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        5120,
+        2160
+      ],
+      "parent_transform": [
+        2,
+        2,
+        137,
+        -821
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        5120,
+        2160
+      ],
+      "parent_transform": [
+        2.6666666666666665,
+        2.6666666666666665,
+        0,
+        -1080.0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        1024,
+        768
+      ],
+      "parent_transform": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        1024,
+        768
+      ],
+      "parent_transform": [
+        2,
+        2,
+        137,
+        -821
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        1024,
+        768
+      ],
+      "parent_transform": [
+        0.5333333333333333,
+        0.5333333333333333,
+        0,
+        -384.0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        1440,
+        2560
+      ],
+      "parent_transform": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        1440,
+        2560
+      ],
+      "parent_transform": [
+        2,
+        2,
+        137,
+        -821
+      ],
+      "all_controls_within_viewport": true
+    },
+    {
+      "resolution": [
+        1440,
+        2560
+      ],
+      "parent_transform": [
+        0.75,
+        0.75,
+        0,
+        -1280.0
+      ],
+      "all_controls_within_viewport": true
+    }
+  ]
+}

@@ -16,7 +16,7 @@ $distribution=Split-Path -Parent $PSScriptRoot
 Import-Module (Join-Path $PSScriptRoot 'Installer.psm1') -Force
 try {
     # Validate the required game selection before starting the large PS download.
-    [void](Resolve-GameInstallPlan -InstallRoot $InstallRoot -UseExistingGame:$UseExistingGame -ExistingGameRoot $ExistingGameRoot -SteamUser $SteamUser)
+    [void](Resolve-GameInstallPlan -InstallRoot $InstallRoot -UseExistingGame:$UseExistingGame -ExistingGameRoot $ExistingGameRoot -SteamUser $SteamUser -UseQr:$UseQr)
     if ($DownloadPackage) {
         $destination=Assert-InstallDestination $InstallRoot $distribution
         $PackagePath=Resolve-OnlinePackage -SourceManifest (Join-Path $distribution 'package_source.json') -CacheRoot ($destination.Root+'.DownloadCache')

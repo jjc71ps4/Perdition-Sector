@@ -1,0 +1,27 @@
+{
+  "version": "0.1.17",
+  "previous_sha256": "95fec9e0119674b0c3f52458d9f55beeebfe1f232c2507abb4342d16b80bc955",
+  "sha256": "aa302b7c89b9fdb2ee9d2d0f829e0748588140ead4bc581fca8607f7424b349b",
+  "bytes": 4732,
+  "changed_runtime_files": [
+    "Interface/PSNewGameMenu.swf"
+  ],
+  "protected_input_functions": [
+    "FocusNameInput",
+    "ReleaseInput",
+    "onSubmit",
+    "choose",
+    "button",
+    "text",
+    "onKey",
+    "onKeyUp",
+    "submit",
+    "Notify",
+    "NativeRefresh",
+    "onF4SEObjCreated",
+    "onAdded",
+    "onRemoved"
+  ],
+  "scope": "Shared actual visible viewport for background and content, including nonzero origins and root transforms; cached relayout also follows late native viewport changes.",
+  "in_game_ultrawide_confirmation": false
+}
