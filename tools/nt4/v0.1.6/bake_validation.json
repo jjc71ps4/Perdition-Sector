@@ -1,0 +1,31 @@
+{
+  "source_blend": "C:\\workspace\\MK18_RISII_NT4_Replacement.blend",
+  "source_sha256": "af683edc0f77bbbfe069119def87b8a4e233d26a459595d7103a80051a2515c1",
+  "geometry_unchanged": true,
+  "source_unchanged": true,
+  "projection_center_yz": [
+    -0.0005380740593753323,
+    -0.00010725980329070155
+  ],
+  "body_radius": 0.01986575159563203,
+  "source_to_game_world_scale": 71.23845672607422,
+  "results": [
+    {
+      "slug": "Splinter",
+      "diffuse": "C:\\Perdition Sector\\Development\\ModelWorkbench\\NT4_Replacement\\v0.1.6\\GameExport\\nt4_splinter_d.png",
+      "source_surface_metric": [
+        [
+          -0.010366769312662685,
+          0.0007011221248938123
+        ],
+        [
+          1.1529193978272482e-08,
+          -0.01222871391403464
+        ]
+      ],
+      "independent_axis_repeats_removed": true,
+      "caps_planar": true,
+      "seam_width_degrees": 10
+    }
+  ]
+}

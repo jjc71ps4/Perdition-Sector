@@ -1,0 +1,60 @@
+{
+  "four_propagated_camos": [
+    {
+      "slug": "Urban",
+      "outer_body_triangles_checked": 4589,
+      "cap_triangles_checked": 1002,
+      "maximum_body_aspect_error_percent": 0.24119061105645212,
+      "maximum_body_scale_error_percent": 0.19847895752582723,
+      "maximum_cap_aspect_error_percent": 0.0005920033585349316,
+      "previous_median_aspect_error_percent": 22.31680704989767,
+      "source_gun_metric_preserved": true
+    },
+    {
+      "slug": "Desert_Hex",
+      "outer_body_triangles_checked": 4589,
+      "cap_triangles_checked": 1002,
+      "maximum_body_aspect_error_percent": 0.2411906110559192,
+      "maximum_body_scale_error_percent": 0.1984789575261603,
+      "maximum_cap_aspect_error_percent": 0.0005920033586237494,
+      "previous_median_aspect_error_percent": 7.2246461310137455,
+      "source_gun_metric_preserved": true
+    },
+    {
+      "slug": "Brush",
+      "outer_body_triangles_checked": 4589,
+      "cap_triangles_checked": 1002,
+      "maximum_body_aspect_error_percent": 0.2411906110578954,
+      "maximum_body_scale_error_percent": 0.1984789575271373,
+      "maximum_cap_aspect_error_percent": 0.0005920033586903628,
+      "previous_median_aspect_error_percent": 50.31343541099411,
+      "source_gun_metric_preserved": true
+    },
+    {
+      "slug": "Black_Hex",
+      "outer_body_triangles_checked": 4589,
+      "cap_triangles_checked": 1002,
+      "maximum_body_aspect_error_percent": 0.2411906110559192,
+      "maximum_body_scale_error_percent": 0.1984789575261603,
+      "maximum_cap_aspect_error_percent": 0.0005920033586237494,
+      "previous_median_aspect_error_percent": 7.2246461310137455,
+      "source_gun_metric_preserved": true
+    }
+  ],
+  "default_rutex_audit": {
+    "paint": "Default RUTex",
+    "samples": 144,
+    "independent_axis_repeat_bug": false,
+    "method": "Existing direct surface-ray transfer, not the cropped-pattern cylinder mapping",
+    "median_local_aspect_difference_percent": 3.700047731399536,
+    "changed": false,
+    "reason": "Retain the user-approved ray-transferred default; it does not use the corrected independent-repeat path."
+  },
+  "uniform_finishes": [
+    "Original FDE",
+    "BLK black"
+  ],
+  "uniform_finish_aspect_applicable": false,
+  "seam_policy": "10-degree underside crossfade between unscaled samples",
+  "passed": true
+}

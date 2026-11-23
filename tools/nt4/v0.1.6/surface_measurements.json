@@ -1,0 +1,110 @@
+{
+  "new_body_center_yz": [
+    -0.0005380740593753323,
+    -0.00010725980329070155
+  ],
+  "new_body_outer_radius": 0.01986575159563203,
+  "new_body_radius_percentiles": [
+    0.019095336075434927,
+    0.019107937659945277,
+    0.01914758589356969,
+    0.01985054717263561,
+    0.0198781924804371,
+    0.019888513817794686,
+    0.01988976492403783
+  ],
+  "old_body_center_in_new_space": [
+    0.00021927760022003845,
+    0.0009963146375176056
+  ],
+  "old_body_radius_in_new_space": 0.021161850666961128,
+  "rutex_radial_scale_ratio": 0.9387530376370802,
+  "rutex_transfer": "Existing ray transfer: axial distance is retained; circumferential size follows old/new cylinder radii.",
+  "old_bounds_in_new_space": [
+    [
+      0.0018050757935270667,
+      -0.0207135621458292,
+      -0.02064293809235096
+    ],
+    [
+      0.18445643782615662,
+      0.02071363665163517,
+      0.020642908290028572
+    ]
+  ],
+  "patterns": [
+    {
+      "slug": "Splinter",
+      "source_candidates": [
+        {
+          "slug": "Splinter",
+          "object": "Receiver:0.001",
+          "material": "mk18.bgsm",
+          "triangle": 3018,
+          "visible": true,
+          "world_point": [
+            -0.9985590198433022,
+            3.8903794043666444,
+            4.484196590971193
+          ],
+          "world_per_pixel_matrix": [
+            [
+              -1.2617041594790717e-08,
+              -0.002115881881719668
+            ],
+            [
+              -0.010366769312652069,
+              0.0007011221248930943
+            ],
+            [
+              1.3922252794251824e-08,
+              -0.012044271993521065
+            ]
+          ],
+          "world_per_pixel_singular": [
+            0.012297968647747466,
+            0.010308389270222486
+          ],
+          "world_per_pixel_axes": [
+            0.010366769312669095,
+            0.012248796521508554
+          ],
+          "column_angle_degrees": 93.28147242244786
+        }
+      ],
+      "world_surface_per_source_pixel": [
+        [
+          -0.010366769312662685,
+          0.0007011221248938123
+        ],
+        [
+          1.1529193978272482e-08,
+          -0.01222871391403464
+        ]
+      ],
+      "source_pixel_per_world_surface": [
+        [
+          -96.46207353543448,
+          -5.530564738390643
+        ],
+        [
+          -9.094414712409295e-05,
+          -81.77475332179245
+        ]
+      ],
+      "source_basis": [
+        [
+          1.4094930672646546e-06,
+          0.999999999998976,
+          -2.476133286366561e-07
+        ],
+        [
+          0.17302578871504126,
+          0.0,
+          0.9849172942128379
+        ]
+      ]
+    }
+  ],
+  "calibration_note": "Same rifle mesh, UV patch and triangle as Urban; only the source paint image differs."
+}

@@ -1,0 +1,190 @@
+{
+  "update_id": "nt4-camos-0.1.6",
+  "tag": "updates-2026.11.23.2",
+  "archive": "C:\\Perdition Sector\\Development\\Distribution\\NT4-Camos-0.1.6\\Perdition_NT4_Camos_v0.1.6.zip",
+  "archive_bytes": 52197885,
+  "archive_sha256": "5ad284e2ee2c660f178775169d21bb6f65e8ec4cc2f3e8721427471f40ad3e7d",
+  "files": [
+    {
+      "path": "mods/MK18 Deluxe (Faust Edit)/Materials/Weapons/MK18/NT4_Repaired/NT4_Black_Hex.bgsm",
+      "bytes": 419,
+      "sha256": "efbf2df845b42f890566e793b6370c7a5ab9a5990d19fe98f45284e8475d44e3",
+      "previous_sha256": ""
+    },
+    {
+      "path": "mods/MK18 Deluxe (Faust Edit)/Materials/Weapons/MK18/NT4_Repaired/NT4_Brush.bgsm",
+      "bytes": 415,
+      "sha256": "9fe86d445a713f9518c86d866f1b97edad6667ac1e860a1e271a10a8d457131a",
+      "previous_sha256": ""
+    },
+    {
+      "path": "mods/MK18 Deluxe (Faust Edit)/Materials/Weapons/MK18/NT4_Repaired/NT4_Desert_Hex.bgsm",
+      "bytes": 420,
+      "sha256": "4678b61caa2980519ea9d0c35e82376bf46460364cb0f258c4f984d99605d52b",
+      "previous_sha256": ""
+    },
+    {
+      "path": "mods/MK18 Deluxe (Faust Edit)/Materials/Weapons/MK18/NT4_Repaired/NT4_Splinter.bgsm",
+      "bytes": 418,
+      "sha256": "aa170f16050093f41c0083ad057906350f8242b85e9db74a48c9850974eeed2d",
+      "previous_sha256": ""
+    },
+    {
+      "path": "mods/MK18 Deluxe (Faust Edit)/Materials/Weapons/MK18/NT4_Repaired/NT4_Urban.bgsm",
+      "bytes": 415,
+      "sha256": "2627d09c3d77d9e0998583f1e72f76436037ab345757e81ef26201c89b531965",
+      "previous_sha256": ""
+    },
+    {
+      "path": "mods/MK18 Deluxe (Faust Edit)/Perdition_NT4_Repaired.esp",
+      "bytes": 31685,
+      "sha256": "78b7cd09ad32e8d04513ea85e38d23d6f19b2de23db30bbb2ecbc1f80e76b5b7",
+      "previous_sha256": "aec7d2a7b5644843a2d2de04cdabebedf899eccc1931e0100b25645adcda962a"
+    },
+    {
+      "path": "mods/MK18 Deluxe (Faust Edit)/Textures/Weapons/MK18/NT4_Repaired/nt4_black_hex_d.DDS",
+      "bytes": 22369796,
+      "sha256": "2dde36c929c0fddb2182f99f17a4d034f04f3f571a4389a7eb7964f2a6073342",
+      "previous_sha256": ""
+    },
+    {
+      "path": "mods/MK18 Deluxe (Faust Edit)/Textures/Weapons/MK18/NT4_Repaired/nt4_brush_d.DDS",
+      "bytes": 22369796,
+      "sha256": "19e3960976b8b01672b78bdd969e343aadead2a997730e145a1a99bfce0c21b6",
+      "previous_sha256": ""
+    },
+    {
+      "path": "mods/MK18 Deluxe (Faust Edit)/Textures/Weapons/MK18/NT4_Repaired/nt4_desert_hex_d.DDS",
+      "bytes": 22369796,
+      "sha256": "ef74460b7960108bc9132415c43fc8ef852739c681c1665587b748ddca35ad58",
+      "previous_sha256": ""
+    },
+    {
+      "path": "mods/MK18 Deluxe (Faust Edit)/Textures/Weapons/MK18/NT4_Repaired/nt4_splinter_d.DDS",
+      "bytes": 22369796,
+      "sha256": "215ddf3a03be4cda9d1448b08092357bbac48812a7bb882296af32e4b2b6e903",
+      "previous_sha256": ""
+    },
+    {
+      "path": "mods/MK18 Deluxe (Faust Edit)/Textures/Weapons/MK18/NT4_Repaired/nt4_urban_d.DDS",
+      "bytes": 22369796,
+      "sha256": "02716cdb22f0fa59c7b1d2db5d74bf8839a2b83f7fce8b51ce03ff3d1e94197a",
+      "previous_sha256": ""
+    }
+  ],
+  "artifacts": [
+    {
+      "filename": "Perdition_NT4_Camos_v0.1.6.zip",
+      "bytes": 52197885,
+      "sha256": "5ad284e2ee2c660f178775169d21bb6f65e8ec4cc2f3e8721427471f40ad3e7d",
+      "chunks": [
+        {
+          "offset": 0,
+          "bytes": 3145728,
+          "sha256": "d08cedfecfe6e6a331d2d605455e2e3524ae744d43d56db3c240ee0f1aefa7f1",
+          "git_sha": "24dfdf4ef5c7078ac94884bf354c1aab6f17a249"
+        },
+        {
+          "offset": 3145728,
+          "bytes": 3145728,
+          "sha256": "dc393b9be7e5ff6dbaf7a694bd8d80ebd1a49d43dd46615beae3d9237c973916",
+          "git_sha": "b5b15966f49568f80f33416c23e9b7f05bcaf869"
+        },
+        {
+          "offset": 6291456,
+          "bytes": 3145728,
+          "sha256": "182557adad603b1ef36bd003b9a30e7cc274347fcd7ee717aa87cdf0132a2da8",
+          "git_sha": "09a9e56f7ece0e0fea2f0ed3ef24d6d8d475791b"
+        },
+        {
+          "offset": 9437184,
+          "bytes": 3145728,
+          "sha256": "a84d502b728323a8c913e02a76813555d5add2d1894241aedf02cbd1aaf484cf",
+          "git_sha": "4e7122b99291d0f21276676672eaed8be87ae9e0"
+        },
+        {
+          "offset": 12582912,
+          "bytes": 3145728,
+          "sha256": "f90ecabd2ab2ca876d811192072511ec4f2f2ce1fa6d051efb1922473cd3664a",
+          "git_sha": "53ff97d1c2987dbd914a07ddb5b29c719261cc44"
+        },
+        {
+          "offset": 15728640,
+          "bytes": 3145728,
+          "sha256": "89447adc440d1448ae4464891691bab1f5287e435e4b75f6565b70e6faa9306d",
+          "git_sha": "68f1765045f1ae8440d39e0e7229b2a35bf63f75"
+        },
+        {
+          "offset": 18874368,
+          "bytes": 3145728,
+          "sha256": "d191c166a9408299b1333291e743d51c6ca8853b165c4c65afe0d0640a3ba5ff",
+          "git_sha": "5a1f7780691b477eb2155432002738fe6a2eb8aa"
+        },
+        {
+          "offset": 22020096,
+          "bytes": 3145728,
+          "sha256": "917b11fd947ad1b625938d4101886c2d74cd1225ce4d23bc9f779d73217d943a",
+          "git_sha": "58a44ed66d06cefaf98d6ed343118c70b319cdb4"
+        },
+        {
+          "offset": 25165824,
+          "bytes": 3145728,
+          "sha256": "451f68958c148708e991e9f26a93d2ab1252e6db4a2d72ac895722d9ddf773f0",
+          "git_sha": "f2077fc3b596cc579b4f98b464eefff55ef5a420"
+        },
+        {
+          "offset": 28311552,
+          "bytes": 3145728,
+          "sha256": "13623a1ee31614c84df6e6cbb2e0506ccbd5126f9102e75e718a4de4bbb6f50c",
+          "git_sha": "8e387a0020b090ac6b0c1057e64bb4bbf37a07a9"
+        },
+        {
+          "offset": 31457280,
+          "bytes": 3145728,
+          "sha256": "63fc0c419284d051f86d7aee37eebe354e4d4e2ef7bdd807c09a55d8198f5197",
+          "git_sha": "0417cedc7c7a763e418fea11b7aa7bf752c2ddf8"
+        },
+        {
+          "offset": 34603008,
+          "bytes": 3145728,
+          "sha256": "a8f349f0675be52dd74634e9200d9ef4f6d7eebcdcb280f033b5ec7238d5f68a",
+          "git_sha": "53bbb87aebb370bbca7bb3ba6dfe785c4ac47e45"
+        },
+        {
+          "offset": 37748736,
+          "bytes": 3145728,
+          "sha256": "c217df384a6ad9a0b02bde243122efb2c7264530de4f95ab71c834ab79e1a4a0",
+          "git_sha": "3c80b27009757f3ef46f669808e735fa7313fbe6"
+        },
+        {
+          "offset": 40894464,
+          "bytes": 3145728,
+          "sha256": "c2adc540ca282b6c7f7588e1a02677bbcc5b2b99abaf0791d91b09c5639b62f6",
+          "git_sha": "84de213560a90a59816e4f9a6e382b795974859d"
+        },
+        {
+          "offset": 44040192,
+          "bytes": 3145728,
+          "sha256": "a62c03b50584cb6db8d3278aafec47017c64154991566be35773e0ac37211eaa",
+          "git_sha": "9044c2bac5893c6659988c1ccff750dbf84b2554"
+        },
+        {
+          "offset": 47185920,
+          "bytes": 3145728,
+          "sha256": "b0524d9fa8b4572a25511db6c6204e747c8316f04af49ae38982eb9153ce539f",
+          "git_sha": "70dff35768d3428712ff89993d69b48ea5da9f55"
+        },
+        {
+          "offset": 50331648,
+          "bytes": 1866237,
+          "sha256": "ce9dd06eb55607fb950ab1f7de798d2525c8523660871d2f6536e90206ab8de9",
+          "git_sha": "efff04358d46542a596a88b66748dc5e573595de"
+        }
+      ]
+    }
+  ],
+  "previous_channel_sha256": "838d0c7a1bd1cb6d66c2c01979adb32d5f17dc193ec49dbb8a405fcb0e5ebee4",
+  "approved_by_user": true,
+  "installer_update_required": false,
+  "base_archive_reuploaded": false
+}

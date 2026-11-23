@@ -1,0 +1,33 @@
+{
+  "source_blend": "C:\\workspace\\MK18_RISII_NT4_Replacement.blend",
+  "source_sha256": "af683edc0f77bbbfe069119def87b8a4e233d26a459595d7103a80051a2515c1",
+  "source_unchanged": true,
+  "geometry_unchanged": true,
+  "original_game_uv": "UVmap_0",
+  "results": [
+    {
+      "slug": "Urban",
+      "diffuse": "C:\\Perdition Sector\\Development\\ModelWorkbench\\NT4_Replacement\\v0.1.4\\GameExport\\nt4_urban_d.png",
+      "vertices": 11282,
+      "triangles": 23600
+    },
+    {
+      "slug": "Desert_Hex",
+      "diffuse": "C:\\Perdition Sector\\Development\\ModelWorkbench\\NT4_Replacement\\v0.1.4\\GameExport\\nt4_desert_hex_d.png",
+      "vertices": 11282,
+      "triangles": 23600
+    },
+    {
+      "slug": "Brush",
+      "diffuse": "C:\\Perdition Sector\\Development\\ModelWorkbench\\NT4_Replacement\\v0.1.4\\GameExport\\nt4_brush_d.png",
+      "vertices": 11282,
+      "triangles": 23600
+    },
+    {
+      "slug": "Black_Hex",
+      "diffuse": "C:\\Perdition Sector\\Development\\ModelWorkbench\\NT4_Replacement\\v0.1.4\\GameExport\\nt4_black_hex_d.png",
+      "vertices": 11282,
+      "triangles": 23600
+    }
+  ]
+}

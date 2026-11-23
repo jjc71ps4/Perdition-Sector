@@ -1,0 +1,15 @@
+{
+  "splinter": [
+    {
+      "slug": "Splinter",
+      "outer_body_triangles_checked": 4589,
+      "cap_triangles_checked": 1002,
+      "maximum_body_aspect_error_percent": 0.24119061105645212,
+      "maximum_body_scale_error_percent": 0.19847895752582723,
+      "maximum_cap_aspect_error_percent": 0.0005920033585349316,
+      "newly_added_paint": true,
+      "source_gun_metric_preserved": true
+    }
+  ],
+  "passed": true
+}

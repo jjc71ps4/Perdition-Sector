@@ -1,0 +1,14 @@
+{
+  "payload_files_verified": 2071,
+  "public_updater_source_verified": true,
+  "profiles_display_5120x1440_and_save_unchanged": true,
+  "live_game_modified": false,
+  "new_update_files": 11,
+  "channel_entries": 7,
+  "network_mocked": true,
+  "updater_version_tested": "0.2.3-beta.1",
+  "tested_utc": "2026-11-23T17:23:22.4477146Z",
+  "passed": true,
+  "only_new_archive_requested": true,
+  "repeat_no_download": true
+}

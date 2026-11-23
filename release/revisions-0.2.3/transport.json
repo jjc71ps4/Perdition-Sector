@@ -1,484 +1,121 @@
 {
-  "tag": "updates-2026.11.23.1",
-  "title": "Perdition Sector - Lexington, Concord, menu and Steam setup fixes",
-  "notes_file": "release/urban-repairs-0.3.0/RELEASE_NOTES.md",
-  "channel_candidate": "release/urban-repairs-0.3.0/beta-v2.candidate.json",
-  "publication_receipt": "release/urban-repairs-0.3.0/publication.json",
-  "readme_candidate": "release/urban-repairs-0.3.0/README.next.md",
-  "channel_readme_candidate": "release/urban-repairs-0.3.0/CHANNEL_README.next.md",
-  "expected_channel_sha256": "374dc833e1e85c0c11916a3ab3503ba8deff88b806b3b6fc493689941d5126e9",
+  "tag": "updates-2026.11.23.2",
+  "title": "Perdition Sector - approved NT4 camos and pattern proportions",
+  "notes_file": "release/nt4-camos-0.1.6/RELEASE_NOTES.md",
+  "channel_candidate": "release/nt4-camos-0.1.6/beta-v2.candidate.json",
+  "publication_receipt": "release/nt4-camos-0.1.6/publication.json",
+  "readme_candidate": "release/nt4-camos-0.1.6/README.next.md",
+  "channel_readme_candidate": "release/nt4-camos-0.1.6/CHANNEL_README.next.md",
+  "expected_channel_sha256": "838d0c7a1bd1cb6d66c2c01979adb32d5f17dc193ec49dbb8a405fcb0e5ebee4",
   "retain_transport": true,
-  "commit_message": "Publish Lexington, Concord and intro viewport updates",
+  "commit_message": "Publish approved NT4 camos and pattern proportions",
   "artifacts": [
     {
-      "filename": "Perdition_Lexington_Repair_v0.2.0.zip",
-      "bytes": 108751194,
-      "sha256": "ff8c031213d4b3f9cc3eb531ef6bfcc33c72a9be20a48e70d1737d0cba3de8cc",
+      "filename": "Perdition_NT4_Camos_v0.1.6.zip",
+      "bytes": 52197885,
+      "sha256": "5ad284e2ee2c660f178775169d21bb6f65e8ec4cc2f3e8721427471f40ad3e7d",
       "chunks": [
         {
           "offset": 0,
           "bytes": 3145728,
-          "sha256": "e35159745fefea339fa7d10589079034ad5e900545629a055fc9f9805d270611",
-          "git_sha": "291d41a8f34db2513412eb32b3505cb15ac32b33"
+          "sha256": "d08cedfecfe6e6a331d2d605455e2e3524ae744d43d56db3c240ee0f1aefa7f1",
+          "git_sha": "24dfdf4ef5c7078ac94884bf354c1aab6f17a249"
         },
         {
           "offset": 3145728,
           "bytes": 3145728,
-          "sha256": "f45f012c9dfc24e257bfe2568fdb0b294577874448ffecc4b47f422ba90a07a5",
-          "git_sha": "cdfe38c3fab30312115dabf8841a8e9fe408852d"
+          "sha256": "dc393b9be7e5ff6dbaf7a694bd8d80ebd1a49d43dd46615beae3d9237c973916",
+          "git_sha": "b5b15966f49568f80f33416c23e9b7f05bcaf869"
         },
         {
           "offset": 6291456,
           "bytes": 3145728,
-          "sha256": "1363573635118088b5a8252cd40a30120aadb7fb23b824f29f8ec8a4271e8b69",
-          "git_sha": "85796ff398c0247e1f96c98e4a4d6a7d484a8e21"
+          "sha256": "182557adad603b1ef36bd003b9a30e7cc274347fcd7ee717aa87cdf0132a2da8",
+          "git_sha": "09a9e56f7ece0e0fea2f0ed3ef24d6d8d475791b"
         },
         {
           "offset": 9437184,
           "bytes": 3145728,
-          "sha256": "82973fc2569d86b47ab11df6f04412fc289670ada1dadebb4586440575091a6b",
-          "git_sha": "6c8d159b4546032d52f571d2b47608aaea3cd8c1"
+          "sha256": "a84d502b728323a8c913e02a76813555d5add2d1894241aedf02cbd1aaf484cf",
+          "git_sha": "4e7122b99291d0f21276676672eaed8be87ae9e0"
         },
         {
           "offset": 12582912,
           "bytes": 3145728,
-          "sha256": "789b6b957ed10e2aa1d47049709927045e01269c85114d1bfba822d0ab23c437",
-          "git_sha": "94d23d9b599d9a2c2e104a69c8b14bba01975105"
+          "sha256": "f90ecabd2ab2ca876d811192072511ec4f2f2ce1fa6d051efb1922473cd3664a",
+          "git_sha": "53ff97d1c2987dbd914a07ddb5b29c719261cc44"
         },
         {
           "offset": 15728640,
           "bytes": 3145728,
-          "sha256": "65330fa7b2b8d64dd8116fcfadfc155396f16002b20c31606aaa9594f0b6bae2",
-          "git_sha": "507262507ab4404c200c4b62cad599fa11e209ad"
+          "sha256": "89447adc440d1448ae4464891691bab1f5287e435e4b75f6565b70e6faa9306d",
+          "git_sha": "68f1765045f1ae8440d39e0e7229b2a35bf63f75"
         },
         {
           "offset": 18874368,
           "bytes": 3145728,
-          "sha256": "5b92d11ca929b7cd3229e8a369b81e233709325d238fbff2c9b8c9021dd18255",
-          "git_sha": "646c1ae1e94a45f4b630858eb68601b732b4eac4"
+          "sha256": "d191c166a9408299b1333291e743d51c6ca8853b165c4c65afe0d0640a3ba5ff",
+          "git_sha": "5a1f7780691b477eb2155432002738fe6a2eb8aa"
         },
         {
           "offset": 22020096,
           "bytes": 3145728,
-          "sha256": "a5f7aef28517c43a099c87da56dc36538049f7745c3a1673f80f3c8848e0a49b",
-          "git_sha": "b7bf8d7bb702291a3648da0db8a940fe643db45b"
+          "sha256": "917b11fd947ad1b625938d4101886c2d74cd1225ce4d23bc9f779d73217d943a",
+          "git_sha": "58a44ed66d06cefaf98d6ed343118c70b319cdb4"
         },
         {
           "offset": 25165824,
           "bytes": 3145728,
-          "sha256": "a145bb36812dd356309a2afcebb9ee3b16cd62f5109b3d9070ad6d900268045f",
-          "git_sha": "af11fff5b125bb1b8036c1a53d4e07fa274e8148"
+          "sha256": "451f68958c148708e991e9f26a93d2ab1252e6db4a2d72ac895722d9ddf773f0",
+          "git_sha": "f2077fc3b596cc579b4f98b464eefff55ef5a420"
         },
         {
           "offset": 28311552,
           "bytes": 3145728,
-          "sha256": "e7a1256afdeb7cff498874178d07607026ee1660823058c656fd8e0e401ec1ef",
-          "git_sha": "9fe397118df157025a56395137ac072c46bc9134"
+          "sha256": "13623a1ee31614c84df6e6cbb2e0506ccbd5126f9102e75e718a4de4bbb6f50c",
+          "git_sha": "8e387a0020b090ac6b0c1057e64bb4bbf37a07a9"
         },
         {
           "offset": 31457280,
           "bytes": 3145728,
-          "sha256": "5bd82d0d565bea25c027fb88303c58518e8dcbb401568259fe1122f64f942af7",
-          "git_sha": "87fda2003df14dfa5b5bc1431aee9f8a79df938d"
+          "sha256": "63fc0c419284d051f86d7aee37eebe354e4d4e2ef7bdd807c09a55d8198f5197",
+          "git_sha": "0417cedc7c7a763e418fea11b7aa7bf752c2ddf8"
         },
         {
           "offset": 34603008,
           "bytes": 3145728,
-          "sha256": "1903aa7dee015cd95d799ae26308ef38a848c3231a2df2aa24a58b39de758fec",
-          "git_sha": "7032173525492ff964d135a1ea0acc6ecdaf3d9b"
+          "sha256": "a8f349f0675be52dd74634e9200d9ef4f6d7eebcdcb280f033b5ec7238d5f68a",
+          "git_sha": "53bbb87aebb370bbca7bb3ba6dfe785c4ac47e45"
         },
         {
           "offset": 37748736,
           "bytes": 3145728,
-          "sha256": "7f8d11264927635f13e3b3d4838195d25ea03ffddb9c76d870e52f0a4e61cbd2",
-          "git_sha": "e16847f69a8e54416558861445e319c3c2104486"
+          "sha256": "c217df384a6ad9a0b02bde243122efb2c7264530de4f95ab71c834ab79e1a4a0",
+          "git_sha": "3c80b27009757f3ef46f669808e735fa7313fbe6"
         },
         {
           "offset": 40894464,
           "bytes": 3145728,
-          "sha256": "6afc50813b5bad8d5e15525faee9faa90fa1d9d26de6b5bdbe43e6576414ba0c",
-          "git_sha": "7acbd856d279f4a44f5a0c65b90619ac3488c480"
+          "sha256": "c2adc540ca282b6c7f7588e1a02677bbcc5b2b99abaf0791d91b09c5639b62f6",
+          "git_sha": "84de213560a90a59816e4f9a6e382b795974859d"
         },
         {
           "offset": 44040192,
           "bytes": 3145728,
-          "sha256": "9b225583b4e646814b912a879b2afd80e9c59d02a2e454e6d207bee4514bafc5",
-          "git_sha": "427b23dae644ec51a3d88420f3ef47d1220b69c6"
+          "sha256": "a62c03b50584cb6db8d3278aafec47017c64154991566be35773e0ac37211eaa",
+          "git_sha": "9044c2bac5893c6659988c1ccff750dbf84b2554"
         },
         {
           "offset": 47185920,
           "bytes": 3145728,
-          "sha256": "201b86c375361b2f02d350f2912c5624ded46a418c5f27b71375c305bca88e07",
-          "git_sha": "f4589979413de723ff40a3e1ac0004ea245805d0"
+          "sha256": "b0524d9fa8b4572a25511db6c6204e747c8316f04af49ae38982eb9153ce539f",
+          "git_sha": "70dff35768d3428712ff89993d69b48ea5da9f55"
         },
         {
           "offset": 50331648,
-          "bytes": 3145728,
-          "sha256": "c690883a6928a045bcc75734459f7b4cc6e5447f5b88883caffe4458622d122a",
-          "git_sha": "c03364d6866ed7960646126c367c5999cc7e0fc6"
-        },
-        {
-          "offset": 53477376,
-          "bytes": 3145728,
-          "sha256": "fea061bc0813cde460271f81241daa5291957d84119aa4b31c02360ec2f69d87",
-          "git_sha": "de190c225a4b13d530a54b49d7fdf7a2d3a3c737"
-        },
-        {
-          "offset": 56623104,
-          "bytes": 3145728,
-          "sha256": "5271e55b3d8dd8594c59a79abbf4612180dd555a0f73fc981d0aa87ae4c07875",
-          "git_sha": "680569ccb8228942670246ad137d961dd2a9d8f8"
-        },
-        {
-          "offset": 59768832,
-          "bytes": 3145728,
-          "sha256": "2b5452d148528ab80006f4bb926efbcc5d3b4e3e9b45ec91e0f91ae1b9c96555",
-          "git_sha": "95d194bac544b049e7f7f4a2930ebc586bb1e4d3"
-        },
-        {
-          "offset": 62914560,
-          "bytes": 3145728,
-          "sha256": "f2ca0ca0548be9b1f0cbe6819a8ca122bd32d3b9263ea5420ae456f7a3ee1809",
-          "git_sha": "29ec9e51feb5a00de2304272563a13930afcba47"
-        },
-        {
-          "offset": 66060288,
-          "bytes": 3145728,
-          "sha256": "4cd2df7c7b2649312d685806134a95376ff87e1a71c0af8ee3da539cc48c2fae",
-          "git_sha": "e056bdd93ebcf66f1c6ab462d829841dad9244b8"
-        },
-        {
-          "offset": 69206016,
-          "bytes": 3145728,
-          "sha256": "4ae07b07b50de0dacdf8dc5edea6ec3f5427f2003f147bb711cb3b62b888d6f2",
-          "git_sha": "b567fc786a187c085918952524d20d2a1fadb0ee"
-        },
-        {
-          "offset": 72351744,
-          "bytes": 3145728,
-          "sha256": "f678217dd323f7dd18a1e8a9ff6418b3784bbe7a9a6d42ed8cdcabe048004caf",
-          "git_sha": "eb44fc4775cd69a1c7b21d63ab13c0f863476ea4"
-        },
-        {
-          "offset": 75497472,
-          "bytes": 3145728,
-          "sha256": "c14e0c69ef160de3b48c9ec21c833de4e046e4c95c3d178cf1a9915ad8d9c27a",
-          "git_sha": "e482a047bef6011e4d849e584c54645db1ccea04"
-        },
-        {
-          "offset": 78643200,
-          "bytes": 3145728,
-          "sha256": "bd506ac2a349a36a18ac18921004c86645be1106738849efa1c640674678dcef",
-          "git_sha": "deda9c73c7a9395535d0aed801981d318fc79ceb"
-        },
-        {
-          "offset": 81788928,
-          "bytes": 3145728,
-          "sha256": "bcc6b563e5177fc9fcb03ece8b643805f14a1626aa1c296e132654377a069678",
-          "git_sha": "3c0640749a566438afdb91a1e7d1d1ecee05b245"
-        },
-        {
-          "offset": 84934656,
-          "bytes": 3145728,
-          "sha256": "7de652a3aab9708ef5cc80ef193da4de7850da782621868c78f3fded64d047b3",
-          "git_sha": "e415bd784749c0b838fc33bb0b824e81a05a754a"
-        },
-        {
-          "offset": 88080384,
-          "bytes": 3145728,
-          "sha256": "a6552e62e811b200209491168774fb079a9de2a2d1092c04098be02a71bacaeb",
-          "git_sha": "babe66912127c5ee5c755b8deb6f050a3af9ee6c"
-        },
-        {
-          "offset": 91226112,
-          "bytes": 3145728,
-          "sha256": "3c64a34c06d5c33525154d093ec0be9b8448fb91d90068c121f20faa13a00d6c",
-          "git_sha": "7cb806e46b464a503b5df66640012a992fd9385d"
-        },
-        {
-          "offset": 94371840,
-          "bytes": 3145728,
-          "sha256": "a9389505ac3e41c3a44a51ad5ae8632df90bbc11ec4628a81a25654b684eaa2d",
-          "git_sha": "a668f9e505a26d955c9f9239ce4c04c1cc1a39e1"
-        },
-        {
-          "offset": 97517568,
-          "bytes": 3145728,
-          "sha256": "03f999ed74639339b3e24973afe83b24787eceaa95f946aded870cbcb8157374",
-          "git_sha": "eb93f570afe44d50838a492e0105cd8089d08ffa"
-        },
-        {
-          "offset": 100663296,
-          "bytes": 3145728,
-          "sha256": "9d8850c39b0475744eefe053317ac677d2a1a78a8a69967f04fac229fea1116e",
-          "git_sha": "10f4c1db3283adf97d3747f10bbaec24795c7fed"
-        },
-        {
-          "offset": 103809024,
-          "bytes": 3145728,
-          "sha256": "6c620bca8ba44cc4929497a792074f70b1dd03b4d2cbaa89cc4978bb983f8517",
-          "git_sha": "98774365e4e596aa45ed2d27b134cdb83966b55e"
-        },
-        {
-          "offset": 106954752,
-          "bytes": 1796442,
-          "sha256": "5b6bc5cba982d3288ea7068de75f52471f6e10144140dca098fe11801c5ab843",
-          "git_sha": "bb0ae57d677426b6fb19d861a1f7ef9f2cf5af94"
-        }
-      ]
-    },
-    {
-      "filename": "Perdition_Concord_Repair_v0.3.0.zip",
-      "bytes": 108182805,
-      "sha256": "bd5aa5999518f08adbf3153192d18546db43502ebec7d2085a8788692e60e82b",
-      "chunks": [
-        {
-          "offset": 0,
-          "bytes": 3145728,
-          "sha256": "01ab7be69a4d9aed5ee454fdda0c95950424e97b685b03330d3ddfd2d83ad64b",
-          "git_sha": "2b12987c2dc13a254c97c205d89c6ca2e791b4ac"
-        },
-        {
-          "offset": 3145728,
-          "bytes": 3145728,
-          "sha256": "186451c701f00916f2e6e258bf7c790fd3679f0889a13cfbae1ca0c213bb7676",
-          "git_sha": "58411bb9d5925df1b782ffb56c227093c4138550"
-        },
-        {
-          "offset": 6291456,
-          "bytes": 3145728,
-          "sha256": "8e7577c5a1e3602e18b794fc396e2a5bcbad5eef5b6486832a66a442250533e9",
-          "git_sha": "fcc6b5b25bf3382b12cb3ff385f7b69caa82e922"
-        },
-        {
-          "offset": 9437184,
-          "bytes": 3145728,
-          "sha256": "1befd4487f17d58adf683db133568a2042df3cb9aa220dedc5bfa03581e546f2",
-          "git_sha": "d4020ca66ebc755c6aff6740e6baf8cdbbaac5bb"
-        },
-        {
-          "offset": 12582912,
-          "bytes": 3145728,
-          "sha256": "10283e62c4624acc684ed4db468fef6073720e6c60d9e190c40981d081800319",
-          "git_sha": "d3b36a3baceb17366d9076d61b153bf86e51ae26"
-        },
-        {
-          "offset": 15728640,
-          "bytes": 3145728,
-          "sha256": "0a32ba62736d1630595ff798a4746c2f447411e7376f18b7d47eaa52475c9899",
-          "git_sha": "5ffa13bf7d6886e67e509de071ab214355a0bd7d"
-        },
-        {
-          "offset": 18874368,
-          "bytes": 3145728,
-          "sha256": "c17c69c0919f693f19f6cb95072e56153e36d34b595ff0439afb3cdccd6f1dff",
-          "git_sha": "466f9fa1853a5e047e22e10cc86988d2b8fe8ba5"
-        },
-        {
-          "offset": 22020096,
-          "bytes": 3145728,
-          "sha256": "b03933d5fe83e293e075c3fc84a6255739d3fe94178c25a8eab981adaf15aa2d",
-          "git_sha": "5cc8808cb490309c13a92af0faaabbd4e500bdf2"
-        },
-        {
-          "offset": 25165824,
-          "bytes": 3145728,
-          "sha256": "bbb1ba1b2e636dc5cbe77d8e8c35e116dbb1fda9cf165c844f95eb2a20e594e8",
-          "git_sha": "c76c0352f8e5481a6ef1ef0bcdf1cae1e57b5601"
-        },
-        {
-          "offset": 28311552,
-          "bytes": 3145728,
-          "sha256": "3dcba34f3e306579739e81e34c058c87a49a9b90e2e4cd79386ba0ce90dbeac2",
-          "git_sha": "3b3be9b2343524e48d0e13b66be68b7b0a863ce9"
-        },
-        {
-          "offset": 31457280,
-          "bytes": 3145728,
-          "sha256": "7087ebe674973225cae4d4237cf3252d7eb50b3263130b16e3e29ef6f4914942",
-          "git_sha": "c64cf245ec10592872a04d698edf79212f0e9a63"
-        },
-        {
-          "offset": 34603008,
-          "bytes": 3145728,
-          "sha256": "46b07e02b629002448f2bb9240085d83b8aca7de5edfe3dc004eb109fdc7e674",
-          "git_sha": "59452a75b0d184fd1108798345be60f231ec6598"
-        },
-        {
-          "offset": 37748736,
-          "bytes": 3145728,
-          "sha256": "79c4abeee568ae259a47cefd8fb5568bd1b1900434a7b284d75a973335bc37af",
-          "git_sha": "394d103e9cc98a1b3bb81e5c0d38d9cd13c6c59c"
-        },
-        {
-          "offset": 40894464,
-          "bytes": 3145728,
-          "sha256": "77e368f3f7c3cb44ed346f2ba6288339beab75c5ac309ff3e8e6b57d969c977d",
-          "git_sha": "0e393b292bf57f4f209a88ad7c8f4389d8791499"
-        },
-        {
-          "offset": 44040192,
-          "bytes": 3145728,
-          "sha256": "95b49c0b9b934e1c5ab5abbf1473d50ed23070bafc10dac1490c89a985633bf4",
-          "git_sha": "42ce6bc1c3b2ab8bfcb944dfc8d45ed0231ae8b5"
-        },
-        {
-          "offset": 47185920,
-          "bytes": 3145728,
-          "sha256": "422bcbd30cf202729fb1d88d350e38bb1428bdd3e4b93a67456faaf71b52f97a",
-          "git_sha": "c1837f431fa8590c9417282611889ffc9e9103fb"
-        },
-        {
-          "offset": 50331648,
-          "bytes": 3145728,
-          "sha256": "7d76c0256d186a0ed444fdeccb5b56febd03ee2f8cfaeed2b6cd070ca73ee274",
-          "git_sha": "2a245dcc241b5dcaaa32a1e8c03c84b893675224"
-        },
-        {
-          "offset": 53477376,
-          "bytes": 3145728,
-          "sha256": "f4613d616d35b98c22625f5ea2919372f233a3e49773a68790a0b89fcf4e0cf2",
-          "git_sha": "69162849fe9017897cc863ed520412059a89c4ff"
-        },
-        {
-          "offset": 56623104,
-          "bytes": 3145728,
-          "sha256": "9a02801ee16d1f6fb80a8e5c2de27dc44b66eab28bcc7b70e6740bb48dd966c5",
-          "git_sha": "9b2d159321b977df6cc2d7efe41af7e61bb24f11"
-        },
-        {
-          "offset": 59768832,
-          "bytes": 3145728,
-          "sha256": "d39d41bd685f9df1c66b05a3702d3f89068318e109eac04a06edfe04feaed8f9",
-          "git_sha": "8c3e8322b50b6fde45e7998b622bcfc447a60ed2"
-        },
-        {
-          "offset": 62914560,
-          "bytes": 3145728,
-          "sha256": "a9e05cc1fa215b14719c9adc0175a0dd33a6db0136367dd22b851d86488619e2",
-          "git_sha": "fdfbf964d4dc6d5e2260e32a7b1ee007941f781b"
-        },
-        {
-          "offset": 66060288,
-          "bytes": 3145728,
-          "sha256": "99668219d9cb9231aacbf90bdaec717a3a679f17656e39092743364282cf7220",
-          "git_sha": "0497c1b5c158ba04b84b48a4ea765847384c67d2"
-        },
-        {
-          "offset": 69206016,
-          "bytes": 3145728,
-          "sha256": "f21a6838c269b015c32c446b36ffb971347c0218fcbcb0ab5d77f8f727a57fb1",
-          "git_sha": "bbc96c553d41c04c90f49ab7aa9bb0095c8e5b73"
-        },
-        {
-          "offset": 72351744,
-          "bytes": 3145728,
-          "sha256": "df006a042a8114f2ebb2df1767dde8b23ae13498bd29dda0ad8fca56fe4e803a",
-          "git_sha": "290610e31c3b354a4067c518619a6e4463ee6552"
-        },
-        {
-          "offset": 75497472,
-          "bytes": 3145728,
-          "sha256": "37c448995d1ab6a3a5822bea1804747793ebeee21a9f9d1443fcb2051bea5273",
-          "git_sha": "2b8e3ce05ea5d507a7c8df5adbc45882ffb7f386"
-        },
-        {
-          "offset": 78643200,
-          "bytes": 3145728,
-          "sha256": "8524844000553ce952df5195497533c0c43c802f5cdb4cacdedd05e55a53b052",
-          "git_sha": "ea1ddf1e502ae0fcf53d442faf1db709b81489f2"
-        },
-        {
-          "offset": 81788928,
-          "bytes": 3145728,
-          "sha256": "3427503d8c73ccc086f681d17473f580a5642eea0a1e26320d1c7d3e42829f33",
-          "git_sha": "c4551ac4057eaf5d303b91458709f3a6a83b8f35"
-        },
-        {
-          "offset": 84934656,
-          "bytes": 3145728,
-          "sha256": "ec68b040ee7906c3cab233ac0b2ed84e0fa4684485270642d81c3a537ed3ea1f",
-          "git_sha": "c5993660121e04a008598857b13d1ab39d229208"
-        },
-        {
-          "offset": 88080384,
-          "bytes": 3145728,
-          "sha256": "535c8c5538fe19538f547bb54d9102ab3ae4a290dba38c4e7c3cc358dac3b3d6",
-          "git_sha": "b01a52ba2d846ca84846b359301afe4523278727"
-        },
-        {
-          "offset": 91226112,
-          "bytes": 3145728,
-          "sha256": "120d949ff56c3529377a46de07a5722fb4735d559dbde92944654687dc2cc0a5",
-          "git_sha": "ba5968edb766c54332cb3210596c94c58ffe7b87"
-        },
-        {
-          "offset": 94371840,
-          "bytes": 3145728,
-          "sha256": "abf8f0961bb32e0f4559835b93743c7edfafbedb3e0d938a7182c257a052a208",
-          "git_sha": "dc9db068b285fbf3b27015fb9940258a75dfb332"
-        },
-        {
-          "offset": 97517568,
-          "bytes": 3145728,
-          "sha256": "5e6b033b8f7ab7f0028a13c664321f34574ee58e47d33399ae80d4500e347d33",
-          "git_sha": "b6d77374e07922723af67e8e3be4e7062f1a8801"
-        },
-        {
-          "offset": 100663296,
-          "bytes": 3145728,
-          "sha256": "38fbf401e5708f5727787988bb29b4b122f71cc3832d2832f2913f0ea8f29669",
-          "git_sha": "188dcac30baf3efcc4b5d03949dabb59c554194b"
-        },
-        {
-          "offset": 103809024,
-          "bytes": 3145728,
-          "sha256": "58df0571a559354318d25561cb156dde8b1aacba283e6310160a3d285f0a588d",
-          "git_sha": "65311daf9e35e55f7ba11a2150f952933e574ae0"
-        },
-        {
-          "offset": 106954752,
-          "bytes": 1228053,
-          "sha256": "d06d794d2e0794efa61766adedc64d6185a98b97bce77c570f9664583610df71",
-          "git_sha": "4e1b0dbc5c3aa38d4f42f41c76080284b1aaeaa5"
-        }
-      ]
-    },
-    {
-      "filename": "Perdition_Intro_Viewport_v0.1.17.zip",
-      "bytes": 4951,
-      "sha256": "0a88ef4748b500cd3f6475dc716a03417fba117681fd756ae81e2c3fc503a2ba",
-      "chunks": [
-        {
-          "offset": 0,
-          "bytes": 4951,
-          "sha256": "0a88ef4748b500cd3f6475dc716a03417fba117681fd756ae81e2c3fc503a2ba",
-          "git_sha": "d0849df1d5517c4d96cf64401cc73f0383c6e035"
-        }
-      ]
-    },
-    {
-      "filename": "Perdition_Sector_Installer_v0.2.5-beta.1_Beta.zip",
-      "bytes": 6310224,
-      "sha256": "e325ed076f5c2fcd1355079b85125b4b85d7a681534bb5738fc115e711ba720a",
-      "chunks": [
-        {
-          "offset": 0,
-          "bytes": 3145728,
-          "sha256": "c9873726d76d893fca8002e84a594094f899819ba2684fcae6f33aad3c341787",
-          "git_sha": "b5061e15ec378751d70b725e1591a0ec83b9a69b"
-        },
-        {
-          "offset": 3145728,
-          "bytes": 3145728,
-          "sha256": "5aa05b25d354f203156a6d0c31b2f04da7645fd43e19e9a0673340664c1c7894",
-          "git_sha": "2f66f37d52630732073e0d03fc618acec34a4a30"
-        },
-        {
-          "offset": 6291456,
-          "bytes": 18768,
-          "sha256": "395318ed675b86f1795dd2d68d714138340372fa1898aeaa1e727d2083f88513",
-          "git_sha": "268efb4c3a4c7f986b76a266067d841fccf9e547"
+          "bytes": 1866237,
+          "sha256": "ce9dd06eb55607fb950ab1f7de798d2525c8523660871d2f6536e90206ab8de9",
+          "git_sha": "efff04358d46542a596a88b66748dc5e573595de"
         }
       ]
     }

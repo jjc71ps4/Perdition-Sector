@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "Urban",
+    "source_texture": "C:\\Perdition Sector\\mods\\MK18 Deluxe (Faust Edit)\\Textures\\Weapons\\MK18\\MK18\\Skins\\Urban\\MK18_D.DDS",
+    "source_sha256": "25b986fcf30b2cfef54c57566052f21733f569f008fd3234351ef1039edcca47",
+    "source_size": [
+      4096,
+      4096
+    ],
+    "crop": [
+      2940,
+      3820,
+      4020,
+      3910
+    ],
+    "paint_path": "C:\\Perdition Sector\\Development\\ModelWorkbench\\NT4_Replacement\\v0.1.4\\Sources\\Urban_paint.png",
+    "axial_repeat": 1.0,
+    "circumference_repeat": 6,
+    "source_detail_filter_radius": 0,
+    "material_swap": "mk18_deluxe.esp:00006B"
+  },
+  {
+    "slug": "Desert_Hex",
+    "source_texture": "C:\\Perdition Sector\\mods\\MK18 Deluxe (Faust Edit)\\Textures\\Weapons\\MK18\\MK18\\Skins\\Desert_Hex\\MK18_D.DDS",
+    "source_sha256": "56df37c4e05eca8017e5f1f2d6148ec119acfb565bd75573597ae99554b0ebdb",
+    "source_size": [
+      4096,
+      4096
+    ],
+    "crop": [
+      3720,
+      1140,
+      4010,
+      1310
+    ],
+    "paint_path": "C:\\Perdition Sector\\Development\\ModelWorkbench\\NT4_Replacement\\v0.1.4\\Sources\\Desert_Hex_paint.png",
+    "axial_repeat": 1.8,
+    "circumference_repeat": 2,
+    "source_detail_filter_radius": 3,
+    "material_swap": "mk18_deluxe.esp:000066"
+  },
+  {
+    "slug": "Brush",
+    "source_texture": "C:\\Perdition Sector\\mods\\MK18 Deluxe (Faust Edit)\\Textures\\Weapons\\MK18\\MK18\\Skins\\Brush\\MK18_D.DDS",
+    "source_sha256": "6dab8edac0ece84c6290d646f8dd7875a27c8c644fbe7ced23a8faebbff5418f",
+    "source_size": [
+      4096,
+      4096
+    ],
+    "crop": [
+      2820,
+      3820,
+      3180,
+      3910
+    ],
+    "paint_path": "C:\\Perdition Sector\\Development\\ModelWorkbench\\NT4_Replacement\\v0.1.4\\Sources\\Brush_paint.png",
+    "axial_repeat": 1.65,
+    "circumference_repeat": 6,
+    "source_detail_filter_radius": 0,
+    "material_swap": "mk18_deluxe.esp:00006C"
+  },
+  {
+    "slug": "Black_Hex",
+    "source_texture": "C:\\Perdition Sector\\mods\\MK18 Deluxe (Faust Edit)\\Textures\\Weapons\\MK18\\MK18\\Skins\\Desert_Hex\\MK18_BLK_D.DDS",
+    "source_sha256": "ed602014683b870812cb439b6c7e0a9c720608f8507cfee28246f039399be75a",
+    "source_size": [
+      4096,
+      4096
+    ],
+    "crop": [
+      3720,
+      1140,
+      4010,
+      1310
+    ],
+    "paint_path": "C:\\Perdition Sector\\Development\\ModelWorkbench\\NT4_Replacement\\v0.1.4\\Sources\\Black_Hex_paint.png",
+    "axial_repeat": 1.8,
+    "circumference_repeat": 2,
+    "source_detail_filter_radius": 3,
+    "material_swap": "mk18_deluxe.esp:000068"
+  }
+]

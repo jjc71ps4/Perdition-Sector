@@ -1,0 +1,19 @@
+[
+  {
+    "slug": "Splinter",
+    "source_texture": "C:\\Perdition Sector\\mods\\MK18 Deluxe (Faust Edit)\\Textures\\Weapons\\MK18\\MK18\\Skins\\Splinter\\MK18_D.DDS",
+    "source_sha256": "4b5464ae5cac83a0ca642365d0e7358d66c13d8e5d32c2a0a4e1573c6fdf6d21",
+    "source_size": [
+      4096,
+      4096
+    ],
+    "crop": [
+      2940,
+      3820,
+      4020,
+      3910
+    ],
+    "paint_path": "C:\\Perdition Sector\\Development\\ModelWorkbench\\NT4_Replacement\\v0.1.6\\Sources\\Splinter_paint.png",
+    "material_swap": "mk18_deluxe.esp:00006A"
+  }
+]
