@@ -1,0 +1,34 @@
+{
+  "tag": "updates-2026.11.23.1",
+  "assets": [
+    {
+      "name": "Perdition_Lexington_Repair_v0.2.0.zip",
+      "bytes": 108751194,
+      "sha256": "ff8c031213d4b3f9cc3eb531ef6bfcc33c72a9be20a48e70d1737d0cba3de8cc",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/updates-2026.11.23.1/Perdition_Lexington_Repair_v0.2.0.zip"
+    },
+    {
+      "name": "Perdition_Concord_Repair_v0.3.0.zip",
+      "bytes": 108182805,
+      "sha256": "bd5aa5999518f08adbf3153192d18546db43502ebec7d2085a8788692e60e82b",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/updates-2026.11.23.1/Perdition_Concord_Repair_v0.3.0.zip"
+    },
+    {
+      "name": "Perdition_Intro_Viewport_v0.1.17.zip",
+      "bytes": 4951,
+      "sha256": "0a88ef4748b500cd3f6475dc716a03417fba117681fd756ae81e2c3fc503a2ba",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/updates-2026.11.23.1/Perdition_Intro_Viewport_v0.1.17.zip"
+    },
+    {
+      "name": "Perdition_Sector_Installer_v0.2.5-beta.1_Beta.zip",
+      "bytes": 6310224,
+      "sha256": "e325ed076f5c2fcd1355079b85125b4b85d7a681534bb5738fc115e711ba720a",
+      "url": "https://github.com/jjc71ps4/Perdition-Sector/releases/download/updates-2026.11.23.1/Perdition_Sector_Installer_v0.2.5-beta.1_Beta.zip"
+    }
+  ],
+  "base_archive_reuploaded": false,
+  "channel": "updates/beta-v2.json",
+  "workflow_run": "45216304770",
+  "source_commit": "1d97061b943325cc76480baf090ec2608cfa31db",
+  "complete": true
+}

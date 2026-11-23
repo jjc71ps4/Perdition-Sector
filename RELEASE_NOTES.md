@@ -1,29 +1,13 @@
-# Perdition Sector 0.2.3-beta.1 revisions
+# Perdition Sector: Lexington, Concord, intro viewport and setup repairs
 
-This small update installs over the existing beta-2026.11.20.1 package. The
-34 GB base archive and its checksums are unchanged.
+- Lexington: rebuilt precombines and visibility for 18 exterior cells. Player confirmed the repair in game.
+- Concord: rebuilt 18 exterior cells plus the Museum of Freedom and Civic Access interiors. Player confirmed the repairs in game.
+- Cosmetic scenery deletions remain in place; the generated geometry and visibility now reflect them. Corrected combined-material handling and alpha exclusions are included.
+- Intro name/gender menu: place and fit controls within Scaleform's actual visible viewport, including its origin. The compiled menu passes 27 layout-bound checks, including 5120 x 1440. Native ultrawide confirmation is pending.
+- Setup 0.2.5-beta.1: automatic Perdition download; one Steam downloader session for the pinned game/DLC packages; bounded token/QR recovery without password prompts when QR mode is selected. Mocked Steam recovery tests pass; this is still a beta installer.
 
-- Repaired, player-aligned NT4 mesh with its original normal and material maps.
-- Default paint uses the confirmed RUTex finish with the confirmed brown-tone correction.
-- Black/BLK paint uses a charcoal-black NT4; every other paint uses original FDE.
-- Confirmed urban visibility patch and accepted 3500/2000 exterior draw distances,
-  2600/1950 interior distances, object fade 15 and mesh fade scalar 1.
-- Two MK18 attachment model-path repairs, for Perst-3 and Holosun LS321G.
-- Four redundant mod entries disabled while preserving their winning replacements.
-- The prior confirmed radio-recovery patch is applied through the same update channel.
-- The base package already contains the confirmed 17 subway repairs.
+Existing players: close Fallout 4 and MO2 and run `Update Perdition Sector.cmd`. Players without that command can extract the setup ZIP and use `Update existing Perdition.cmd`.
 
-Download and extract the complete **Perdition_Sector_Installer_v0.2.3-beta.1_Beta.zip**.
-For a new PC, run PerditionSetup.exe. Choose an existing downgraded Fallout 4
-1.10.163 folder with all six DLCs, or use the separate Steam-download option.
-For an existing Perdition installation, close the game and MO2, run
-Update existing Perdition.cmd, and select the folder containing ModOrganizer.exe.
+The unchanged public updater 0.2.3 applies all three new content updates, enables both area patches in dependency order, and verifies 2,061 resulting files in an offline fixture. Repeating the update downloads nothing. The fixture preserved 5120 x 1440 preferences and a save sentinel. Network downloads were mocked in this fixture; release assets are separately verified by the publisher.
 
-The update enables the required patches and changes only the named distance
-settings; the player's resolution, unrelated preferences and saves are retained.
-Original changed files and profile settings are backed up transactionally.
-Older setup/updater versions need this one-time 0.2.3 upgrade for profile migrations.
-
-Mesh, RUTex and brown correction are confirmed in-game by the author. The new
-black finish and a complete fresh-PC installation remain the next user tests.
-No new game is required to test these asset and performance changes.
+No new installer is required for these content updates. Setup 0.2.5 is provided for the earlier Steam authentication failure. No base snapshot re-upload, save migration, gameplay rebalance, or graphics-distance change is included in this release. Grass and NVG precipitation issues remain open.
